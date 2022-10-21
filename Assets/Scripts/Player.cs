@@ -4,36 +4,38 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Settings")]
+    [SerializeField] float health;
 
-    public GameObject bulletPrefab;
-    protected Transform muzzlePos;
-    protected Vector2 direction;
-    [SerializeField]protected float speed;
-    protected float health;
-
+    [Header("Data")]
+    [SerializeField] float speed;
 
     private Vector2 input;
-    public Rigidbody2D rig;
+
+    private Rigidbody2D rig;
     private Animator animator;
+    Shooter shooter;
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
-
+        shooter = GetComponent<Shooter>();
     }
 
 
     void Update()
     {
-        move();
-        //Debug .Log();
+        Move();
+        Aim();
     }
-    void move()
+    void Move()
     {
+        // movement
         input.x = Input.GetAxis("Horizontal");
         input.y = Input.GetAxis("Vertical");
-
         rig.velocity = input.normalized * speed;
+
+        // face towards
         if (input.x > 0)
         {
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
@@ -43,11 +45,16 @@ public class Player : MonoBehaviour
             transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
         }
 
-        if (input != Vector2.zero)
-        
-            animator.SetBool("isMoving",true);
-        else 
-            animator.SetBool("isMoving",false);
-
+        // animate
+        animator.SetBool("isMoving", input != Vector2.zero);
+    }
+    void Aim()
+    {
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouseWorldPos.z = 0;
+        Vector3 direction = mouseWorldPos - transform.position;
+        Debug.Log(direction);
+        if (Input.GetMouseButtonDown(0))
+            shooter.Shoot(direction);
     }
 }

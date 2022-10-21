@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shoot : MonoBehaviour
+public class Shooter : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] GameObject bulletPrefab;
+    [SerializeField] Transform muzzlePos;
+
     protected float range;
     //How long the character's tears will travel before landing.
     protected float damage;
@@ -21,5 +25,12 @@ public class Shoot : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Shoot(Vector2 direction)
+    {
+        ShooterBullet bullet = Instantiate(bulletPrefab).GetComponent<ShooterBullet>();
+        bullet.transform.position = transform.position;
+        bullet.Initialize(direction);
     }
 }
