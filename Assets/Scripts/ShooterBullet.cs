@@ -5,11 +5,19 @@ using UnityEngine;
 public class ShooterBullet : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] float damage = 10;
-    [SerializeField] float speed = 1;
+    [SerializeField] private float damage = 10;
+    [SerializeField] private float speedDecay = 2f;
+    [SerializeField] private float minSpeed = 0.1f;
+    [SerializeField] private float startSpeed = 20;
+    [SerializeField] float speed;
 
     [Header("Debug")]
     [SerializeField] Vector2 direction;
+
+
+    bool recalling, disappearing;
+    Transform recallTarget;
+    public SpriteRenderer bulletRend;
 
     void Start()
     {
@@ -19,21 +27,64 @@ public class ShooterBullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += (Vector3)direction * Time.deltaTime * speed;
+        Move();
+        CheckDisappear();
     }
 
-    private void OnTriggerEnter(Collider other)
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    Health health = other.GetComponent<Health>();
+    //    if (health != null)
+    //    {
+    //        health.TakeDamge(damage);
+    //        Destroy(gameObject);
+    //    }
+    //}
+    void Move()
     {
-        Health health = other.GetComponent<Health>();
-        if (health != null)
+        speed -= speedDecay * speed * Time.deltaTime; //slow down the bullet over time
+        if (speed < minSpeed)
         {
-            health.TakeDamge(damage);
-            Destroy(gameObject);
+            speed = 0; //clamp down speed so it doesnt take too long to stop
         }
+        Vector2 tempPos = transform.position; //capture current position
+        tempPos += direction * speed * Time.deltaTime; //find new position
+        transform.position = tempPos; //update position
     }
 
     public void Initialize(Vector2 dir)
     {
         direction = dir;
+        speed = startSpeed;
+    }
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            speed = 0; //stop if it hits a wall
+        }
+    }
+    void CheckDisappear()
+    {
+        if (speed == 0 && !disappearing)
+        { //disappear and destroy when stopped
+            disappearing = true; //so we dont continuelly call the coroutine
+            StartCoroutine(Disappear());
+        }
+    }
+    IEnumerator Disappear()
+    {
+        float curAlpha = 1; //start at full alpha
+        float disSpeed = 3f; //take 1/3 seconds to disappear
+        Color disColor = bulletRend.color; //capture color to edit its alpha
+        do
+        {
+            curAlpha -= disSpeed * Time.deltaTime; //find new alpha
+            disColor.a = curAlpha; //apply alpha to color
+            bulletRend.color = disColor; // apply color to bullet
+            yield return null;
+        } while (curAlpha > 0); //end when the bullet is transparent
+        Destroy(gameObject); //get rid of bullet now that it can't be seen
     }
 }

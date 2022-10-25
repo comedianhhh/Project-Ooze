@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouseWorldPos.z = 0;
         Vector3 direction = mouseWorldPos - transform.position;
-        Debug.Log(direction);
+        //Debug.Log(direction);
         if (Input.GetMouseButtonDown(0))
             shooter.Shoot(direction);
     }
