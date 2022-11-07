@@ -6,7 +6,7 @@ public class CamController : MonoBehaviour
 {
     public Transform player;
     Vector3 target, mousePos, refVel, shakeOffset;
-    float cameraDist = 3.5f;
+    [SerializeField]float cameraDist = 1.5f;
     float smoothTime = 0.2f, zStart;
     //shake
     float shakeMag, shakeTimeEnd;

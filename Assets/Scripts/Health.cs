@@ -17,7 +17,10 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (CurrentHealth <= 0)
+        {
+            Die();
+        }
     }
 
     public void TakeDamge(float damage)
@@ -27,6 +30,6 @@ public class Health : MonoBehaviour
 
     public void Die(bool isSwallowed = false)
     {
-
+        Destroy(gameObject);
     }
 }

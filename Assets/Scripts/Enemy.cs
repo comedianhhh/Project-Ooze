@@ -6,11 +6,11 @@ public class Enemy : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] private string enemyName;
-    [SerializeField] private float moveSpeed;
+    [SerializeField] private protected float moveSpeed;
 
-    private Transform target;
-    [SerializeField] private float distance;
-    private void introduction()
+    [SerializeField] private protected Transform target;
+    [SerializeField] private protected float distance;
+    protected virtual void introduction()
     {
         Debug.Log("my name is " + enemyName + "moveSpped:" + moveSpeed);
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -25,9 +25,10 @@ public class Enemy : MonoBehaviour
     {
         Move();
         TurnDirection();
+        Attack();
     }
 
-    void Move()
+    protected  virtual void Move()
     {
         if (Vector2.Distance(transform.position, target.position) < distance)
         {
@@ -47,4 +48,11 @@ public class Enemy : MonoBehaviour
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
         }
     }
+
+    protected virtual void Attack()
+    {
+        Debug .Log("is attacking");
+    }
+
+
 }
