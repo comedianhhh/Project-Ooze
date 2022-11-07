@@ -4,15 +4,47 @@ using UnityEngine;
 
 public class Thrower : Goblin
 {
+
+    public GameObject projectiles;
+
+    [SerializeField]
     private float shotRate = 2.0f;
     private float shotTimer;
-    public GameObject projectiles;
+    public float stoppingDistance;
+    public float retreatDistance;
+
     protected override void Attack()
     {
-        base.Attack();
-        if (shotTimer > shotRate)
+        //base.Attack();
+        if (shotRate <=0)
         {
             Instantiate(projectiles, transform.position, Quaternion.identity);
+            shotRate = shotTimer;
         }
+        else
+        {
+            shotRate -= Time.deltaTime;
+        }
+
     }
+
+    protected override void Move()
+    {
+        if (Vector2.Distance(transform.position, target.position) > stoppingDistance)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
+
+        }
+        else if(Vector2 .Distance(transform.position,target.position )<stoppingDistance && Vector2.Distance(transform.position, target.position) > retreatDistance)
+        {
+            transform.position = this.transform.position;
+        }
+        else if (Vector2.Distance(transform.position, target.position) < retreatDistance)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, target.position, -moveSpeed * Time.deltaTime);
+        }
+        
+    }
+
+
 }

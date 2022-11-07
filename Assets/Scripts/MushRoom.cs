@@ -5,14 +5,11 @@ using UnityEngine;
 public class MushRoom : Enemy
 {
 
-    void Start()
-    {
-        
-    }
+
 
     protected override void introduction()
     {
-        //base.introduction();
+        base.introduction();
         Debug.Log("this is Mr.MushRoom");
     }
 
