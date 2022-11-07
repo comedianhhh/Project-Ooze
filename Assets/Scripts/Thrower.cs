@@ -9,16 +9,20 @@ public class Thrower : Goblin
 
     [SerializeField]
     private float shotRate = 2.0f;
-    private float shotTimer;
+    private float shotTimer=2f;
     public float stoppingDistance;
     public float retreatDistance;
 
     protected override void Attack()
     {
         //base.Attack();
+        
         if (shotRate <=0)
         {
-            Instantiate(projectiles, transform.position, Quaternion.identity);
+            
+            EnemyBullet bullet = Instantiate(projectiles).GetComponent<EnemyBullet>();
+            bullet.transform.position = transform.position;
+            bullet.Initialize(target.position-transform.position);
             shotRate = shotTimer;
         }
         else
@@ -30,10 +34,11 @@ public class Thrower : Goblin
 
     protected override void Move()
     {
+
+
         if (Vector2.Distance(transform.position, target.position) > stoppingDistance)
         {
             transform.position = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
-
         }
         else if(Vector2 .Distance(transform.position,target.position )<stoppingDistance && Vector2.Distance(transform.position, target.position) > retreatDistance)
         {
@@ -45,6 +50,7 @@ public class Thrower : Goblin
         }
         
     }
+
 
 
 }

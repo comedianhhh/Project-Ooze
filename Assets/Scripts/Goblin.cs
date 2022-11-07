@@ -6,7 +6,7 @@ public class Goblin : Enemy
 {
     // Start is called before the first frame update
     public Transform wayPoint01, wayPoint02;
-    [SerializeField] private Transform wayPointTarget;
+    [SerializeField] public Transform wayPointTarget;
 
     private void Awake()
     {
