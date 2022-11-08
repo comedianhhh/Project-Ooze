@@ -15,13 +15,13 @@ public class Enemy : MonoBehaviour
         Debug.Log("my name is " + enemyName + "moveSpped:" + moveSpeed);
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
-    void Start()
+    protected virtual void Start()
     {
         introduction();
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         Move();
         TurnDirection();

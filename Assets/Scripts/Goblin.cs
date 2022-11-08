@@ -4,33 +4,81 @@ using UnityEngine;
 
 public class Goblin : Enemy
 {
-    // Start is called before the first frame update
-    public Transform wayPoint01, wayPoint02;
-    [SerializeField] public Transform wayPointTarget;
+    private float waitTime;
+    public float starWaitTime;
 
-    private void Awake()
+    public Transform moveSpot;
+    public float minX;
+    public float maxX;
+    public float minY;
+    public float maxY;
+
+    //public Transform wayPoint01, wayPoint02;
+    //[SerializeField] public Transform wayPointTarget;
+
+    //private void Awake()
+    //{
+    //    wayPointTarget = wayPoint01;
+    //}
+    protected override void Update()
     {
-        wayPointTarget = wayPoint01;
+        Move();
+        Attack();
+        Patrol();
     }
+    protected  override void Start()
+    {
+        base.Start();
+        waitTime = starWaitTime;
 
-    // Update is called once per frame
+        moveSpot.position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
+    }
     protected override void Move()
     {
-        base.Move();
-        //patrol
+        //chase
+        if (Vector2.Distance(transform.position, target.position) < distance)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
+        }
+
+        //if (Vector2.Distance(transform.position, target.position) > distance)
+        //{
+        //    if (Vector2.Distance(transform.position, wayPoint01.position) < 0.01f)
+        //    {
+        //        wayPointTarget = wayPoint02;
+        //    }
+
+        //    if (Vector2.Distance(transform.position,wayPoint02.position)<0.01f)
+        //    {
+        //        wayPointTarget = wayPoint01;
+        //    }
+
+        //    transform.position = Vector2.MoveTowards(transform.position, wayPointTarget.position, moveSpeed * Time.deltaTime);
+        //}
+    }
+
+    protected virtual void Patrol()
+    {
         if (Vector2.Distance(transform.position, target.position) > distance)
         {
-            if (Vector2.Distance(transform.position, wayPoint01.position) < 0.01f)
-            {
-                wayPointTarget = wayPoint02;
-            }
+            transform.position = Vector2.MoveTowards(transform.position, moveSpot.position, moveSpeed * Time.deltaTime);
 
-            if (Vector2.Distance(transform.position,wayPoint02.position)<0.01f)
+            if (Vector2.Distance(transform.position, moveSpot.position) < 0.2f)
             {
-                wayPointTarget = wayPoint01;
+                if (waitTime <= 0)
+                {
+                    moveSpot.position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
+                    waitTime = starWaitTime;
+                }
+                else
+                {
+                    waitTime -= Time.deltaTime;
+                }
             }
-
-            transform.position = Vector2.MoveTowards(transform.position, wayPointTarget.position, moveSpeed * Time.deltaTime);
         }
+    }
+    protected override void Attack()
+    {
+
     }
 }

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 459332080205090042}
   - component: {fileID: 459332080205090043}
+  - component: {fileID: 1236423577}
   m_Layer: 0
   m_Name: melee
   m_TagString: Untagged
@@ -82,6 +83,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1236423577
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459332080205090041}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 748d2c9eff7f2b64d80c6f7404d4d7f9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &459332080647918972
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,6 +113,7 @@ GameObject:
   - component: {fileID: 459332080647918975}
   - component: {fileID: 459332080647918973}
   - component: {fileID: 459332080647918974}
+  - component: {fileID: 2106642985}
   m_Layer: 0
   m_Name: Goblin_melee
   m_TagString: Untagged
@@ -107,7 +128,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 459332080647918972}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -149,6 +170,25 @@ MonoBehaviour:
   moveSpeed: 1
   target: {fileID: 0}
   distance: 2
-  wayPoint01: {fileID: 0}
-  wayPoint02: {fileID: 0}
-  wayPointTarget: {fileID: 0}
+  starWaitTime: 0
+  moveSpot: {fileID: 0}
+  minX: -2
+  maxX: 7
+  minY: -1.5
+  maxY: 2.5
+--- !u!58 &2106642985
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459332080647918972}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.19

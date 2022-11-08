@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 7320808487424473860}
   - component: {fileID: 7320808487424473866}
   - component: {fileID: 7320808487424473861}
+  - component: {fileID: 140307452}
   m_Layer: 0
   m_Name: Goblin_thrower
   m_TagString: Untagged
@@ -107,7 +108,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7320808487424473867}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.431, y: 0.95, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -146,13 +147,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyName: thrower
-  moveSpeed: 2
+  moveSpeed: 1
   target: {fileID: 0}
-  distance: 2
-  wayPoint01: {fileID: 0}
-  wayPoint02: {fileID: 0}
-  wayPointTarget: {fileID: 0}
-  projectiles: {fileID: 0}
+  distance: 4
+  starWaitTime: 0
+  moveSpot: {fileID: 0}
+  minX: -2
+  maxX: 7
+  minY: 1.5
+  maxY: 2
+  projectiles: {fileID: 9008806949468205648, guid: 8528edb4b10eab243b8149c3dc64c506, type: 3}
   shotRate: 2
-  stoppingDistance: 3
-  retreatDistance: 2
+  stoppingDistance: 4
+  retreatDistance: 0.5
+--- !u!58 &140307452
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7320808487424473867}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.2
