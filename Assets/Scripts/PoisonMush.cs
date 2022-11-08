@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoisonMush : MonoBehaviour
+public class PoisonMush : MushRoom
 {
     // Start is called before the first frame update
     void Start()
