@@ -157,9 +157,10 @@ MonoBehaviour:
   minY: 1.5
   maxY: 2
   projectiles: {fileID: 9008806949468205648, guid: 8528edb4b10eab243b8149c3dc64c506, type: 3}
-  shotRate: 2
+  shotRate: 1
   stoppingDistance: 4
-  retreatDistance: 0.5
+  retreatDistance: 1
+  isAttack: 0
 --- !u!58 &140307452
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -170,7 +171,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
