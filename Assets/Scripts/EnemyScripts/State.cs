@@ -22,6 +22,7 @@ public class State
     {
         startTime = Time.time;
         entity.anim.SetBool(animBoolName,true);
+        Dochecks();
     }
 
     public virtual void Exit()
@@ -35,6 +36,11 @@ public class State
     }
 
     public virtual void PhysicsUpdate()
+    {
+        Dochecks();
+    }
+
+    public virtual void Dochecks()
     {
 
     }

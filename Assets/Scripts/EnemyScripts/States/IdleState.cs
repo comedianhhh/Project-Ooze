@@ -8,6 +8,7 @@ public class IdleState : State
 
     protected bool flipAfterIdle;
     protected bool isIdleTimeOver;
+    protected bool isPlayerInMinAgroRange;
 
     protected float idleTime;
 
@@ -56,5 +57,12 @@ public class IdleState : State
     private void SetRandomIdleTime()
     {
         idleTime = Random.Range(stateData.minIdleTime, stateData.maxIdleTime);
+    }
+
+    public override void Dochecks()
+    {
+        base.Dochecks();
+        isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
+
     }
 }

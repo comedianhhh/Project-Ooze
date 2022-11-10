@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cyc_MoveState : MoveState
+public class E1_MoveState : MoveState
 {
     private Enemy1 enemy;
-    public Cyc_MoveState(Entity entity, FiniteStateMachine stateMachine, string animBoolName,D_MoveState stateData,Enemy1 enemy) : base(entity, stateMachine,
+    public E1_MoveState(Entity entity, FiniteStateMachine stateMachine, string animBoolName,D_MoveState stateData,Enemy1 enemy) : base(entity, stateMachine,
         animBoolName,stateData)
     {
         this.enemy = enemy;
@@ -14,7 +14,12 @@ public class Cyc_MoveState : MoveState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (isDetectingWall)
+        if (isPlayerInMinAgroRange)
+        {
+            stateMachine.ChangeState(enemy.playerDetectedState);
+        }
+        
+        else if (isDetectingWall)
         {
             enemy.idleState.SetFlipAfterIdle(true);
            stateMachine.ChangeState(enemy.idleState);

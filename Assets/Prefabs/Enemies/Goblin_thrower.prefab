@@ -92,7 +92,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7320808487424473860}
   - component: {fileID: 7320808487424473866}
-  - component: {fileID: 7320808487424473861}
   - component: {fileID: 140307452}
   m_Layer: 0
   m_Name: Goblin_thrower
@@ -134,33 +133,6 @@ MonoBehaviour:
     Variant: 0
   CurrentHealth: 100
   MaxHealth: 100
---- !u!114 &7320808487424473861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7320808487424473867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dbed2cb0315cc24fa12d61754c6d311, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyName: thrower
-  moveSpeed: 1
-  target: {fileID: 0}
-  distance: 4
-  starWaitTime: 0
-  moveSpot: {fileID: 0}
-  minX: -2
-  maxX: 7
-  minY: 1.5
-  maxY: 2
-  projectiles: {fileID: 9008806949468205648, guid: 8528edb4b10eab243b8149c3dc64c506, type: 3}
-  shotRate: 1
-  stoppingDistance: 4
-  retreatDistance: 1
-  isAttack: 0
 --- !u!58 &140307452
 CircleCollider2D:
   m_ObjectHideFlags: 0

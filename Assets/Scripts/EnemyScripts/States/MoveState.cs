@@ -7,6 +7,8 @@ public class MoveState : State
     protected D_MoveState stateData;
 
     protected bool isDetectingWall;
+    protected bool isPlayerInMinAgroRange;
+
     public MoveState(Entity entity, FiniteStateMachine stateMachine, string animBoolName,D_MoveState stateData) : base(entity, stateMachine,
         animBoolName)
     {
@@ -18,8 +20,6 @@ public class MoveState : State
         base.Enter();
 
         entity.SetVelocity(stateData.movementSpeed);
-
-        isDetectingWall = entity.CheckWall();
     }
 
     public override void Exit()
@@ -35,6 +35,13 @@ public class MoveState : State
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+    }
+
+    public override void Dochecks()
+    {
+        base.Dochecks();
         isDetectingWall = entity.CheckWall();
+        isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
+
     }
 }

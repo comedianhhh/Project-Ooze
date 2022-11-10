@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     Shooter shooter;
     void Start()
     {
-        rig = GetComponent<Rigidbody2D>();
+        rig = GetComponentInChildren<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
         shooter = GetComponent<Shooter>();
     }
