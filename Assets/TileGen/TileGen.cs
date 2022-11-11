@@ -6,7 +6,6 @@ using UnityEditor;
 using System.IO;
 using UnityEngine.UI;
 
-
 [System.Serializable]
 public class SpriteProcessor : AssetPostprocessor
 {
@@ -14,6 +13,8 @@ public class SpriteProcessor : AssetPostprocessor
 
     void OnPreprocessTexture()
     {
+        if (!Application.isPlaying) return;
+
         Debug.Log("Importing asset to " + assetPath);
         if(assetPath.Contains("itspkr"))
         {
@@ -28,6 +29,8 @@ public class SpriteProcessor : AssetPostprocessor
 
     public void OnPostprocessTexture(Texture2D texture)
     {
+        if (!Application.isPlaying) return;
+
         TileGen tileGen = new TileGen();
 
         int spriteSize = TileGen.tileSize;
