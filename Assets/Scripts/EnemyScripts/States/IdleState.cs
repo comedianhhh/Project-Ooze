@@ -62,7 +62,7 @@ public class IdleState : State
     public override void Dochecks()
     {
         base.Dochecks();
-        isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
+        //isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
 
     }
 }

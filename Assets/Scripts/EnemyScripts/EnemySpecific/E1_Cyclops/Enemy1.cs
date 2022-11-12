@@ -18,17 +18,6 @@ public class Enemy1 : Entity
     [SerializeField] private D_PlayerDetected playerDetectedData;
 
     [SerializeField] private D_ChargeState chargeStateData;
-    //private bool isDashing;
-
-    //private float dashTimeLeft;
-    //private float lastImageXpos;
-    //private float lastDash = -100f;
-
-    //public float dashTime;
-    //public float dashSpeed;
-    //public float distanceBetweenImages;
-    //public float dashCoolDown;
-
 
     public override void Start()
     {
@@ -42,40 +31,4 @@ public class Enemy1 : Entity
         stateMachine.Initialize(moveState);
     }
 
-    //private void AttemptToDash()
-    //{
-    //    isDashing = true;
-    //    dashTimeLeft = dashTime;
-    //    lastDash = Time.time;
-
-    //    AfterImagePool.Instance.GetFromPool();
-    //    lastImageXpos = transform.position.x;
-    //}
-
-    //private void checkDash()
-    //{
-    //    if (isDashing)
-    //    {
-    //        if (dashTimeLeft > 0)
-    //        {
-    //            rb.velocity = new Vector2(dashSpeed, rb.velocity.y);
-    //            dashTimeLeft -= Time.deltaTime;
-
-    //            if (Mathf.Abs(transform.position.x - lastImageXpos) > distanceBetweenImages)
-    //            {
-    //                AfterImagePool.Instance.GetFromPool();
-    //                lastImageXpos = transform.position.x;
-
-    //            }
-    //        }
-
-    //        if (dashTimeLeft <= 0)
-    //        {
-    //            isDashing = false;
-    //        }
-
-
-
-    //    }
-    //}
 }

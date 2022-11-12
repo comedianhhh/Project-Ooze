@@ -45,7 +45,7 @@ public class ChargeState : State
     public override void Dochecks()
     {
         base.Dochecks();
-        isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
+        //isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
         isDetectingWall = entity.CheckWall();
 
     }

@@ -17,10 +17,12 @@ public class TargetSender : MonoBehaviour
         var colliders = Physics2D.OverlapCircleAll(transform.position, range);
         foreach (var collider in colliders)
         {
-            var receiver = collider.GetComponent<TargetReceiver>();
+            var receiver = collider.GetComponentInParent<TargetReceiver>();
             if (receiver != null)
                 receiver.SendTarget(GetComponent<Health>());
         }
+        //Debug .Log(colliders);
     }
+
 
 }

@@ -35,8 +35,8 @@ public class PlayerDetectedState : State
     public override void Dochecks()
     {
         base.Dochecks();
-        isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
-        isPlayerInMaxAgroRange = entity.CheckPlayerInMaxAgroRange();
+        //isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
+        //isPlayerInMaxAgroRange = entity.CheckPlayerInMaxAgroRange();
     }
 
     public override void LogicUpdate()

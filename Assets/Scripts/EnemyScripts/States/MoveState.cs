@@ -41,7 +41,7 @@ public class MoveState : State
     {
         base.Dochecks();
         isDetectingWall = entity.CheckWall();
-        isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
+        //isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
 
     }
 }

@@ -54,16 +54,16 @@ public class Entity : MonoBehaviour
         return Physics2D.Raycast(wallCheck.position, aliveGo.transform.right, entityData.wallCheckDistance,entityData.WhatIsWall);
     }
 
-    public virtual bool CheckPlayerInMinAgroRange()
-    {
-        return Physics2D.CircleCast(playerCheck.position, entityData.minAgroDistance, aliveGo.transform.right, 0f,
-            entityData.WhatIsPlayer);
-    }
-    public virtual bool CheckPlayerInMaxAgroRange()
-    {
-        return Physics2D.CircleCast(playerCheck.position, entityData.maxAgroDistance, aliveGo.transform.right, 0f,
-            entityData.WhatIsPlayer);
-    }
+    //public virtual bool CheckPlayerInMinAgroRange()
+    //{
+    //    return Physics2D.CircleCast(playerCheck.position, entityData.minAgroDistance, aliveGo.transform.right, 0f,
+    //        entityData.WhatIsPlayer);
+    //}
+    //public virtual bool CheckPlayerInMaxAgroRange()
+    //{
+    //    return Physics2D.CircleCast(playerCheck.position, entityData.maxAgroDistance, aliveGo.transform.right, 0f,
+    //        entityData.WhatIsPlayer);
+    //}
 
     public virtual void Flip()
     {
