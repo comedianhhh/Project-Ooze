@@ -119,17 +119,23 @@ public class Cyclops : MonoBehaviour
                 }
                 break;
         }
+
+        Lookat();
     }
     public void Lookat()
     {
+        if (target == null) return;
+
         if (target.transform.position.x <= transform.position.x) //判断目标位置
         {
-            transform.Rotate(0f, 180f, 0f);
+            //transform.Rotate(0f, 180f, 0f);
+            transform.localEulerAngles = Vector3.up * 180;
 
         }
         else
         {
-            transform.Rotate(0f, 0f, 0f);
+            //transform.Rotate(0f, 0f, 0f);
+            transform.localEulerAngles = Vector3.zero;
         }
     }
 
@@ -145,7 +151,7 @@ public class Cyclops : MonoBehaviour
     }
     void ToIdle()
     {
-        if (target.transform.position.x <= transform.position.x) Lookat();//判断目标位置
+        if (target.transform.position.x <= transform.position.x) //Lookat();//判断目标位置
         currentState = State.Idle;
         stateTimer = 0;
 
@@ -153,7 +159,7 @@ public class Cyclops : MonoBehaviour
 
     void ToMove()
     {
-        if (target.transform.position.x <= transform.position.x) Lookat();//判断目标位置
+        if (target.transform.position.x <= transform.position.x) //Lookat();//判断目标位置
         currentState = State.Move;
         stateTimer = 0f;
     }

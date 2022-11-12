@@ -224,6 +224,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8592b1a0e2cdc94eb2ffc6fd5b3fc99, type: 3}
+--- !u!1 &426278128 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4090121659263625837, guid: 0dc70df064125324e9aea0c909fa370d, type: 3}
+  m_PrefabInstance: {fileID: 2058879091}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &426278129
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426278128}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &912852986
 GameObject:
   m_ObjectHideFlags: 0
@@ -2478,5 +2504,6 @@ PrefabInstance:
       propertyPath: facingDirection
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4090121660125010134, guid: 0dc70df064125324e9aea0c909fa370d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0dc70df064125324e9aea0c909fa370d, type: 3}
