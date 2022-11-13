@@ -13,6 +13,9 @@ GameObject:
   - component: {fileID: 8117776622283043108}
   - component: {fileID: 2116711859}
   - component: {fileID: 2116711860}
+  - component: {fileID: 1690778744}
+  - component: {fileID: 1690778746}
+  - component: {fileID: 1690778742}
   m_Layer: 7
   m_Name: Slime
   m_TagString: Player
@@ -47,7 +50,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 299ac0175e9575d4683f1959b26b9a9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
   speed: 2
 --- !u!114 &8117776622283043108
 MonoBehaviour:
@@ -94,6 +96,60 @@ MonoBehaviour:
     Variant: 0
   CurrentHealth: 100
   MaxHealth: 100
+  bloodParticle: {fileID: 0}
+  hurtTimer: 0
+  sps:
+  - {fileID: 8117776623894195523}
+--- !u!50 &1690778744
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8117776622283043119}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.1
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!58 &1690778746
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8117776622283043119}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.18}
+  serializedVersion: 2
+  m_Radius: 0.2
+--- !u!114 &1690778742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8117776622283043119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e6e7a0afbadd24489aac6536879bf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 3
 --- !u!1 &8117776623894195521
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,7 +201,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 1622eb0e85538544ab900891f6a9b1dc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -164,7 +220,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 868247103
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4a693d63c04686b4bb6cf1f1ce98280c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

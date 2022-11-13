@@ -8,7 +8,7 @@ public class Goblin : MonoBehaviour
     {
         Idle,
         Move,
-        PlayerDetected
+        PlayerDetected,
     }
 
     [Header("Settings")] 
@@ -25,7 +25,6 @@ public class Goblin : MonoBehaviour
     float moveTime=4f;
 
     Rigidbody2D rigidbody2D;
-    TargetReceiver targetReceiver;
     GameObject aliveGo;
     Animator anim;
 
@@ -33,7 +32,6 @@ public class Goblin : MonoBehaviour
     {
         aliveGo = transform.Find("Alive").gameObject;
         rigidbody2D = GetComponent<Rigidbody2D>();
-        targetReceiver = GetComponent<TargetReceiver>();
         anim = aliveGo.GetComponent<Animator>();
     }
 
@@ -56,26 +54,6 @@ public class Goblin : MonoBehaviour
                 }
 
                 break;
-            //DETECTED
-            case State.PlayerDetected:
-
-                setVelocity(0f);
-                anim.SetBool("playerDetected", true);
-                stateTimer += Time.deltaTime;
-
-                //exit
-                if (stateTimer > 1 && target != null)
-                {
-                    ToMove();
-                    anim.SetBool("playerDetected", false);
-                }
-                else if (target == null)
-                {
-                    ToIdle();
-                    anim.SetBool("playerDetected", false);
-                }
-                break;
-
             //MOVE
             case State.Move:
 
@@ -95,6 +73,23 @@ public class Goblin : MonoBehaviour
                     anim.SetBool("move", false);
                 }
                 break;
+            //DETECTED
+            case State.PlayerDetected:
+
+                setVelocity(0f);
+                stateTimer += Time.deltaTime;
+
+                //exit
+                if (stateTimer > 1 && target != null)
+                {
+                    ToMove();
+                }
+                else if (target == null)
+                {
+                    ToIdle();
+                }
+                break;
+
         }
         Lookat();
     }
@@ -112,6 +107,16 @@ public class Goblin : MonoBehaviour
             transform.localEulerAngles = Vector3.zero;
         }
     }
+    void setVelocity(float veclocity)
+    {
+        if (target != null)
+        {
+            Vector2 dir = (target.transform.position - transform.position).normalized;
+            rigidbody2D.velocity = veclocity * dir;
+        }
+        else rigidbody2D.velocity = Vector2.zero;
+    }
+
 
     void ToIdle()
     {
@@ -131,13 +136,4 @@ public class Goblin : MonoBehaviour
         stateTimer = 0;
     }
 
-    void setVelocity(float veclocity)
-    {
-        if (target != null)
-        {
-            Vector2 dir = (target.transform.position - transform.position).normalized;
-            rigidbody2D.velocity = veclocity * dir;
-        }
-        else rigidbody2D.velocity = Vector2.zero;
-    }
 }

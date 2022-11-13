@@ -4,24 +4,26 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    public int damageDirection;
-
     public float damageAmount=1f;
-
-
+    public float knockbackDistance;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log(other.gameObject.layer);
 
-        Health health = other.GetComponent<Health>();
-
-        if (health != null)
+        if (other.gameObject.layer == 7)
         {
-            health.TakeDamge(damageAmount);
+            Health health = other.GetComponent<Health>();
+            if (health != null)
+            {
 
+                Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
+                Vector2 difference = (other.transform.position - transform.position).normalized * knockbackDistance;
+                rb.MovePosition(new Vector2(other.transform.position.x + difference.x, other.transform.position.y + difference.y));
+                health.TakeDamge(damageAmount);
+
+            }
         }
+
     }
-
-
-
 }

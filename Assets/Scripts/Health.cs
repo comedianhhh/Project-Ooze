@@ -7,6 +7,7 @@ public class Health : MonoBehaviour
     public EnemyData EnemyData;
     public float CurrentHealth = 100;
     public float MaxHealth = 100;
+    public GameObject bloodParticle;
 
     public float hurtTimer = 0;
 
@@ -43,6 +44,9 @@ public class Health : MonoBehaviour
     public void TakeDamge(float damage)
     {
         CurrentHealth = Mathf.Clamp(CurrentHealth - damage, 0, MaxHealth);
+
+        if(bloodParticle!=null) Instantiate(bloodParticle, transform.position, Quaternion.identity);// ‹…À–ßπ˚
+
         Debug.Log("hurt");
         isHurting = true;
 
