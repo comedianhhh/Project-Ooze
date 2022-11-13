@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Cyclops : MonoBehaviour
 {
-    enum State { Idle, Move, Charge, PlayerDetected }
+    enum State { Idle, Move, Charge, PlayerDetected}
 
     [Header("Settings")]
     [SerializeField] float movespeed = 1f;
@@ -12,12 +12,11 @@ public class Cyclops : MonoBehaviour
 
     [SerializeField] private float chargeTime = 0.4f;
 
+
     [Header("Data")] 
     
-
     [SerializeField] State currentState = State.Idle;
-    [SerializeField]Health target;
-
+    [SerializeField] Health target;
     float stateTimer = 0;
 
     Rigidbody2D rigidbody2D;
@@ -27,20 +26,12 @@ public class Cyclops : MonoBehaviour
 
     private void Awake()
     {
-
         aliveGo = transform.Find("Alive").gameObject;
         rigidbody2D = GetComponent<Rigidbody2D>();
         targetReceiver = GetComponent<TargetReceiver>();
         anim = aliveGo.GetComponent<Animator>();
-
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         target = GetComponent<TargetReceiver>().Target;
@@ -48,7 +39,6 @@ public class Cyclops : MonoBehaviour
         {
             //IDLE
             case State.Idle:
-                setVelocity(0f);
                 anim.SetBool("idle", true);
                 stateTimer += Time.deltaTime;
                 
@@ -64,13 +54,14 @@ public class Cyclops : MonoBehaviour
                     ToMove();
                     anim.SetBool("idle", false);
                 }
-                    
+
                 break;
             //MOVE
             case State.Move:
 
                 setVelocity(movespeed);
                 anim.SetBool("move", true);
+
                 stateTimer += Time.deltaTime;
 
                 if (target == null)
@@ -128,13 +119,11 @@ public class Cyclops : MonoBehaviour
 
         if (target.transform.position.x <= transform.position.x) //判断目标位置
         {
-            //transform.Rotate(0f, 180f, 0f);
             transform.localEulerAngles = Vector3.up * 180;
 
         }
         else
         {
-            //transform.Rotate(0f, 0f, 0f);
             transform.localEulerAngles = Vector3.zero;
         }
     }
@@ -147,33 +136,31 @@ public class Cyclops : MonoBehaviour
             rigidbody2D.velocity = veclocity * dir;
         }
         else rigidbody2D.velocity=Vector2.zero;
-
     }
+
+
+    //State Switch
     void ToIdle()
     {
-        if (target.transform.position.x <= transform.position.x) //Lookat();//判断目标位置
+        setVelocity(0f);
         currentState = State.Idle;
         stateTimer = 0;
-
     }
 
     void ToMove()
     {
-        if (target.transform.position.x <= transform.position.x) //Lookat();//判断目标位置
         currentState = State.Move;
         stateTimer = 0f;
     }
 
     void ToPlayerDetected()
     {
-        //if (target.transform.position.x <= transform.position.x) Flip();
         currentState = State.PlayerDetected;
         stateTimer = 0;
     }
 
     void ToCharge()
     {
-        //if (target.transform.position.x <= transform.position.x) Flip();
         currentState = State.Charge;
         stateTimer = 0f;
     }

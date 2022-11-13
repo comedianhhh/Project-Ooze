@@ -10,21 +10,17 @@ public class ShooterBullet : MonoBehaviour
     [SerializeField] private float minSpeed = 0.1f;
     [SerializeField] private float startSpeed = 20;
     [SerializeField] float speed;
-
+    [SerializeField] private float knockbackDistance=0.3f;
     [Header("Debug")]
     [SerializeField] Vector2 direction;
 
+    float knockbackTIme = 0.2f;
+    float knockbackSpeed = 20f;
 
-    bool recalling, disappearing;
-    Transform recallTarget;
+
+    bool disappearing;
     public SpriteRenderer bulletRend;
 
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         Move();
@@ -32,15 +28,21 @@ public class ShooterBullet : MonoBehaviour
     }
 
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    Health health = other.GetComponent<Health>();
-    //    if (health != null)
-    //    {
-    //        health.TakeDamge(damage);
-    //        Destroy(gameObject);
-    //    }
-    //}
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Health health = other.GetComponent<Health>();
+        if (health != null)
+        {
+            health.TakeDamge(damage);
+
+            //knock back
+            Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
+            Vector2 difference = (other.transform.position - transform.position).normalized*knockbackDistance;
+            rb.MovePosition(new Vector2(other.transform.position.x+difference.x,other.transform.position.y+difference.y));
+
+            Destroy(gameObject);
+        }
+    }
     void Move()
     {
         speed -= speedDecay * speed * Time.deltaTime; //slow down the bullet over time
@@ -87,4 +89,5 @@ public class ShooterBullet : MonoBehaviour
         } while (curAlpha > 0); //end when the bullet is transparent
         Destroy(gameObject); //get rid of bullet now that it can't be seen
     }
+
 }

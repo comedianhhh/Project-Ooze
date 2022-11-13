@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [Header("Settings")]
-    [SerializeField] float health;
+    [Header("Settings")] 
 
-    [Header("Data")]
+
+    [Header("Data")] 
     [SerializeField] float speed;
 
     private Vector2 input;
@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D rig;
     private Animator animator;
     Shooter shooter;
+
     void Start()
     {
         rig = GetComponentInChildren<Rigidbody2D>();
@@ -28,6 +29,7 @@ public class Player : MonoBehaviour
         Move();
         Aim();
     }
+
     void Move()
     {
         // movement
@@ -48,13 +50,17 @@ public class Player : MonoBehaviour
         // animate
         animator.SetBool("isMoving", input != Vector2.zero);
     }
+
     void Aim()
     {
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouseWorldPos.z = 0;
         Vector3 direction = mouseWorldPos - transform.position;
-        //Debug.Log(direction);
         if (Input.GetMouseButtonDown(0))
+        {
             shooter.Shoot(direction);
+        }
     }
+
+
 }
