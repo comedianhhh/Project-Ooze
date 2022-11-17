@@ -5,13 +5,7 @@ using UnityEngine;
 public class TargetSender : MonoBehaviour
 {
     [SerializeField] float range = 3;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         var colliders = Physics2D.OverlapCircleAll(transform.position, range);
@@ -24,5 +18,8 @@ public class TargetSender : MonoBehaviour
         //Debug .Log(colliders);
     }
 
-
+    void OnGizomdraw()
+    {
+        Gizmos.DrawWireSphere(transform.position,range);
+    }
 }

@@ -6,26 +6,15 @@ public class Swallower : MonoBehaviour
 {
     public List<EnemyData> SwallowedEnemies = new List<EnemyData>();
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        Health health = other.GetComponent<Health>();
-        if (health.EnemyData.Type != EnemyType.None && health.CurrentHealth / health.MaxHealth <= 0.1f)
+        CorpseData data = other.GetComponent<CorpseData>();
+        if (data.EnemyData.Type != EnemyType.None)
         {
             // todo: swallow animation, enemy dies
-            health.Die();
-            SwallowedEnemies.Add(health.EnemyData);
+            SwallowedEnemies.Add(data.EnemyData);
+            Destroy(other.gameObject);
         }
     }
 }

@@ -8,6 +8,8 @@ public class Health : MonoBehaviour
     public float CurrentHealth = 100;
     public float MaxHealth = 100;
     public GameObject bloodParticle;
+    public GameObject corpseOB;
+
 
     public float hurtTimer = 0;
 
@@ -27,6 +29,8 @@ public class Health : MonoBehaviour
         if (CurrentHealth <= 0)
         {
             Die();
+            Debug.Log("currenthealth<=0");
+
         }
         if (isHurting)
         {
@@ -52,9 +56,14 @@ public class Health : MonoBehaviour
 
     }
 
-    public void Die(bool isSwallowed = false)
+    public void Die()
     {
+        Debug.Log("die");
+
+        if(corpseOB!=null) Instantiate(corpseOB,transform.position,Quaternion.identity).GetComponent<CorpseData>().EnemyData = EnemyData;
+
         Destroy(gameObject);
+
     }
 
     // ‹…À…¡À∏

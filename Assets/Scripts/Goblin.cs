@@ -44,15 +44,12 @@ public class Goblin : MonoBehaviour
             case State.Idle:
                 anim.SetBool("idle", true);
                 stateTimer += Time.deltaTime;
-
                 //exit
-
                 if (target != null)
                 {
                     ToMove();
                     anim.SetBool("idle", false);
                 }
-
                 break;
             //MOVE
             case State.Move:

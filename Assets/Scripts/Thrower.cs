@@ -2,75 +2,136 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Thrower : Goblin
+public class Thrower : MonoBehaviour
 {
+    enum State
+    {
+        Idle,
+        PlayerDetected,
+        Attack
+    }
+    [Header("Settings")]
+
+    [Header("Data")]
+
+    [SerializeField] State currentState = State.Idle;
+    [SerializeField] Health target;
 
     public GameObject projectiles;
 
     [SerializeField]
-    private float shotRate = 2.0f;
-    private float shotTimer=2f;
-    public float stoppingDistance;
-    public float retreatDistance;
+    float stateTimer = 0;
 
-    [SerializeField] private bool isAttack=false;
 
-    //protected override void Attack()
-    //{ 
-    //    if (shotRate <= 0)
-    //    {
-    //        isAttack = true;
-    //        EnemyBullet bullet = Instantiate(projectiles).GetComponent<EnemyBullet>();
-    //        bullet.transform.position = transform.position; 
-    //        bullet.Initialize(target.position - transform.position);
-    //        shotRate = shotTimer;
-    //    }
-    //    else
-    //    {
-    //        shotRate -= Time.deltaTime;
-    //    }
-    //}
+    Rigidbody2D rigidbody2D;
+    GameObject aliveGo;
+    Animator anim;
+    public Transform attackpos;
 
-    //protected override void Update()
-    //{
 
-    //    if (Vector2.Distance(transform.position, target.position) > distance)
-    //    {
-    //        Patrol();
-    //    }
-    //    else if(Vector2.Distance(transform.position, target.position) < stoppingDistance)
-    //    {
-    //        Attack();
-    //    }
-    //    else if (Vector2.Distance(transform.position, target.position) < distance &&
-    //             Vector2.Distance(transform.position, target.position) > stoppingDistance&& isAttack!=true)
-    //    {
-    //        Move();
-    //    }
-        
-    //}
+    private void Awake()
+    {
+        aliveGo = transform.Find("Alive").gameObject;
+        rigidbody2D = GetComponent<Rigidbody2D>();
+        anim = aliveGo.GetComponent<Animator>();
+    }
 
-    //protected override void Move()
-    //{
 
-    //    transform.position = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
+    void FixedUpdate()
+    {
+        target = GetComponent<TargetReceiver>().Target;
+        switch (currentState)
+        {
+            //IDLE
+            case State.Idle:
+                anim.SetBool("idle", true);
+                //exit
+                if (target != null)
+                {
+                    ToPlayerDetected();
+                    anim.SetBool("idle", false);
+                }
 
-    //    if (Vector2.Distance(transform.position, target.position) < stoppingDistance && Vector2.Distance(transform.position, target.position) > retreatDistance)
-    //    {
-    //        transform.position = this.transform.position;
+                break;
 
-    //    }
-    //    else if (Vector2.Distance(transform.position, target.position) < retreatDistance)
-    //    {
+            //DETECTED
+            case State.PlayerDetected:
 
-    //        transform.position = Vector2.MoveTowards(transform.position, target.position, -moveSpeed * Time.deltaTime);
-    //    }
+                setVelocity(0f);
+                stateTimer += Time.deltaTime;
 
-    //}
+                //exit
+                if (stateTimer > 1 && target != null)
+                {
+                    ToAttack();
+                }
+                else if (target == null)
+                {
+                    ToIdle();
+                }
+                break;
+            //Attack
+            case State.Attack:
+                if (stateTimer <1)
+                {
+                    EnemyBullet bullet = Instantiate(projectiles).GetComponent<EnemyBullet>();
+                    bullet.transform.position = attackpos.position;
+                    bullet.Initialize(target.transform.position - attackpos.position);
+                    stateTimer = 2f;
+                }
+                stateTimer -= Time.fixedDeltaTime;
 
-    //protected override void Patrol()
-    //{
-    //    base.Patrol();
-    //}
+                if (target == null)
+                {
+                    ToIdle();
+                }
 
+                break;
+        }
+        Lookat();
+    }
+
+
+    void setVelocity(float veclocity)
+    {
+        if (target != null)
+        {
+            Vector2 dir = (target.transform.position - transform.position).normalized;
+            rigidbody2D.velocity = veclocity * dir;
+        }
+        else rigidbody2D.velocity = Vector2.zero;
+    }
+
+    public void Lookat()
+    {
+        if (target == null) return;
+
+        if (target.transform.position.x <= transform.position.x) //ÅÐ¶ÏÄ¿±êÎ»ÖÃ
+        {
+            transform.localEulerAngles = Vector3.up * 180;
+
+        }
+        else
+        {
+            transform.localEulerAngles = Vector3.zero;
+        }
+    }
+    void ToIdle()
+    {
+        setVelocity(0f);
+        currentState = State.Idle;
+    }
+
+
+    void ToPlayerDetected()
+    {
+        currentState = State.PlayerDetected;
+        stateTimer = 0f;
+    }
+
+    void ToAttack()
+    {
+        currentState = State.Attack;
+        stateTimer = 0f;
+    }
 }

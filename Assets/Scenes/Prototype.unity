@@ -275,6 +275,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7320808487424473866, guid: 7c37bef26ed154c4db3f86fd53f95c74, type: 3}
+      propertyPath: corpseOB
+      value: 
+      objectReference: {fileID: 685422527005364092, guid: ad3139378a8d24844951e4cf8178084a, type: 3}
     - target: {fileID: 7320808487424473867, guid: 7c37bef26ed154c4db3f86fd53f95c74, type: 3}
       propertyPath: m_Name
       value: Goblin_thrower
@@ -378,7 +382,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1453975239}
-  cameraDist: 1.5
+  cameraDist: 1
 --- !u!1 &1155977324
 GameObject:
   m_ObjectHideFlags: 0

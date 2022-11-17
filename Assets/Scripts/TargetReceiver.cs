@@ -26,4 +26,6 @@ public class TargetReceiver : MonoBehaviour
         targetSetTime = Time.time;
         Target = target;
     }
+
+
 }
