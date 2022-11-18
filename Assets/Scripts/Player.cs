@@ -15,12 +15,14 @@ public class Player : MonoBehaviour
     private Rigidbody2D rig;
     private Animator animator;
     Shooter shooter;
+    CharacterMover characterMover;
 
     void Start()
     {
         rig = GetComponentInChildren<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
         shooter = GetComponent<Shooter>();
+        characterMover = GetComponent<CharacterMover>();
     }
 
 
@@ -35,7 +37,9 @@ public class Player : MonoBehaviour
         // movement
         input.x = Input.GetAxis("Horizontal");
         input.y = Input.GetAxis("Vertical");
-        rig.velocity = input.normalized * speed;
+        //rig.velocity = input.normalized * speed;
+        characterMover.Move(input.normalized * speed);
+
 
         // face towards
         if (input.x > 0)

@@ -25,17 +25,19 @@ public class Thrower : MonoBehaviour
     float stateTimer = 0;
 
 
-    Rigidbody2D rigidbody2D;
+
     GameObject aliveGo;
     Animator anim;
     public Transform attackpos;
+    CharacterMover enemyMover;
 
 
     private void Awake()
     {
         aliveGo = transform.Find("Alive").gameObject;
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        //rigidbody2D = GetComponent<Rigidbody2D>();
         anim = aliveGo.GetComponent<Animator>();
+        enemyMover = GetComponent<CharacterMover>();
     }
 
 
@@ -59,7 +61,7 @@ public class Thrower : MonoBehaviour
             //DETECTED
             case State.PlayerDetected:
 
-                setVelocity(0f);
+                //setVelocity(0f);
                 stateTimer += Time.deltaTime;
 
                 //exit
@@ -99,16 +101,16 @@ public class Thrower : MonoBehaviour
         currentState = State.Die;
     }
 
-
     void setVelocity(float veclocity)
     {
         if (target != null)
         {
             Vector2 dir = (target.transform.position - transform.position).normalized;
-            rigidbody2D.velocity = veclocity * dir;
+            enemyMover.Move(veclocity * dir);
         }
-        else rigidbody2D.velocity = Vector2.zero;
+        else enemyMover.Move(Vector2.zero);
     }
+
 
     public void Lookat()
     {
@@ -126,7 +128,7 @@ public class Thrower : MonoBehaviour
     }
     void ToIdle()
     {
-        setVelocity(0f);
+        //setVelocity(0f);
         currentState = State.Idle;
     }
 

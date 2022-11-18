@@ -27,12 +27,14 @@ public class Goblin : MonoBehaviour
     Rigidbody2D rigidbody2D;
     GameObject aliveGo;
     Animator anim;
+    CharacterMover enemyMover;
 
     private void Awake()
     {
         aliveGo = transform.Find("Alive").gameObject;
         rigidbody2D = GetComponent<Rigidbody2D>();
         anim = aliveGo.GetComponent<Animator>();
+        enemyMover = GetComponent<CharacterMover>();
     }
 
     void FixedUpdate()
@@ -109,9 +111,9 @@ public class Goblin : MonoBehaviour
         if (target != null)
         {
             Vector2 dir = (target.transform.position - transform.position).normalized;
-            rigidbody2D.velocity = veclocity * dir;
+            enemyMover.Move(veclocity* dir);
         }
-        else rigidbody2D.velocity = Vector2.zero;
+        else enemyMover.Move(Vector2.zero);
     }
 
 
@@ -131,6 +133,11 @@ public class Goblin : MonoBehaviour
     {
         currentState = State.PlayerDetected;
         stateTimer = 0;
+    }
+
+    public void AnimatorAttack()
+    {
+        // todo: attack
     }
 
 }

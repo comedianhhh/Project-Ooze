@@ -139,6 +139,6 @@ MonoBehaviour:
   minSpeed: 0.1
   startSpeed: 4
   speed: 1
-  knockbackDistance: 0.1
+  knockbackDistance: 1
   direction: {x: 0, y: 0}
   bulletRend: {fileID: 4675658125555283899}

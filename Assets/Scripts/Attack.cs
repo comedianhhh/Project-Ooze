@@ -19,8 +19,9 @@ public class Attack : MonoBehaviour
 
                 Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
                 Vector2 difference = (other.transform.position - transform.position).normalized * knockbackDistance;
-                rb.MovePosition(new Vector2(other.transform.position.x + difference.x, other.transform.position.y + difference.y));
+                //rb.MovePosition(new Vector2(other.transform.position.x + difference.x, other.transform.position.y + difference.y));
                 health.TakeDamge(damageAmount);
+                health.GetComponent<CharacterMover>().AddExtraVelocity(difference);
 
             }
         }

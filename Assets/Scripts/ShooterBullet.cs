@@ -36,9 +36,13 @@ public class ShooterBullet : MonoBehaviour
             health.TakeDamge(damage);
 
             //knock back
-            Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
+
+
+            //Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
             Vector2 difference = (other.transform.position - transform.position).normalized*knockbackDistance;
-            rb.MovePosition(new Vector2(other.transform.position.x+difference.x,other.transform.position.y+difference.y));
+            //rb.MovePosition(new Vector2(other.transform.position.x+difference.x,other.transform.position.y+difference.y));
+            health.GetComponent<CharacterMover>().AddExtraVelocity(difference);
+            //health.AddEffect(new HealthEffect(1, 5));
 
             Destroy(gameObject);
         }
