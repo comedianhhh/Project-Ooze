@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
-    public EnemyData EnemyData;
+    //public EnemyData EnemyData;
     public float CurrentHealth = 100;
     public float MaxHealth = 100;
     public GameObject bloodParticle;
-    public GameObject corpseOB;
+    //public GameObject corpseOB;
 
 
     public float hurtTimer = 0;
@@ -17,6 +18,9 @@ public class Health : MonoBehaviour
     bool isHurting=false;
     [SerializeField] private List<SpriteRenderer> sps;
     private float flashTime=0.5f;
+
+    [Header("Events")]
+    public UnityEvent OnDie = new UnityEvent();
 
     // Start is called before the first frame update
     void Start()
@@ -60,8 +64,8 @@ public class Health : MonoBehaviour
     {
         Debug.Log("die");
 
-        if(corpseOB!=null) Instantiate(corpseOB,transform.position,Quaternion.identity).GetComponent<CorpseData>().EnemyData = EnemyData;
-
+        //if(corpseOB!=null) Instantiate(corpseOB,transform.position,Quaternion.identity).GetComponent<CorpseData>().EnemyData = EnemyData;
+        OnDie.Invoke();
         Destroy(gameObject);
 
     }

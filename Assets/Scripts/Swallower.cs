@@ -9,11 +9,11 @@ public class Swallower : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        CorpseData data = other.GetComponent<CorpseData>();
-        if (data.EnemyData.Type != EnemyType.None)
+        var enemy = other.GetComponent<Enemy>();
+        if (enemy != null && enemy.EnemyData.Type != EnemyType.None)
         {
             // todo: swallow animation, enemy dies
-            SwallowedEnemies.Add(data.EnemyData);
+            SwallowedEnemies.Add(enemy.EnemyData);
             Destroy(other.gameObject);
         }
     }

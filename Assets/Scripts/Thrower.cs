@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Enemy))]
 public class Thrower : MonoBehaviour
 {
     enum State
     {
         Idle,
         PlayerDetected,
-        Attack
+        Attack,
+        Die
     }
     [Header("Settings")]
 
@@ -76,7 +78,8 @@ public class Thrower : MonoBehaviour
                 {
                     EnemyBullet bullet = Instantiate(projectiles).GetComponent<EnemyBullet>();
                     bullet.transform.position = attackpos.position;
-                    bullet.Initialize(target.transform.position - attackpos.position);
+                    bullet.Initialize(target.transform.position);
+                    //Debug.DrawLine(target.transform.position, attackpos.position, Color.red, 1);
                     stateTimer = 2f;
                 }
                 stateTimer -= Time.fixedDeltaTime;
@@ -89,6 +92,11 @@ public class Thrower : MonoBehaviour
                 break;
         }
         Lookat();
+    }
+
+    public void Die()
+    {
+        currentState = State.Die;
     }
 
 
