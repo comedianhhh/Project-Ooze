@@ -96,6 +96,8 @@ GameObject:
   - component: {fileID: 6391155563182310036}
   - component: {fileID: 1343596677}
   - component: {fileID: 1343596681}
+  - component: {fileID: 436201264}
+  - component: {fileID: 436201265}
   m_Layer: 8
   m_Name: Goblin_melee
   m_TagString: Untagged
@@ -131,16 +133,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7be85f2e3045354409ca3b5a20ba59df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyData:
-    Type: 0
-    Good: 0
-    Variant: 0
   CurrentHealth: 100
   MaxHealth: 100
   bloodParticle: {fileID: 5725714777709649331, guid: 81b8e9940e1a7a941bedb51df1f21088, type: 3}
   hurtTimer: 0
   sps:
   - {fileID: 459332080205090043}
+  effectApplyInterval: 0.25
+  effects: []
+  OnHit:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDie:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!58 &2106642985
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -205,9 +211,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movespeed: 1
+  atkRange: 1
   currentState: 0
   target: {fileID: 0}
   moveTime: 4
+  atk: {fileID: 4002969350536155985}
+--- !u!114 &436201264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459332080647918972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7b08ec215212b48b57961ca4e6663a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyData:
+    Type: 0
+    Good: 0
+    Variant: 0
+--- !u!114 &436201265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459332080647918972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaa478624856379469314b5701ab1e63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  extraVelocity: {x: 0, y: 0}
+  extraVelocityDecay: 1
 --- !u!1 &8334999265470862693
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,6 +256,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8711352437716174959}
   - component: {fileID: 3705464095054509479}
+  - component: {fileID: 436201267}
   m_Layer: 8
   m_Name: Alive
   m_TagString: Untagged
@@ -259,6 +298,33 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &436201267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8334999265470862693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2deaa70a122e29743bfdc6044412ab9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onAttack:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1343596681}
+        m_TargetAssemblyTypeName: Goblin, Assembly-CSharp
+        m_MethodName: AnimatorAttack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &9041915310054884132
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,8 +334,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4002969350536155985}
-  - component: {fileID: 1690686843}
-  - component: {fileID: 1690686844}
   m_Layer: 8
   m_Name: AttackPos
   m_TagString: Untagged
@@ -285,39 +349,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9041915310054884132}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.018, y: 0.372, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 459332080647918975}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &1690686843
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9041915310054884132}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.05, y: 0.5}
-  serializedVersion: 2
-  m_Radius: 0.4
---- !u!114 &1690686844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9041915310054884132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7047b242e50bb5942923bbcf6753b726, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageAmount: 1
-  knockbackDistance: 0.5

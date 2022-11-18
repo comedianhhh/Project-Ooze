@@ -6,6 +6,8 @@ using UnityEngine.Events;
 public class AnimatorActions : MonoBehaviour
 {
     [SerializeField] UnityEvent onAttack = new UnityEvent();
+    [SerializeField] UnityEvent onExit = new UnityEvent();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,5 +23,10 @@ public class AnimatorActions : MonoBehaviour
     public void AnimatorAttack()
     {
         onAttack.Invoke();
+    }
+
+    public void ExitAttack()
+    {
+        onExit.Invoke();
     }
 }

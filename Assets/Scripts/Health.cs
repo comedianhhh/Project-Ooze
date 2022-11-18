@@ -5,20 +5,11 @@ using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
-    //public EnemyData EnemyData;
     public float CurrentHealth = 100;
     public float MaxHealth = 100;
     public GameObject bloodParticle;
-    //public GameObject corpseOB;
 
-
-    public float hurtTimer = 0;
-
-
-    bool isHurting=false;
-    
     [SerializeField] private List<SpriteRenderer> sps;
-    private float flashTime=0.5f;
 
     [Header("Effects")]
     [SerializeField] float effectApplyInterval = 0.25f;
@@ -34,29 +25,12 @@ public class Health : MonoBehaviour
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
     }
-    // Start is called before the first frame update
     void Start()
     {
         CurrentHealth = MaxHealth;
         StartCoroutine(IApplyEffects());
     }
-    // Update is called once per frame
-    void Update()
-    {
 
-        /*if (isHurting)
-        {
-            hurtTimer += Time.deltaTime;
-            Flash(0.5f);
-
-            if (hurtTimer > flashTime)
-            {
-                hurtTimer = 0f;
-                isHurting = false;
-                Flash(0f);
-            }
-        }*/
-    }
     public void TakeDamge(float damage)
     {
         CurrentHealth = Mathf.Clamp(CurrentHealth - damage, 0, MaxHealth);
@@ -71,7 +45,6 @@ public class Health : MonoBehaviour
         if (CurrentHealth <= 0)
         {
             Die();
-            Debug.Log("currenthealth<=0");
         }
     }
 
@@ -79,7 +52,6 @@ public class Health : MonoBehaviour
     {
         Debug.Log("die");
 
-        //if(corpseOB!=null) Instantiate(corpseOB,transform.position,Quaternion.identity).GetComponent<CorpseData>().EnemyData = EnemyData;
         OnDie.Invoke();
         Destroy(gameObject);
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Goblin : MonoBehaviour
@@ -9,16 +10,24 @@ public class Goblin : MonoBehaviour
         Idle,
         Move,
         PlayerDetected,
+        Attack
     }
 
     [Header("Settings")] 
 
     [SerializeField] float movespeed = 1f;
 
+    [SerializeField] private float atkRange = 1f;
+    [SerializeField] private float atkAmount = 5f;
+
+    [SerializeField] LayerMask layerMask;
+
     [Header("Data")] 
 
     [SerializeField] State currentState = State.Idle;
     [SerializeField] Health target;
+
+    [SerializeField] bool isPlayerInRange;
 
     float stateTimer = 0;
     [SerializeField] 
@@ -28,6 +37,7 @@ public class Goblin : MonoBehaviour
     GameObject aliveGo;
     Animator anim;
     CharacterMover enemyMover;
+    public Transform atk;
 
     private void Awake()
     {
@@ -44,32 +54,14 @@ public class Goblin : MonoBehaviour
         {
             //IDLE
             case State.Idle:
+                setVelocity(0f);
                 anim.SetBool("idle", true);
                 stateTimer += Time.deltaTime;
                 //exit
                 if (target != null)
                 {
-                    ToMove();
-                    anim.SetBool("idle", false);
-                }
-                break;
-            //MOVE
-            case State.Move:
-
-                setVelocity(movespeed);
-                anim.SetBool("move", true);
-
-                stateTimer += Time.deltaTime;
-
-                if (target == null)
-                {
-                    ToIdle();
-                    anim.SetBool("move", false);
-                }
-                else if (stateTimer > moveTime && target != null)
-                {
                     ToPlayerDetected();
-                    anim.SetBool("move", false);
+                    anim.SetBool("idle", false);
                 }
                 break;
             //DETECTED
@@ -77,18 +69,45 @@ public class Goblin : MonoBehaviour
 
                 setVelocity(0f);
                 stateTimer += Time.deltaTime;
+                anim.SetBool("detect", true);
 
                 //exit
                 if (stateTimer > 1 && target != null)
                 {
                     ToMove();
+                    anim.SetBool("detect", false);
+
                 }
                 else if (target == null)
                 {
                     ToIdle();
+                    anim.SetBool("detect", false);
+
                 }
                 break;
+            //MOVE
+            case State.Move:
+                DetectTargetinRange();
 
+                setVelocity(movespeed);
+                anim.SetBool("move", true);
+                stateTimer += Time.deltaTime;
+
+                if (target == null)
+                {
+                    ToIdle();
+                    anim.SetBool("move", false);
+                }
+                else if (target!=null&&isPlayerInRange)
+                {
+                    ToAttack();
+                    anim.SetBool("move", false);
+                }
+                break;
+            //ATK
+            case State.Attack:
+                anim.SetBool("attack",true);
+                break;
         }
         Lookat();
     }
@@ -96,7 +115,7 @@ public class Goblin : MonoBehaviour
     {
         if (target == null) return;
 
-        if (target.transform.position.x <= transform.position.x) //判断目标位置
+        if (transform.position.x- target.transform.position.x>=0.1f) //判断目标位置
         {
             transform.localEulerAngles = Vector3.up * 180;
 
@@ -123,9 +142,10 @@ public class Goblin : MonoBehaviour
         currentState = State.Idle;
     }
 
-    void ToMove()
+    public void ToMove()
     {
         currentState = State.Move;
+        anim.SetBool("attack",false);
         stateTimer = 0f;
     }
 
@@ -135,9 +155,37 @@ public class Goblin : MonoBehaviour
         stateTimer = 0;
     }
 
+    void ToAttack()
+    {
+        setVelocity(0f);
+        currentState = State.Attack;
+    }
     public void AnimatorAttack()
     {
-        // todo: attack
+        var tar =Physics2D.OverlapCircle(atk.position, atkRange,layerMask);
+
+        if (tar!= null&&tar.gameObject.tag=="Player")
+        {
+            tar.gameObject.GetComponent<Health>().TakeDamge(atkAmount);
+        }
+    }
+
+    public void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(atk.position, atkRange);
+
+    }
+    void DetectTargetinRange()
+    {
+        var tarColliders = Physics2D.OverlapCircle(atk.position, atkRange, layerMask);
+        if (tarColliders!=null)
+        {
+            isPlayerInRange = true;
+        }
+        else
+        {
+            isPlayerInRange = false;
+        }
     }
 
 }

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1690778744}
   - component: {fileID: 1690778746}
   - component: {fileID: 1690778742}
+  - component: {fileID: 1528985619}
   m_Layer: 7
   m_Name: Slime
   m_TagString: Player
@@ -90,16 +91,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7be85f2e3045354409ca3b5a20ba59df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyData:
-    Type: 0
-    Good: 0
-    Variant: 0
   CurrentHealth: 100
   MaxHealth: 100
   bloodParticle: {fileID: 0}
   hurtTimer: 0
   sps:
   - {fileID: 8117776623894195523}
+  effectApplyInterval: 0.25
+  effects: []
+  OnHit:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDie:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!50 &1690778744
 Rigidbody2D:
   serializedVersion: 4
@@ -150,6 +155,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 3
+--- !u!114 &1528985619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8117776622283043119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaa478624856379469314b5701ab1e63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  extraVelocity: {x: 0, y: 0}
+  extraVelocityDecay: 1
 --- !u!1 &8117776623894195521
 GameObject:
   m_ObjectHideFlags: 0

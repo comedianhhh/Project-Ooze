@@ -177,6 +177,8 @@ GameObject:
   - component: {fileID: 1734583758}
   - component: {fileID: 1734583753}
   - component: {fileID: 1734583754}
+  - component: {fileID: 2875106960688554885}
+  - component: {fileID: 714658484}
   m_Layer: 0
   m_Name: Goblin_thrower
   m_TagString: Untagged
@@ -212,16 +214,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7be85f2e3045354409ca3b5a20ba59df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyData:
-    Type: 0
-    Good: 0
-    Variant: 0
   CurrentHealth: 100
   MaxHealth: 100
   bloodParticle: {fileID: 5725714777709649331, guid: 81b8e9940e1a7a941bedb51df1f21088, type: 3}
   hurtTimer: 0
   sps:
   - {fileID: 7320808486956710513}
+  effectApplyInterval: 0.25
+  effects: []
+  OnHit:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDie:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!58 &140307452
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -290,3 +296,33 @@ MonoBehaviour:
   projectiles: {fileID: 9008806949468205648, guid: 8528edb4b10eab243b8149c3dc64c506, type: 3}
   stateTimer: 0
   attackpos: {fileID: 1218921961}
+--- !u!114 &2875106960688554885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7320808487424473867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7b08ec215212b48b57961ca4e6663a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyData:
+    Type: 0
+    Good: 0
+    Variant: 0
+--- !u!114 &714658484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7320808487424473867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaa478624856379469314b5701ab1e63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  extraVelocity: {x: 0, y: 0}
+  extraVelocityDecay: 2
