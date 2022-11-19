@@ -10,7 +10,8 @@ public class Goblin : MonoBehaviour
         Idle,
         Move,
         PlayerDetected,
-        Attack
+        Attack,
+        Die
     }
 
     [Header("Settings")] 
@@ -66,7 +67,7 @@ public class Goblin : MonoBehaviour
                 break;
             //DETECTED
             case State.PlayerDetected:
-
+                Lookat();
                 setVelocity(0f);
                 stateTimer += Time.deltaTime;
                 anim.SetBool("detect", true);
@@ -87,18 +88,18 @@ public class Goblin : MonoBehaviour
                 break;
             //MOVE
             case State.Move:
+                Lookat();
                 DetectTargetinRange();
-
+                stateTimer += Time.fixedDeltaTime;
                 setVelocity(movespeed);
                 anim.SetBool("move", true);
-                stateTimer += Time.deltaTime;
 
                 if (target == null)
                 {
                     ToIdle();
                     anim.SetBool("move", false);
                 }
-                else if (target!=null&&isPlayerInRange)
+                else if (target!=null&&isPlayerInRange&&stateTimer>1)
                 {
                     ToAttack();
                     anim.SetBool("move", false);
@@ -108,8 +109,13 @@ public class Goblin : MonoBehaviour
             case State.Attack:
                 anim.SetBool("attack",true);
                 break;
+            //Die
+            case State.Die:
+                setVelocity(0f);
+                break;
         }
-        Lookat();
+        
+        
     }
     public void Lookat()
     {
@@ -135,7 +141,6 @@ public class Goblin : MonoBehaviour
         else enemyMover.Move(Vector2.zero);
     }
 
-
     void ToIdle()
     {
         setVelocity(0f);
@@ -144,8 +149,9 @@ public class Goblin : MonoBehaviour
 
     public void ToMove()
     {
+        anim.SetBool("attack", false);
+        Debug.Log("ToMove");
         currentState = State.Move;
-        anim.SetBool("attack",false);
         stateTimer = 0f;
     }
 
@@ -159,6 +165,11 @@ public class Goblin : MonoBehaviour
     {
         setVelocity(0f);
         currentState = State.Attack;
+    }
+
+    public void ToDie()
+    {
+        currentState = State.Die;
     }
     public void AnimatorAttack()
     {

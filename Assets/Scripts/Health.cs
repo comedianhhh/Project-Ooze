@@ -51,9 +51,9 @@ public class Health : MonoBehaviour
     public void Die()
     {
         Debug.Log("die");
-
         OnDie.Invoke();
-        Destroy(gameObject);
+        StartCoroutine(IDestroy());
+        //Destroy(gameObject);
 
     }
 
@@ -110,8 +110,15 @@ public class Health : MonoBehaviour
                     i--;
                 }
             }
+        }
+    }
 
-            
+    IEnumerator IDestroy()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(5f);
+            Destroy(gameObject);
         }
     }
 }
