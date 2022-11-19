@@ -32,9 +32,9 @@ public class Goblin : MonoBehaviour
 
     float stateTimer = 0;
     [SerializeField] 
-    float moveTime=4f;
+    //float moveTime=4f;
 
-    Rigidbody2D rigidbody2D;
+    //Rigidbody2D rigidbody2D;
     GameObject aliveGo;
     Animator anim;
     CharacterMover enemyMover;
@@ -43,7 +43,7 @@ public class Goblin : MonoBehaviour
     private void Awake()
     {
         aliveGo = transform.Find("Alive").gameObject;
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        //rigidbody2D = GetComponent<Rigidbody2D>();
         anim = aliveGo.GetComponent<Animator>();
         enemyMover = GetComponent<CharacterMover>();
     }

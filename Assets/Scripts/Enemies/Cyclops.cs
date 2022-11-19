@@ -4,32 +4,43 @@ using UnityEngine;
 
 public class Cyclops : MonoBehaviour
 {
-    enum State { Idle, Move, Charge, PlayerDetected}
+    enum State { Idle, Move, Charge, PlayerDetected,Die}
 
     [Header("Settings")]
     [SerializeField] float movespeed = 1f;
     [SerializeField] float chargeSpeed = 3f;
 
     [SerializeField] private float chargeTime = 0.4f;
+    [SerializeField] private float atkRange=1.5f;
+    [SerializeField] private float atkAmount=5f;
+    [SerializeField] float detectRange=2f;
+
 
 
     [Header("Data")] 
     
     [SerializeField] State currentState = State.Idle;
+    [SerializeField] bool isPlayerInRange;
+
     [SerializeField] Health target;
+    [SerializeField] LayerMask layerMask;
+
+
     float stateTimer = 0;
 
-    Rigidbody2D rigidbody2D;
+    //Rigidbody2D rigidbody2D;
     TargetReceiver targetReceiver;
     GameObject aliveGo;
     Animator anim;
+    CharacterMover enemyMover;
 
     private void Awake()
     {
         aliveGo = transform.Find("Alive").gameObject;
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        //rigidbody2D = GetComponent<Rigidbody2D>();
         targetReceiver = GetComponent<TargetReceiver>();
         anim = aliveGo.GetComponent<Animator>();
+        enemyMover = GetComponent<CharacterMover>();
     }
 
     void FixedUpdate()
@@ -39,16 +50,10 @@ public class Cyclops : MonoBehaviour
         {
             //IDLE
             case State.Idle:
+                setVelocity(0f);
                 anim.SetBool("idle", true);
-                stateTimer += Time.deltaTime;
-                
-                //exit
-                if (stateTimer > 3)
-                {
-                    anim.SetBool("idle", false);
-                    ToMove();
-                }
 
+                //exit
                 if (target != null)
                 {
                     ToMove();
@@ -61,47 +66,32 @@ public class Cyclops : MonoBehaviour
 
                 setVelocity(movespeed);
                 anim.SetBool("move", true);
-
-                stateTimer += Time.deltaTime;
-
+                stateTimer += Time.fixedDeltaTime;
+                DetectTargetinRange();
                 if (target == null)
                 {
                     ToIdle();
                     anim.SetBool("move", false);
                 }
-                else if (stateTimer > 3 && target != null)
+                else if (stateTimer > 2 && target != null&& isPlayerInRange)
                 {
                     ToPlayerDetected();
                     anim.SetBool("move", false);
                 }
-
                 break;
-            //CHARGE
-            case State.Charge:
-                setVelocity(chargeSpeed);
-                anim.SetBool("charge", true);
-                stateTimer += Time.deltaTime;
 
-                //exit
-                if (stateTimer>chargeTime)
-                {
-                    ToPlayerDetected();
-                    anim.SetBool("charge", false);
-                }
-
-                break;
             //DETECTED
             case State.PlayerDetected:
 
                 setVelocity(0f);
                 anim.SetBool("playerDetected", true);
-                stateTimer += Time.deltaTime;
+                stateTimer += Time.fixedDeltaTime;
 
                 //exit
-                if (stateTimer > 2&&target!=null)
+                if (stateTimer > 1 && target != null&& isPlayerInRange)
                 {
                     ToCharge();
-                    anim.SetBool("playerDetected",false);
+                    anim.SetBool("playerDetected", false);
                 }
                 else if (target == null)
                 {
@@ -109,6 +99,16 @@ public class Cyclops : MonoBehaviour
                     anim.SetBool("playerDetected", false);
                 }
                 break;
+            //CHARGE
+            case State.Charge:
+                setVelocity(chargeSpeed);
+                anim.SetBool("charge", true);
+                break;
+            //Die
+            case State.Die:
+                setVelocity(0f);
+                break;
+
         }
 
         Lookat();
@@ -117,7 +117,7 @@ public class Cyclops : MonoBehaviour
     {
         if (target == null) return;
 
-        if (target.transform.position.x <= transform.position.x) //判断目标位置
+        if (transform.position.x - target.transform.position.x >= 0.1f) //判断目标位置
         {
             transform.localEulerAngles = Vector3.up * 180;
 
@@ -133,9 +133,9 @@ public class Cyclops : MonoBehaviour
         if (target != null)
         {
             Vector2 dir = (target.transform.position - transform.position).normalized;
-            rigidbody2D.velocity = veclocity * dir;
+            enemyMover.Move(veclocity * dir);
         }
-        else rigidbody2D.velocity=Vector2.zero;
+        else enemyMover.Move(Vector2.zero);
     }
 
 
@@ -144,12 +144,12 @@ public class Cyclops : MonoBehaviour
     {
         setVelocity(0f);
         currentState = State.Idle;
-        stateTimer = 0;
     }
 
-    void ToMove()
+    public void ToMove()
     {
         currentState = State.Move;
+        anim.SetBool("charge",false);
         stateTimer = 0f;
     }
 
@@ -159,10 +159,38 @@ public class Cyclops : MonoBehaviour
         stateTimer = 0;
     }
 
-    void ToCharge()
+    public void ToCharge()
     {
         currentState = State.Charge;
-        stateTimer = 0f;
     }
 
+    public void Todie()
+    {
+        currentState = State.Die;
+    }
+    public void AnimatorAttack()
+    {
+        var tar = Physics2D.OverlapCircle(transform.position, atkRange, layerMask);
+
+        if (tar != null && tar.gameObject.tag == "Player")
+        {
+            tar.gameObject.GetComponent<Health>().TakeDamge(atkAmount);
+        }
+    }
+    public void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, detectRange);
+    }
+    void DetectTargetinRange()
+    {
+        var tarColliders = Physics2D.OverlapCircle(transform.position, detectRange, layerMask);
+        if (tarColliders != null)
+        {
+            isPlayerInRange = true;
+        }
+        else
+        {
+            isPlayerInRange = false;
+        }
+    }
 }
