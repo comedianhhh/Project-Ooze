@@ -38,7 +38,6 @@ public class MushRoom : MonoBehaviour
     GameObject aliveGo;
     Animator anim;
     CharacterMover enemyMover;
-    public Transform atk;
 
     private void Awake()
     {
@@ -173,7 +172,7 @@ public class MushRoom : MonoBehaviour
     }
     public void AnimatorAttack()
     {
-        var tar = Physics2D.OverlapCircle(atk.position, atkRange, layerMask);
+        var tar = Physics2D.OverlapCircle(transform.position, atkRange, layerMask);
 
         if (tar != null && tar.gameObject.tag == "Player")
         {
@@ -183,12 +182,12 @@ public class MushRoom : MonoBehaviour
 
     public void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(atk.position, atkRange);
+        Gizmos.DrawWireSphere(transform.position, atkRange);
 
     }
     void DetectTargetinRange()
     {
-        var tarColliders = Physics2D.OverlapCircle(atk.position, atkRange, layerMask);
+        var tarColliders = Physics2D.OverlapCircle(transform.position, atkRange, layerMask);
         if (tarColliders != null)
         {
             isPlayerInRange = true;
