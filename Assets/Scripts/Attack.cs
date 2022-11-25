@@ -9,17 +9,13 @@ public class Attack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(other.gameObject.layer);
-
         if (other.gameObject.layer == 7)
         {
             Health health = other.GetComponent<Health>();
             if (health != null)
             {
-
                 Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
                 Vector2 difference = (other.transform.position - transform.position).normalized * knockbackDistance;
-                //rb.MovePosition(new Vector2(other.transform.position.x + difference.x, other.transform.position.y + difference.y));
                 health.TakeDamge(damageAmount);
                 health.GetComponent<CharacterMover>().AddExtraVelocity(difference);
 

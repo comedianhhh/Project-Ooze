@@ -20,6 +20,8 @@ public class MushRoom : MonoBehaviour
 
     [SerializeField] private float atkRange = 1f;
     [SerializeField] private float atkAmount = 5f;
+    [SerializeField] private float knockbackDistance=5f;
+    public Transform atk;
 
     [SerializeField] LayerMask layerMask;
 
@@ -149,7 +151,7 @@ public class MushRoom : MonoBehaviour
     public void ToMove()
     {
         anim.SetBool("attack", false);
-        Debug.Log("ToMove");
+        //Debug.Log("ToMove");
         currentState = State.Move;
         stateTimer = 0f;
     }
@@ -172,22 +174,24 @@ public class MushRoom : MonoBehaviour
     }
     public void AnimatorAttack()
     {
-        var tar = Physics2D.OverlapCircle(transform.position, atkRange, layerMask);
+        var tar = Physics2D.OverlapCircle(atk.position, atkRange, layerMask);
 
         if (tar != null && tar.gameObject.tag == "Player")
         {
             tar.gameObject.GetComponent<Health>().TakeDamge(atkAmount);
+            Vector2 difference = (tar.transform.position - transform.position).normalized * knockbackDistance;
+            tar.GetComponent<CharacterMover>().AddExtraVelocity(difference);
         }
     }
 
     public void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(transform.position, atkRange);
+        Gizmos.DrawWireSphere(atk.position, atkRange);
 
     }
     void DetectTargetinRange()
     {
-        var tarColliders = Physics2D.OverlapCircle(transform.position, atkRange, layerMask);
+        var tarColliders = Physics2D.OverlapCircle(atk.position, atkRange, layerMask);
         if (tarColliders != null)
         {
             isPlayerInRange = true;

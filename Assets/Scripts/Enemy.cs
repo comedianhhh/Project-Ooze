@@ -16,22 +16,12 @@ public class Enemy : MonoBehaviour
         health = GetComponent<Health>();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void GetSwallowed(Vector3 pos)
     {
+        Debug.Log("swallow");
         Transform animator = GetComponentInChildren<Animator>().transform;
-        animator.DOMove(pos, 0.2f).SetEase(Ease.InSine);
-        animator.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InSine);
+        animator.DOMove(pos, 0.5f).SetEase(Ease.InSine);
+        animator.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InSine);
+        health.Die();
     }
 }

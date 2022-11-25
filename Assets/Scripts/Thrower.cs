@@ -68,16 +68,21 @@ public class Thrower : MonoBehaviour
                 if (stateTimer > 1 && target != null)
                 {
                     ToAttack();
+                    anim.SetBool("detect", false);
+
                 }
                 else if (target == null)
                 {
                     ToIdle();
+                    anim.SetBool("detect", false);
+
                 }
                 break;
             //Attack
             case State.Attack:
                 if (stateTimer <1)
                 {
+
                     Bullet bullet = Instantiate(projectiles).GetComponent<Bullet>();
                     bullet.transform.position = attackpos.position;
                     bullet.Initialize(transform, target.transform);
@@ -89,17 +94,18 @@ public class Thrower : MonoBehaviour
                 if (target == null)
                 {
                     ToIdle();
-                }
+                    anim.SetBool("attack", false);
 
+                }
+                break;
+            //Die
+            case State.Die:
+                setVelocity(0f);
                 break;
         }
         Lookat();
     }
 
-    public void Die()
-    {
-        currentState = State.Die;
-    }
 
     void setVelocity(float veclocity)
     {
@@ -131,16 +137,22 @@ public class Thrower : MonoBehaviour
         //setVelocity(0f);
         currentState = State.Idle;
     }
-
+    public void ToDie()
+    {
+        currentState = State.Die;
+    }
 
     void ToPlayerDetected()
     {
+        anim.SetBool("detect", true);
         currentState = State.PlayerDetected;
         stateTimer = 0f;
     }
 
     void ToAttack()
     {
+        anim.SetBool("attack", true);
+        anim.SetBool("move", false);
         currentState = State.Attack;
         stateTimer = 0f;
     }

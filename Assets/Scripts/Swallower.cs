@@ -22,7 +22,6 @@ public class Swallower : MonoBehaviour
             SwallowedEnemies.Add(enemy.EnemyData);
             Enlarge();
             GainAbility();
-            //Destroy(other.gameObject);
         }
     }
 

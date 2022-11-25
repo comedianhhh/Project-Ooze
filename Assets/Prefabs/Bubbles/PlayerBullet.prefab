@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 4675658125555283899}
   - component: {fileID: 4675658125555283900}
   - component: {fileID: 4675658125555283901}
-  - component: {fileID: -1789464486497291729}
+  - component: {fileID: -5392702535707076228}
   m_Layer: 3
-  m_Name: NormalBubble
+  m_Name: PlayerBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -122,7 +122,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &-1789464486497291729
+--- !u!114 &-5392702535707076228
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,14 +131,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 4675658125555283902}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e532e6446c477bf4e916dd5064e581a0, type: 3}
+  m_Script: {fileID: 11500000, guid: f65e2625418b1a844b42c74d3bf887a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
-  speedDecay: 2
+  speed: 0
+  damage: 30
+  speedDecay: 1
   minSpeed: 0.1
   startSpeed: 4
-  speed: 1
   knockbackDistance: 1
-  direction: {x: 0, y: 0}
+  isDeflected: 0
+  targetTag: Enemy
+  isEnemyBullet: 0
   bulletRend: {fileID: 4675658125555283899}

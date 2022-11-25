@@ -38,8 +38,7 @@ public class Health : MonoBehaviour
 
         if(bloodParticle!=null) Instantiate(bloodParticle, transform.position, Quaternion.identity);// ‹…À–ßπ˚
 
-        Debug.Log("hurt");
-        //isHurting = true;
+        //Debug.Log("hurt");
 
         StartCoroutine(Flash(1, 10));
 

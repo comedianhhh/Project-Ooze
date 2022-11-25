@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 1690778746}
   - component: {fileID: 1690778742}
   - component: {fileID: 1528985619}
+  - component: {fileID: 685864787}
   m_Layer: 7
   m_Name: Slime
   m_TagString: Player
@@ -78,6 +79,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e87f0427bb380f469b981ae95d47299, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sizeModifer: 0.2
+  sizeToTransfer: 1
   SwallowedEnemies: []
 --- !u!114 &2116711860
 MonoBehaviour:
@@ -93,8 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentHealth: 100
   MaxHealth: 100
-  bloodParticle: {fileID: 0}
-  hurtTimer: 0
+  bloodParticle: {fileID: 5725714777709649331, guid: 81b8e9940e1a7a941bedb51df1f21088, type: 3}
   sps:
   - {fileID: 8117776623894195523}
   effectApplyInterval: 0.25
@@ -169,6 +171,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   extraVelocity: {x: 0, y: 0}
   extraVelocityDecay: 1
+--- !u!114 &685864787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8117776622283043119}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90491678fab853842ad4f266266c69a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8117776623894195521
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,7 +195,7 @@ GameObject:
   - component: {fileID: 8117776623894195523}
   - component: {fileID: 8117776623894195522}
   m_Layer: 7
-  m_Name: Ooze_sprite
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

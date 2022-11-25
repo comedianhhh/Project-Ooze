@@ -5,9 +5,18 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] public float speed;
+    [SerializeField] private float damage = 10;
     [SerializeField] private float speedDecay=0.2f;
+    [SerializeField] private float minSpeed = 0.1f;
+    [SerializeField] private float startSpeed = 20;
+    [SerializeField] private float knockbackDistance = 0.3f;
+
     [SerializeField] bool isDeflected = false;
     [SerializeField] string targetTag = "Player";
+
+    [SerializeField] private bool isEnemyBullet=true;
+    bool disappearing;
+    public SpriteRenderer bulletRend;
 
     Transform sender;
     Transform receiver;
@@ -17,17 +26,20 @@ public class Bullet : MonoBehaviour
     {
         sender = send;
         direction = dir;
+        speed = startSpeed;
     }
     public void Initialize(Transform send, Transform receive)
     {
         sender = send;
         receiver = receive;
+        speed = startSpeed;
     }
 
 
     void FixedUpdate()
     {
         Move();
+        CheckDisappear();
     }
 
     void Move()
@@ -49,22 +61,51 @@ public class Bullet : MonoBehaviour
         }
 
         speed -= speedDecay * speed * Time.fixedDeltaTime;
-        transform.position = Vector2.MoveTowards(transform.position, tar, speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, tar, speed * Time.fixedDeltaTime);
+        if (speed < minSpeed)
+        {
+            speed = 0;
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag(targetTag))
+        if (isEnemyBullet)
         {
-            if (collision.GetComponent<Deflector>())
+            if (collision.CompareTag(targetTag))
             {
-                Deflect();
+                if (collision.GetComponent<Deflector>())
+                {
+                    Deflect();
+                }
+                else
+                    DestroyProjectile();
             }
-            else
-               DestroyProjectile();
+        }
+        else
+        {
+            Health health = collision.GetComponent<Health>();
+            if (health != null)
+            {
+                health.TakeDamge(damage);
+
+                //knock back
+                Vector2 difference = (collision.transform.position - transform.position).normalized * knockbackDistance;
+                health.GetComponent<CharacterMover>().AddExtraVelocity(difference);
+                //health.AddEffect(new HealthEffect(1, 5));
+                Destroy(gameObject);
+            }
+        }
+
+    }
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            speed = 0; //stop if it hits a wall
         }
     }
-
     void DestroyProjectile()
     {
         Destroy(gameObject);
@@ -76,4 +117,27 @@ public class Bullet : MonoBehaviour
         direction = -direction;
         targetTag = "Enemy";
     }
+    void CheckDisappear()
+    {
+        if (speed == 0 && !disappearing)
+        { //disappear and destroy when stopped
+            disappearing = true; //so we dont continuelly call the coroutine
+            StartCoroutine(Disappear());
+        }
+    }
+    IEnumerator Disappear()
+    {
+        float curAlpha = 1; //start at full alpha
+        float disSpeed = 3f; //take 1/3 seconds to disappear
+        Color disColor = bulletRend.color; //capture color to edit its alpha
+        do
+        {
+            curAlpha -= disSpeed * Time.fixedDeltaTime; //find new alpha
+            disColor.a = curAlpha; //apply alpha to color
+            bulletRend.color = disColor; // apply color to bullet
+            yield return null;
+        } while (curAlpha > 0); //end when the bullet is transparent
+        Destroy(gameObject); //get rid of bullet now that it can't be seen
+    }
+
 }

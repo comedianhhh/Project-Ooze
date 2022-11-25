@@ -38,9 +38,7 @@ public class ShooterBullet : MonoBehaviour
             //knock back
             Vector2 difference = (other.transform.position - transform.position).normalized*knockbackDistance;
             health.GetComponent<CharacterMover>().AddExtraVelocity(difference);
-
             //health.AddEffect(new HealthEffect(1, 5));
-
             Destroy(gameObject);
         }
     }

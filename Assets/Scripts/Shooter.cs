@@ -29,8 +29,8 @@ public class Shooter : MonoBehaviour
 
     public void Shoot(Vector2 direction)
     {
-        ShooterBullet bullet = Instantiate(bulletPrefab).GetComponent<ShooterBullet>();
+        Bullet bullet = Instantiate(bulletPrefab).GetComponent<Bullet>();
         bullet.transform.position = transform.position;
-        bullet.Initialize(direction);
+        bullet.Initialize(transform,direction);
     }
 }

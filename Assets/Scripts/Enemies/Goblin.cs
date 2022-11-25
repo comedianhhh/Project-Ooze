@@ -21,6 +21,8 @@ public class Goblin : MonoBehaviour
     [SerializeField] private float atkRange = 1f;
     [SerializeField] private float atkAmount = 5f;
 
+    [SerializeField] float knockbackDistance=0.5f;
+
     [SerializeField] LayerMask layerMask;
 
     [Header("Data")] 
@@ -150,7 +152,7 @@ public class Goblin : MonoBehaviour
     public void ToMove()
     {
         anim.SetBool("attack", false);
-        Debug.Log("ToMove");
+        //Debug.Log("ToMove");
         currentState = State.Move;
         stateTimer = 0f;
     }
@@ -178,6 +180,8 @@ public class Goblin : MonoBehaviour
         if (tar!= null&&tar.gameObject.tag=="Player")
         {
             tar.gameObject.GetComponent<Health>().TakeDamge(atkAmount);
+            Vector2 difference = (tar.transform.position - transform.position).normalized * knockbackDistance;
+            tar.GetComponent<CharacterMover>().AddExtraVelocity(difference);
         }
     }
 
