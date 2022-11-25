@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 [RequireComponent(typeof(Health))]
 public class Enemy : MonoBehaviour
@@ -25,5 +26,12 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void GetSwallowed(Vector3 pos)
+    {
+        Transform animator = GetComponentInChildren<Animator>().transform;
+        animator.DOMove(pos, 0.2f).SetEase(Ease.InSine);
+        animator.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InSine);
     }
 }

@@ -20,6 +20,7 @@ public class Health : MonoBehaviour
     public UnityEvent OnDie = new UnityEvent();
 
     Rigidbody2D rigidbody2D;
+    Coroutine die;
 
     private void Awake()
     {
@@ -52,9 +53,14 @@ public class Health : MonoBehaviour
     {
         Debug.Log("die");
         OnDie.Invoke();
-        StartCoroutine(IDestroy());
+        die = StartCoroutine(IDestroy());
         //Destroy(gameObject);
 
+    }
+
+    public void StopSelfDestroy()
+    {
+        StopCoroutine(die);
     }
 
     IEnumerator Flash(float intensity, float speed)
@@ -104,7 +110,7 @@ public class Health : MonoBehaviour
                 Debug.Log("Take Damage: " + effects[i].DamagePerSecond);
                 // other health count
 
-                if (Time.time - effects[i].TimeStart >= effects[i].Duration)
+                if (effects[i].Duration != -1 && Time.time - effects[i].TimeStart >= effects[i].Duration)
                 {
                     effects.RemoveAt(i);
                     i--;

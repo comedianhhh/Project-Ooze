@@ -78,9 +78,9 @@ public class Thrower : MonoBehaviour
             case State.Attack:
                 if (stateTimer <1)
                 {
-                    EnemyBullet bullet = Instantiate(projectiles).GetComponent<EnemyBullet>();
+                    Bullet bullet = Instantiate(projectiles).GetComponent<Bullet>();
                     bullet.transform.position = attackpos.position;
-                    bullet.Initialize(target.transform.position);
+                    bullet.Initialize(transform, target.transform);
                     //Debug.DrawLine(target.transform.position, attackpos.position, Color.red, 1);
                     stateTimer = 2f;
                 }

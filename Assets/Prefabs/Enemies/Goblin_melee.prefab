@@ -349,7 +349,7 @@ MonoBehaviour:
   currentState: 0
   target: {fileID: 0}
   isPlayerInRange: 0
-  moveTime: 4
+  aliveGo: {fileID: 0}
   atk: {fileID: 4002969350536155985}
 --- !u!114 &436201264
 MonoBehaviour:
@@ -364,7 +364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyData:
-    Type: 0
+    Type: 3
     Good: 0
     Variant: 0
 --- !u!114 &436201265
