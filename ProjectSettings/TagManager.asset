@@ -45,11 +45,11 @@ TagManager:
   - name: Door
     uniqueID: 998646201
     locked: 0
-  - name: Effect
-    uniqueID: 3635927761
-    locked: 0
   - name: Player
     uniqueID: 868247103
+    locked: 0
+  - name: Effect
+    uniqueID: 3635927761
     locked: 0
   - name: Wall
     uniqueID: 101762513

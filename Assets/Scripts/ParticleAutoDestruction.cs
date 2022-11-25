@@ -6,15 +6,23 @@ public class ParticleAutoDestruction : MonoBehaviour
 {
     private ParticleSystem[] particleSystems;
 
+    [SerializeField]
+    private float lifeTime=5f;
+
     void Start()
     {
         particleSystems = GetComponentsInChildren<ParticleSystem>();
     }
 
+    void Awake()
+    {
+        StartCoroutine(IDestroy());
+    }
+
+
     void Update()
     {
         bool allStopped = true;
-
         foreach (ParticleSystem ps in particleSystems)
         {
             if (!ps.isStopped)
@@ -22,8 +30,16 @@ public class ParticleAutoDestruction : MonoBehaviour
                 allStopped = false;
             }
         }
+        if (allStopped&&gameObject!=null)
+            GameObject.Destroy(transform.parent.gameObject);
+    }
 
-        if (allStopped)
-            GameObject.Destroy(gameObject);
+    IEnumerator IDestroy()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(5f);
+            Destroy(transform.parent.gameObject);
+        }
     }
 }
