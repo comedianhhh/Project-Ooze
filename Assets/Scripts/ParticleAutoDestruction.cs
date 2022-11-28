@@ -31,7 +31,7 @@ public class ParticleAutoDestruction : MonoBehaviour
             }
         }
         if (allStopped&&gameObject!=null)
-            GameObject.Destroy(transform.parent.gameObject);
+            GameObject.Destroy(gameObject);
     }
 
     IEnumerator IDestroy()
@@ -39,7 +39,7 @@ public class ParticleAutoDestruction : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(5f);
-            Destroy(transform.parent.gameObject);
+            Destroy(gameObject);
         }
     }
 }

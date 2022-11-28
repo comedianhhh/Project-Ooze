@@ -40,7 +40,7 @@ public class Attack : MonoBehaviour
     {
 
         Health health = other.GetComponent<Health>();
-        if (health != null)
+        if (health != null&&other.tag=="Player")
         {
             if (knockbackDistance != 0)
             {

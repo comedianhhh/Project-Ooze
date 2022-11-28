@@ -147,6 +147,7 @@ public class PoisonMush : MonoBehaviour
     void ToIdle()
     {
         setVelocity(0f);
+        
         currentState = State.Idle;
     }
 

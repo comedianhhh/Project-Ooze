@@ -4879,7 +4879,7 @@ MonoBehaviour:
     m_Bits: 128
   type: 2
   atkRange: 1
-  dps: 5
+  dps: 1
   time: 3
 --- !u!50 &6513529204833745323
 Rigidbody2D:
