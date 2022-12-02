@@ -34,7 +34,7 @@ public class ChargeState : State
         base.LogicUpdate();
         if (isDetectingWall)
         {
-            //TODO:connet to look for player
+   
         }
         else if (Time.time >= startTime + stateData.chargeTime)
         {

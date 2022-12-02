@@ -37,14 +37,11 @@ public class MagicMushroom : MonoBehaviour
     [SerializeField] bool isUnderGround;
 
     Vector3 _randomSpreadDirection;
-    Vector3 _spawnPositionCenter;
 
 
     float stateTimer = 0;
-    [SerializeField]
-    //float moveTime=4f;
 
-    //Rigidbody2D rigidbody2D;
+
     GameObject aliveGo;
     Animator anim;
     CharacterMover enemyMover;
@@ -76,7 +73,7 @@ public class MagicMushroom : MonoBehaviour
                 else
                     setVelocity(movespeed);
 
-                if (target != null && isPlayerInRange && stateTimer > 1)
+                if (target != null && isPlayerInRange && stateTimer > 3)
                 {
                     ToPlayerDetected();
                     anim.SetBool("move", false);
@@ -113,6 +110,7 @@ public class MagicMushroom : MonoBehaviour
 
             //ATK
             case State.Attack:
+                setVelocity(0f);
                 anim.SetBool("attack", true);
                 break;
             //Die
@@ -147,7 +145,7 @@ public class MagicMushroom : MonoBehaviour
         else enemyMover.Move(Vector2.zero);
     }
 
-    public void ToIdle()
+    void ToIdle()
     {
         setVelocity(0f);
         currentState = State.Idle;
@@ -209,9 +207,9 @@ public class MagicMushroom : MonoBehaviour
             {
                 if (RandomSpread)
                 {
-                    _randomSpreadDirection.x = UnityEngine.Random.Range(-Spread.x, Spread.x);
-                    _randomSpreadDirection.y = UnityEngine.Random.Range(-Spread.y, Spread.y);
-                    _randomSpreadDirection.z = UnityEngine.Random.Range(-Spread.z, Spread.z);
+                    _randomSpreadDirection.x = Random.Range(-Spread.x, Spread.x);
+                    _randomSpreadDirection.y = Random.Range(-Spread.y, Spread.y);
+                    _randomSpreadDirection.z = Random.Range(-Spread.z, Spread.z);
                 }
                 else
                 {
@@ -231,7 +229,7 @@ public class MagicMushroom : MonoBehaviour
 
                 Bullet bullet = Instantiate(projectiles).GetComponent<Bullet>();
                 bullet.transform.position = transform.position;
-                bullet.Initialize(transform, spread * transform.right);
+                bullet.Initialize(transform, spread * (target.transform.position-transform.position));
 
             }
         }

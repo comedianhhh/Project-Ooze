@@ -9,14 +9,15 @@ public class Swallower : MonoBehaviour
     [SerializeField] float sizeModifer = 0.2f;
     [SerializeField] float sizeToTransfer = 1;
     public List<EnemyData> SwallowedEnemies = new List<EnemyData>();
-
+    [SerializeField] Animator anim;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         var enemy = other.GetComponent<Enemy>();
         if (enemy != null && enemy.CanBeSwallowed && enemy.EnemyData.Type != EnemyType.None)
         {
-            // todo: swallow animation, enemy dies
+            // todo: enemy dies
+            anim.SetTrigger("eat");
             enemy.GetSwallowed(transform.position);
             enemy.GetComponent<Health>().StopSelfDestroy();
             SwallowedEnemies.Add(enemy.EnemyData);
