@@ -48,6 +48,7 @@ public class Thrower : MonoBehaviour
         {
             //IDLE
             case State.Idle:
+                Lookat();
                 anim.SetBool("idle", true);
                 //exit
                 if (target != null)
@@ -60,6 +61,7 @@ public class Thrower : MonoBehaviour
 
             //DETECTED
             case State.PlayerDetected:
+                Lookat();
 
                 //setVelocity(0f);
                 stateTimer += Time.deltaTime;
@@ -103,7 +105,7 @@ public class Thrower : MonoBehaviour
                 setVelocity(0f);
                 break;
         }
-        Lookat();
+        
     }
 
 

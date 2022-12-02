@@ -45,12 +45,14 @@ public class MagicMushroom : MonoBehaviour
     GameObject aliveGo;
     Animator anim;
     CharacterMover enemyMover;
+    private Collider2D collider2D;
     public Transform atk;
 
     private void Awake()
     {
         aliveGo = transform.Find("Alive").gameObject;
         //rigidbody2D = GetComponent<Rigidbody2D>();
+        collider2D = GetComponent<Collider2D>();
         anim = aliveGo.GetComponent<Animator>();
         enemyMover = GetComponent<CharacterMover>();
     }

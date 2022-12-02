@@ -4,42 +4,50 @@ using UnityEngine;
 
 public class ParticleAutoDestruction : MonoBehaviour
 {
-    private ParticleSystem[] particleSystems;
+    public bool DestroyParent = false;
 
-    [SerializeField]
-    private float lifeTime=5f;
+    public float DestroyDelay = 0f;
 
-    void Start()
+    protected ParticleSystem _particleSystem;
+    protected float _startTime;
+
+
+    protected virtual void Start()
     {
-        particleSystems = GetComponentsInChildren<ParticleSystem>();
-    }
-
-    void Awake()
-    {
-        StartCoroutine(IDestroy());
-    }
-
-
-    void Update()
-    {
-        bool allStopped = true;
-        foreach (ParticleSystem ps in particleSystems)
+        _particleSystem = GetComponent<ParticleSystem>();
+        if (DestroyDelay != 0)
         {
-            if (!ps.isStopped)
+            _startTime = Time.time;
+        }
+    }
+
+
+    protected virtual void Update()
+    {
+        if ((DestroyDelay != 0) && (Time.time - _startTime > DestroyDelay))
+        {
+            DestroyParticleSystem();
+        }
+
+        if (_particleSystem.isPlaying)
+        {
+            return;
+        }
+
+        DestroyParticleSystem();
+    }
+
+
+    protected virtual void DestroyParticleSystem()
+    {
+        if (transform.parent != null)
+        {
+            if (DestroyParent)
             {
-                allStopped = false;
+                Destroy(transform.parent.gameObject);
             }
         }
-        if (allStopped&&gameObject!=null)
-            GameObject.Destroy(gameObject);
-    }
-
-    IEnumerator IDestroy()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(5f);
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 }
+
