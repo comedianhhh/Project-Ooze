@@ -18,6 +18,7 @@ public class Health : MonoBehaviour
     [Header("Events")]
     public UnityEvent OnHit = new UnityEvent();
     public UnityEvent OnDie = new UnityEvent();
+    public UnityEvent OnDisappear = new UnityEvent();
 
     Rigidbody2D rigidbody2D;
     Coroutine die;
@@ -124,6 +125,7 @@ public class Health : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(5f);
+            OnDisappear.Invoke();
             Destroy(gameObject);
         }
     }

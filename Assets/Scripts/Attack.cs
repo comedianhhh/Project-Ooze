@@ -27,20 +27,21 @@ public class Attack : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, atkRange);
     }
 
-    public void rangeAttack()
-    {
-        var tar = Physics2D.OverlapCircle(transform.position, atkRange, targetLayerMask);
-        Debug.Log(tar);
-        if (tar != null)
-        {
-            tar.gameObject.GetComponent<Health>().AddEffect(new HealthEffect(dps, time, type));
-        }
-    }
+    //public void rangeAttack()
+    //{
+    //    var tar = Physics2D.OverlapCircle(transform.position, atkRange, targetLayerMask);
+    //    if (tar != null)
+    //    {
+    //        tar.gameObject.GetComponent<Health>().AddEffect(new HealthEffect(dps, time, type));
+    //        Vector2 difference = (tar.transform.position - transform.position).normalized * knockbackDistance;
+    //        tar.GetComponent<CharacterMover>().AddExtraVelocity(difference);
+    //    }
+    //}
     private void OnTriggerEnter2D(Collider2D other)
     {
 
         Health health = other.GetComponent<Health>();
-        if (health != null&&other.tag=="Player")
+        if (health != null && other.tag == "Player")
         {
             if (knockbackDistance != 0)
             {

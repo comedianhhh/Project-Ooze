@@ -16,7 +16,6 @@ public class Swallower : MonoBehaviour
         var enemy = other.GetComponent<Enemy>();
         if (enemy != null && enemy.CanBeSwallowed && enemy.EnemyData.Type != EnemyType.None)
         {
-            // todo: enemy dies
             anim.SetTrigger("eat");
             enemy.GetSwallowed(transform.position);
             enemy.GetComponent<Health>().StopSelfDestroy();
