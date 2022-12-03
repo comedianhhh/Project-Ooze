@@ -39,10 +39,7 @@ public class Health : MonoBehaviour
         CurrentHealth = Mathf.Clamp(CurrentHealth - damage, 0, MaxHealth);
 
         if(bloodParticle!=null) Instantiate(bloodParticle, transform.position, Quaternion.identity);// ‹…À–ßπ˚
-
-        //Debug.Log("hurt");
-
-        StartCoroutine(Flash(1, 10));
+        StartCoroutine(Flash(0.6f, 10));
 
         if (CurrentHealth <= 0)
         {

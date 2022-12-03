@@ -13,15 +13,6 @@ public class Attack : MonoBehaviour
     [SerializeField] private float time = 3f;
 
 
-    void Awake()
-    {
-
-    }
-
-    void FixedUpdate()
-    {
-
-    }
     public void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, atkRange);
