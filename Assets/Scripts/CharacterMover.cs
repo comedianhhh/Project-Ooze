@@ -23,13 +23,18 @@ public class CharacterMover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        extraVelocity -= extraVelocity.normalized * Time.deltaTime * extraVelocityDecay;
-
+        if (extraVelocity.sqrMagnitude > 0)
+        {
+            extraVelocity.x = Mathf.Clamp(extraVelocity.x - Time.deltaTime * extraVelocityDecay, 0, 999);
+            extraVelocity.y = Mathf.Clamp(extraVelocity.y - Time.deltaTime * extraVelocityDecay, 0, 999);
+        }
     }
 
     public void Move(Vector2 velocity)
     {
+        if (extraVelocity.sqrMagnitude > 0)
+            velocity = Vector2.zero;
+
         //Vector2 dir = (target - (Vector2)transform.position).normalized;
         if (canMove)
         {

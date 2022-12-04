@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -175,9 +176,9 @@ public class Goblin : MonoBehaviour
     }
     public void AnimatorAttack()
     {
-        var tar =Physics2D.OverlapCircle(atk.position, atkRange,layerMask);
+        var tar = Physics2D.OverlapCircleAll(atk.position, atkRange,layerMask).ToList().Find(e => e.CompareTag("Player"));
 
-        if (tar!= null&&tar.gameObject.tag=="Player")
+        if (tar != null)
         {
             tar.gameObject.GetComponent<Health>().TakeDamge(atkAmount);
             Vector2 difference = (tar.transform.position - transform.position).normalized * knockbackDistance;

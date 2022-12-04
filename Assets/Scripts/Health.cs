@@ -8,6 +8,7 @@ public class Health : MonoBehaviour
     public float CurrentHealth = 100;
     public float MaxHealth = 100;
     public GameObject bloodParticle;
+    public GameObject FireDamageParticlePrefab;
 
     [SerializeField] private List<SpriteRenderer> sps;
 

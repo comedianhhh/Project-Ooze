@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class TrapTrigger : MonoBehaviour
 {
@@ -35,7 +36,7 @@ public class TrapTrigger : MonoBehaviour
     }
     public void AnimatorAttack()
     {
-        var tar = Physics2D.OverlapCircle(transform.position, atkRange, layerMask);
+        var tar = Physics2D.OverlapCircleAll(transform.position, atkRange, layerMask).ToList().Find(e => e.CompareTag("Player"));
 
         if (tar != null && tar.gameObject.tag == "Player")
         {
