@@ -193,7 +193,7 @@ public class Goblin : MonoBehaviour
     }
     void DetectTargetinRange()
     {
-        var tarColliders = Physics2D.OverlapCircle(atk.position, atkRange, layerMask);
+        var tarColliders = Physics2D.OverlapCircleAll(atk.position, atkRange, layerMask).ToList().Find(e => e.CompareTag("Player"));
         if (tarColliders!=null)
         {
             isPlayerInRange = true;
