@@ -8,15 +8,15 @@ public class Attack : MonoBehaviour
     [SerializeField] LayerMask targetLayerMask;
     [SerializeField]
     HealthEffect.HeathEffectType type;
-    [SerializeField] private float atkRange;
+    ///[SerializeField] private float atkRange;
     [SerializeField] private float dps=5f;
     [SerializeField] private float time = 3f;
 
 
-    public void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(transform.position, atkRange);
-    }
+    //public void OnDrawGizmos()
+    //{
+    //    Gizmos.DrawWireSphere(transform.position, atkRange);
+    //}
 
     //public void rangeAttack()
     //{
