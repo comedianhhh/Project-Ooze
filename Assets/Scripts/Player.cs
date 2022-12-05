@@ -4,25 +4,27 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [Header("Settings")] 
-
+    [Header("Settings")]
 
     [Header("Data")] 
     [SerializeField] float speed;
 
-    private Vector2 input;
 
-    private Rigidbody2D rig;
-    private Animator animator;
+
+
+    Vector2 input;
+
+    Animator animator;
     Shooter shooter;
     CharacterMover characterMover;
 
+
     void Start()
     {
-        rig = GetComponentInChildren<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
         shooter = GetComponent<Shooter>();
         characterMover = GetComponent<CharacterMover>();
+
     }
 
 
@@ -30,6 +32,8 @@ public class Player : MonoBehaviour
     {
         Move();
         Aim();
+
+
     }
 
     void Move()
@@ -65,6 +69,7 @@ public class Player : MonoBehaviour
             shooter.Shoot(direction);
         }
     }
+
 
 
 }

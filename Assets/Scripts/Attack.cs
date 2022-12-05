@@ -5,13 +5,14 @@ using UnityEngine;
 public class Attack : MonoBehaviour
 {
     public float knockbackDistance;
-    [SerializeField] LayerMask targetLayerMask;
+    //[SerializeField] LayerMask targetLayerMask;
     [SerializeField]
     HealthEffect.HeathEffectType type;
     ///[SerializeField] private float atkRange;
     [SerializeField] private float dps=5f;
     [SerializeField] private float time = 3f;
-
+    [SerializeField] private string targetTag="Player";
+    [SerializeField] private bool CanHurtEverthing=false;
 
     //public void OnDrawGizmos()
     //{
@@ -30,17 +31,31 @@ public class Attack : MonoBehaviour
     //}
     private void OnTriggerEnter2D(Collider2D other)
     {
-
         Health health = other.GetComponent<Health>();
-        if (health != null && other.tag == "Player")
+        if (!CanHurtEverthing)
         {
-            if (knockbackDistance != 0)
+            if (health != null && other.tag == targetTag)
             {
-                //Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
-                Vector2 difference = (other.transform.position - transform.position).normalized * knockbackDistance;
-                health.GetComponent<CharacterMover>().AddExtraVelocity(difference);
+                if (knockbackDistance != 0)
+                {
+                    Vector2 difference = (other.transform.position - transform.position).normalized * knockbackDistance;
+                    health.GetComponent<CharacterMover>().AddExtraVelocity(difference);
+                }
+                health.AddEffect(new HealthEffect(dps, time, type));
             }
-            health.AddEffect(new HealthEffect(dps, time, type));
         }
+        else
+        {
+            if (health != null)
+            {
+                if (knockbackDistance != 0)
+                {
+                    Vector2 difference = (other.transform.position - transform.position).normalized * knockbackDistance;
+                    health.GetComponent<CharacterMover>().AddExtraVelocity(difference);
+                }
+                health.AddEffect(new HealthEffect(dps, time, type));
+            }
+        }
+
     }
 }

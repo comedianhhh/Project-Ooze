@@ -36,9 +36,10 @@ public class Swallower : MonoBehaviour
         if (SwallowedEnemies.Count >= sizeToTransfer) // todo: update conditions
         {
             var abilityType = SwallowedEnemies.GroupBy(x => x) .OrderByDescending(x => x.Count()).First().Key;
+
             if (abilityType.Type == EnemyType.Goblin)
             {
-                GetComponent<Deflector>().enabled = true;
+                GetComponent<Deflector>().CanDeflect = true;
             }
         }
     }

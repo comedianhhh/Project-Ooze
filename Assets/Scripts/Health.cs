@@ -9,6 +9,10 @@ public class Health : MonoBehaviour
     public float MaxHealth = 100;
     public GameObject bloodParticle;
     public GameObject FireDamageParticlePrefab;
+    private float timer;
+    [Header("Heal setting")]
+    [SerializeField] private float HealRate = 1;
+    [SerializeField] private float HealAmount = 1;
 
     [SerializeField] private List<SpriteRenderer> sps;
 
@@ -21,27 +25,41 @@ public class Health : MonoBehaviour
     public UnityEvent OnDie = new UnityEvent();
     public UnityEvent OnDisappear = new UnityEvent();
 
-    Rigidbody2D rigidbody2D;
     Coroutine die;
+    private Ability ability;
 
-    private void Awake()
+    void Update()
     {
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        if (ability!=null)
+        {
+            if(ability.CanHeal)
+            {
+                HealthRegenerate();
+
+            }
+        }
     }
+
     void Start()
     {
         CurrentHealth = MaxHealth;
         StartCoroutine(IApplyEffects());
+        if (GetComponent<Ability>()) ability = GetComponent<Ability>();
     }
 
     public void TakeDamge(float damage)
     {
 
         OnHit.Invoke();
-        if (GetComponent<Invincible>().isInvincible)
+
+        if (ability != null)
         {
-            return;
+            if (ability.isInvincible)
+            {
+                HealthRegenerate();
+            }
         }
+
         CurrentHealth = Mathf.Clamp(CurrentHealth - damage, 0, MaxHealth);
         if(bloodParticle!=null) Instantiate(bloodParticle, transform.position, Quaternion.identity);// ‹…À–ßπ˚
         StartCoroutine(Flash(0.6f, 10));
@@ -49,6 +67,20 @@ public class Health : MonoBehaviour
         if (CurrentHealth <= 0)
         {
             Die();
+        }
+    }
+
+
+    void HealthRegenerate()
+    {
+        if (CurrentHealth < MaxHealth)
+        {
+            timer += Time.deltaTime;
+            if (timer > HealRate)
+            {
+                CurrentHealth += HealAmount;
+                timer = 0;
+            }
         }
     }
 

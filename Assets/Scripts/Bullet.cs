@@ -16,6 +16,7 @@ public class Bullet : MonoBehaviour
 
     [SerializeField] private bool isEnemyBullet=true;
     bool disappearing;
+    public bool canDeflect=false;
     public SpriteRenderer bulletRend;
 
     Transform sender;
@@ -75,8 +76,13 @@ public class Bullet : MonoBehaviour
         {
             if (collision.CompareTag(targetTag))
             {
-                if (collision.GetComponent<Deflector>())
+                if (collision.GetComponent<Ability>())
                 {
+                    canDeflect = collision.GetComponent<Ability>().CanDeflect;
+                }
+                if (canDeflect)
+                {
+                    canDeflect = false;
                     Deflect();
                 }
                 else

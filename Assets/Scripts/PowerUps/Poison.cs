@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Deflector : MonoBehaviour
+public class Poison : MonoBehaviour
 {
-    public bool CanDeflect=false;
+    public bool isPoison=false;
 }

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1218921961}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AttackPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 406210680692104425}
   - component: {fileID: 791442560257821135}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Alive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7320808486956710518}
   - component: {fileID: 7320808486956710513}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 1734583754}
   - component: {fileID: 2875106960688554885}
   - component: {fileID: 714658484}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Goblin_thrower
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -217,6 +217,9 @@ MonoBehaviour:
   CurrentHealth: 100
   MaxHealth: 100
   bloodParticle: {fileID: 5725714777709649331, guid: 81b8e9940e1a7a941bedb51df1f21088, type: 3}
+  FireDamageParticlePrefab: {fileID: 0}
+  HealRate: 1
+  HealAmount: 1
   sps:
   - {fileID: 7320808486956710513}
   effectApplyInterval: 0.25
@@ -263,6 +266,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnDisappear:
+    m_PersistentCalls:
+      m_Calls: []
+  Canheal: 0
+  Canhurt: 0
 --- !u!58 &140307452
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -276,9 +284,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.3920321}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.25183898
 --- !u!50 &1734583758
 Rigidbody2D:
   serializedVersion: 4
