@@ -94,7 +94,7 @@ public class RollingTrap : MonoBehaviour
     void DetectTargetinRange()
     {
         var tarColliders = Physics2D.OverlapCircleAll(detect.position, detectRange, layerMask).ToList().Find(e => e.CompareTag("Player"));
-        Debug.Log(tarColliders);
+
         if (tarColliders != null)
         {
             isPlayerInRange = true;

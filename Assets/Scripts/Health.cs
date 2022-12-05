@@ -36,9 +36,13 @@ public class Health : MonoBehaviour
 
     public void TakeDamge(float damage)
     {
-        OnHit.Invoke();
-        CurrentHealth = Mathf.Clamp(CurrentHealth - damage, 0, MaxHealth);
 
+        OnHit.Invoke();
+        if (GetComponent<Invincible>().isInvincible)
+        {
+            return;
+        }
+        CurrentHealth = Mathf.Clamp(CurrentHealth - damage, 0, MaxHealth);
         if(bloodParticle!=null) Instantiate(bloodParticle, transform.position, Quaternion.identity);// ‹…À–ßπ˚
         StartCoroutine(Flash(0.6f, 10));
 

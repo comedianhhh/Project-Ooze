@@ -7,6 +7,8 @@ public class CharacterMover : MonoBehaviour
     [SerializeField] Vector2 extraVelocity = Vector2.zero;
     [SerializeField] float extraVelocityDecay = 1;
     bool canMove=true;
+    private bool isStill = true;
+
 
     Rigidbody2D rigidbody2D;
 
@@ -28,10 +30,13 @@ public class CharacterMover : MonoBehaviour
             extraVelocity.x = Mathf.Clamp(extraVelocity.x - Time.deltaTime * extraVelocityDecay, 0, 999);
             extraVelocity.y = Mathf.Clamp(extraVelocity.y - Time.deltaTime * extraVelocityDecay, 0, 999);
         }
+
     }
 
     public void Move(Vector2 velocity)
     {
+
+
         if (extraVelocity.sqrMagnitude > 0)
             velocity = Vector2.zero;
 
@@ -40,11 +45,14 @@ public class CharacterMover : MonoBehaviour
         {
             rigidbody2D.velocity = velocity + extraVelocity;
 
+            isStill = velocity == Vector2.zero;
         }
         else
         {
             rigidbody2D.velocity=Vector2.zero;
         }
+
+
     }
 
     public void AddExtraVelocity(Vector2 velocity)
@@ -61,4 +69,11 @@ public class CharacterMover : MonoBehaviour
     {
         canMove = true;
     }
+
+    public bool GetStillState()
+    {
+        return isStill;
+    }
+
+
 }

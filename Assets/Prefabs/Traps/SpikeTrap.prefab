@@ -581,7 +581,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   atkRange: 0.9
   atkAmount: 5
-  knockbackDistance: 1
+  knockbackDistance: 5
   layerMask:
     serializedVersion: 2
     m_Bits: 128

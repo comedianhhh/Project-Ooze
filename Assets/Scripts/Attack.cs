@@ -36,7 +36,7 @@ public class Attack : MonoBehaviour
         {
             if (knockbackDistance != 0)
             {
-                Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
+                //Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
                 Vector2 difference = (other.transform.position - transform.position).normalized * knockbackDistance;
                 health.GetComponent<CharacterMover>().AddExtraVelocity(difference);
             }
