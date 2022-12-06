@@ -14,7 +14,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] bool isDeflected = false;
     [SerializeField] string targetTag = "Player";
 
-    [SerializeField] private bool isEnemyBullet=true;
+    [SerializeField] private float isEnemyBullet=1;
     bool disappearing;
     public bool canDeflect=false;
     public SpriteRenderer bulletRend;
@@ -72,7 +72,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (isEnemyBullet)
+        if (isEnemyBullet==1)
         {
             if (collision.CompareTag(targetTag))
             {
@@ -89,7 +89,25 @@ public class Bullet : MonoBehaviour
                     DestroyProjectile();
             }
         }
-        else
+        //else if(isEnemyBullet==-1)
+        //{
+        //    if (collision.CompareTag(targetTag))
+        //    {
+        //        Health health = collision.GetComponent<Health>();
+        //        if (health != null)
+        //        {
+        //            health.TakeDamge(damage);
+
+        //            //knock back
+        //            Vector2 difference = (collision.transform.position - transform.position).normalized * knockbackDistance;
+        //            health.GetComponent<CharacterMover>().AddExtraVelocity(difference);
+        //            //health.AddEffect(new HealthEffect(1, 5));
+        //            Destroy(gameObject);
+        //        }
+        //    }
+
+        //}
+        if (collision.CompareTag(targetTag))
         {
             Health health = collision.GetComponent<Health>();
             if (health != null)
@@ -122,6 +140,7 @@ public class Bullet : MonoBehaviour
         isDeflected = true;
         direction = -direction;
         targetTag = "Enemy";
+        isEnemyBullet *=-1;
     }
     void CheckDisappear()
     {

@@ -832,7 +832,7 @@ GameObject:
   - component: {fileID: 1286013053}
   m_Layer: 8
   m_Name: RollingTrap
-  m_TagString: Enemy
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -926,12 +926,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockbackDistance: 2
-  targetLayerMask:
-    serializedVersion: 2
-    m_Bits: 128
   type: 0
   dps: 5
   time: 1
+  targetTag: 
+  CanHurtEverthing: 0
 --- !u!114 &1286013046
 MonoBehaviour:
   m_ObjectHideFlags: 0

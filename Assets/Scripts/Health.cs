@@ -54,9 +54,9 @@ public class Health : MonoBehaviour
 
         if (ability != null)
         {
-            if (ability.isInvincible)
+            if (ability.isInvincible||ability.isMagic)
             {
-                HealthRegenerate();
+                return;
             }
         }
 

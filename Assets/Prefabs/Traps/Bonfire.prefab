@@ -342,7 +342,7 @@ GameObject:
   - component: {fileID: 98740566}
   m_Layer: 10
   m_Name: Sprites
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -429,7 +429,7 @@ GameObject:
   - component: {fileID: 4183466038530157969}
   m_Layer: 10
   m_Name: Bonfire
-  m_TagString: Enemy
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

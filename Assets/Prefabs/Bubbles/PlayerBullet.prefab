@@ -14777,7 +14777,7 @@ SpriteRenderer:
   m_SortingOrder: 10
   m_Sprite: {fileID: -8262534425414574923, guid: 04718cf2136c9b54985ebd8df07284be, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 0.56078434}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.36, y: 0.36}
@@ -14843,5 +14843,6 @@ MonoBehaviour:
   knockbackDistance: 1
   isDeflected: 0
   targetTag: Enemy
-  isEnemyBullet: 0
+  isEnemyBullet: -1
+  canDeflect: 0
   bulletRend: {fileID: 4675658125555283899}

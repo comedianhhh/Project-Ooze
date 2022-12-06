@@ -269,8 +269,6 @@ MonoBehaviour:
   OnDisappear:
     m_PersistentCalls:
       m_Calls: []
-  Canheal: 0
-  Canhurt: 0
 --- !u!58 &140307452
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -284,9 +282,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.3920321}
+  m_Offset: {x: 0, y: 0.45}
   serializedVersion: 2
-  m_Radius: 0.25183898
+  m_Radius: 0.49
 --- !u!50 &1734583758
 Rigidbody2D:
   serializedVersion: 4

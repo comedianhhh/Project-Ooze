@@ -10,6 +10,7 @@ public class Swallower : MonoBehaviour
     [SerializeField] float sizeToTransfer = 1;
     public List<EnemyData> SwallowedEnemies = new List<EnemyData>();
     [SerializeField] Animator anim;
+    [SerializeField] private Ability ab;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -22,6 +23,7 @@ public class Swallower : MonoBehaviour
             SwallowedEnemies.Add(enemy.EnemyData);
             Enlarge();
             GainAbility();
+
         }
     }
 
@@ -39,7 +41,7 @@ public class Swallower : MonoBehaviour
 
             if (abilityType.Type == EnemyType.Goblin)
             {
-                GetComponent<Deflector>().CanDeflect = true;
+                ab.CanDeflect = true;
             }
         }
     }
