@@ -353,6 +353,7 @@ MonoBehaviour:
     Type: 3
     Good: 0
     Variant: 1
+    Bulk: 2
 --- !u!114 &714658484
 MonoBehaviour:
   m_ObjectHideFlags: 0

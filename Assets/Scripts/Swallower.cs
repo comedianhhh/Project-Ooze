@@ -6,12 +6,27 @@ using System.Linq;
 
 public class Swallower : MonoBehaviour
 {
-    [SerializeField] float sizeModifer = 0.2f;
-    [SerializeField] float sizeToTransfer = 1;
+    [SerializeField] float sizeModifer = 0.1f;
+    [SerializeField] float sizeToTransfer = 5;
     public List<EnemyData> SwallowedEnemies = new List<EnemyData>();
     [SerializeField] Animator anim;
-    [SerializeField] private Ability ab;
+    private Ability ab;
 
+    [SerializeField] private int currentVolume=0;
+    [SerializeField] private int maxVolume = 10;
+    [SerializeField] private EnemyData MagicData;
+    [SerializeField] private EnemyData PoisonData;
+    [SerializeField] private int MaxEnlargeTimes=5;
+    [SerializeField] private int currentEnlargeTimes;
+
+
+    private SpriteRenderer sprite;
+
+    void Awake()
+    {
+        ab = GetComponent<Ability>();
+        sprite = GetComponentInChildren<SpriteRenderer>();
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         var enemy = other.GetComponent<Enemy>();
@@ -23,26 +38,55 @@ public class Swallower : MonoBehaviour
             SwallowedEnemies.Add(enemy.EnemyData);
             Enlarge();
             GainAbility();
-
+            currentVolume += enemy.EnemyData.Bulk;
         }
     }
 
     public void Enlarge()
     {
-        transform.DOKill();
-        transform.DOScale(Vector3.one + Vector3.one * sizeModifer * SwallowedEnemies.Count, 0.5f);
+        if (currentEnlargeTimes <= MaxEnlargeTimes)
+        {
+            currentEnlargeTimes++;
+            transform.DOKill();
+            transform.DOScale(Vector3.one + Vector3.one * sizeModifer * SwallowedEnemies.Count, 0.5f).SetEase(Ease.InBounce);
+        }
+
     }
 
     public void GainAbility()
     {
-        if (SwallowedEnemies.Count >= sizeToTransfer) // todo: update conditions
+        if (SwallowedEnemies.Count >= sizeToTransfer||currentVolume>=maxVolume) // todo: update conditions
         {
             var abilityType = SwallowedEnemies.GroupBy(x => x) .OrderByDescending(x => x.Count()).First().Key;
+
+            anim.SetTrigger("change");
 
             if (abilityType.Type == EnemyType.Goblin)
             {
                 ab.CanDeflect = true;
+                SwallowedEnemies.Clear();
             }
+            else if (abilityType.Type == EnemyType.Mushroom&&SwallowedEnemies.Exists(t=> t.Type==EnemyType.MrPosion))//ate poison mushroom
+            {
+                ab.CanPoison = true;
+                SwallowedEnemies.Clear();
+            }
+            else if (abilityType.Type == EnemyType.Mushroom && SwallowedEnemies.Exists(t => t.Type == EnemyType.MrMagic))//ate magic mushroom
+            {
+                ab.isMagic = true;
+                SwallowedEnemies.Clear();
+            }
+            else if (abilityType.Type == EnemyType.Mushroom&&!SwallowedEnemies.Exists(t => t.Type == EnemyType.MrPosion)&& SwallowedEnemies.Exists(t => t.Type == EnemyType.MrMagic))//only ate mushroom
+            {
+                ab.CanHeal = true;
+                SwallowedEnemies.Clear();
+            }
+            else if (abilityType.Type == EnemyType.Cyclops)
+            {
+                //TO DO:cyclops ability
+            }
+
+
         }
     }
 }

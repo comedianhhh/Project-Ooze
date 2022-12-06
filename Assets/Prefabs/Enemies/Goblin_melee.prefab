@@ -136,6 +136,9 @@ MonoBehaviour:
   CurrentHealth: 100
   MaxHealth: 100
   bloodParticle: {fileID: 5725714777709649331, guid: 81b8e9940e1a7a941bedb51df1f21088, type: 3}
+  FireDamageParticlePrefab: {fileID: 0}
+  HealRate: 1
+  HealAmount: 1
   sps:
   - {fileID: 459332080205090043}
   effectApplyInterval: 0.25
@@ -182,6 +185,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  OnDisappear:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!58 &2106642985
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -272,7 +278,8 @@ MonoBehaviour:
   EnemyData:
     Type: 3
     Good: 0
-    Variant: 0
+    Variant: 1
+    Bulk: 2
 --- !u!114 &436201265
 MonoBehaviour:
   m_ObjectHideFlags: 0
