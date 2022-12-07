@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Pathfinding;
 using TMPro;
 using UnityEngine;
 
@@ -42,23 +43,28 @@ public class Goblin : MonoBehaviour
     Animator anim;
     CharacterMover enemyMover;
     public Transform atk;
+    private AIPath AI;
+    private AIDestinationSetter destinationSetter;
 
     private void Awake()
     {
         aliveGo = transform.Find("Alive").gameObject;
-        //rigidbody2D = GetComponent<Rigidbody2D>();
         anim = aliveGo.GetComponent<Animator>();
         enemyMover = GetComponent<CharacterMover>();
+        AI = GetComponent<AIPath>();
+        destinationSetter = GetComponent<AIDestinationSetter>();
     }
 
     void FixedUpdate()
     {
         target = GetComponent<TargetReceiver>().Target;
+
         switch (currentState)
         {
             //IDLE
             case State.Idle:
-                setVelocity(0f);
+                //setVelocity(0f);
+                AI.canMove = false;
                 anim.SetBool("idle", true);
                 stateTimer += Time.deltaTime;
                 //exit
@@ -71,7 +77,8 @@ public class Goblin : MonoBehaviour
             //DETECTED
             case State.PlayerDetected:
                 Lookat();
-                setVelocity(0f);
+                //setVelocity(0f);
+                AI.canMove = false;
                 stateTimer += Time.deltaTime;
                 anim.SetBool("detect", true);
 
@@ -114,7 +121,9 @@ public class Goblin : MonoBehaviour
                 break;
             //Die
             case State.Die:
-                setVelocity(0f);
+                //setVelocity(0f);
+                AI.canMove = false;
+
                 break;
         }
         
@@ -138,15 +147,20 @@ public class Goblin : MonoBehaviour
     {
         if (target != null)
         {
-            Vector2 dir = (target.transform.position - transform.position).normalized;
-            enemyMover.Move(veclocity* dir);
+
+            //Vector2 dir = (target.transform.position - transform.position).normalized;
+            //enemyMover.Move(veclocity* dir);
+            AI.maxSpeed = veclocity;
+
         }
-        else enemyMover.Move(Vector2.zero);
+        else AI.maxSpeed=0; //enemyMover.Move(Vector2.zero);
     }
 
     void ToIdle()
     {
-        setVelocity(0f);
+        //setVelocity(0f);
+        AI.canMove = false;
+
         currentState = State.Idle;
     }
 
@@ -154,6 +168,7 @@ public class Goblin : MonoBehaviour
     {
         anim.SetBool("attack", false);
         //Debug.Log("ToMove");
+        AI.canMove = true;
         currentState = State.Move;
         stateTimer = 0f;
     }
