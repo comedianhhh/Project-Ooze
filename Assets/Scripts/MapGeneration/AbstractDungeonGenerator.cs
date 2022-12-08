@@ -1,13 +1,14 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class AbstractDungeonGenerator : MonoBehaviour
 {
-    [SerializeField] protected TilemapVisualizer tilemapVisualizer;
-
-    [SerializeField] protected Vector2Int startPosition = Vector2Int.zero;
+    [SerializeField]
+    protected TilemapVisualizer tilemapVisualizer = null;
+    [SerializeField]
+    protected Vector2Int startPosition = Vector2Int.zero;
 
     public void GenerateDungeon()
     {
@@ -16,5 +17,4 @@ public abstract class AbstractDungeonGenerator : MonoBehaviour
     }
 
     protected abstract void RunProceduralGeneration();
-
 }
