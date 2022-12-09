@@ -8,7 +8,7 @@ using Cinemachine;
 public class AgentPlacer : MonoBehaviour
 {
     [SerializeField]
-    private GameObject enemyPrefab, playerPrefab;
+    private GameObject enemyPrefab, playerPrefab;//add more enenm variants
 
     [SerializeField]
     private int playerRoomIndex;
