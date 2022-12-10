@@ -11,6 +11,7 @@ public static class WallTypesHelper
         0b0111,
         0b0010,
         0b1010,
+        0b1111,
     };
 
     public static HashSet<int> wallSideLeft = new HashSet<int>
