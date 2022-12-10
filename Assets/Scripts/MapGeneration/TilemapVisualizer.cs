@@ -10,7 +10,7 @@ public class TilemapVisualizer : MonoBehaviour
     private Tilemap floorTilemap, wallTilemap;
     [SerializeField]
     private TileBase floorTile, wallTop, wallSideRight, wallSiderLeft, wallBottom, wallFull, 
-        wallInnerCornerDownLeft, wallInnerCornerDownRight, 
+        wallInnerCornerDownLeft, wallInnerCornerDownRight,wallInnerCornerUpLeft, wallInnerCornerUpRight,
         wallDiagonalCornerDownRight, wallDiagonalCornerDownLeft, wallDiagonalCornerUpRight, wallDiagonalCornerUpLeft;
 
     public void PaintFloorTiles(IEnumerable<Vector2Int> floorPositions)
@@ -78,6 +78,14 @@ public class TilemapVisualizer : MonoBehaviour
         else if (WallTypesHelper.wallInnerCornerDownRight.Contains(typeASInt))
         {
             tile = wallInnerCornerDownRight;
+        }
+        else if (WallTypesHelper.wallInnerCornerUpLeft.Contains(typeASInt))
+        {
+            tile = wallInnerCornerUpLeft;
+        }
+        else if (WallTypesHelper.wallInnerCornerUpRight.Contains(typeASInt))
+        {
+            tile = wallInnerCornerUpRight;
         }
         else if (WallTypesHelper.wallDiagonalCornerDownLeft.Contains(typeASInt))
         {
