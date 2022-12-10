@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     [Header("Settings")]
@@ -9,14 +9,13 @@ public class Player : MonoBehaviour
     [Header("Data")] 
     [SerializeField] float speed;
 
-
-
-
-    Vector2 input;
-
     Animator animator;
     Shooter shooter;
     CharacterMover characterMover;
+
+
+    private PlayerInputActions controls;
+    private Vector2 move;
 
 
     void Start()
@@ -24,50 +23,63 @@ public class Player : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         shooter = GetComponent<Shooter>();
         characterMover = GetComponent<CharacterMover>();
+    }
+
+    void Awake()
+    {
+        controls = new PlayerInputActions();
+
+        controls.GamePlay.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
+        controls.GamePlay.Move.canceled += ctx => move = Vector2.zero;
+
+        controls.GamePlay.Shoot.started += ctx => Aim();
 
     }
 
+    void OnEnable()
+    {
+        controls.GamePlay.Enable();
+    }
+
+    void Ondisable()
+    {
+        controls.GamePlay.Disable();
+    }
 
     void Update()
     {
         Move();
-        Aim();
-
-
+        
     }
 
     void Move()
     {
-        // movement
-        input.x = Input.GetAxis("Horizontal");
-        input.y = Input.GetAxis("Vertical");
-        //rig.velocity = input.normalized * speed;
-        characterMover.Move(input.normalized * speed);
-
 
         // face towards
-        if (input.x > 0)
+        if (move.x > 0)
         {
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
         }
-        else if (input.x < 0)
+        else if (move.x < 0)
         {
             transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
         }
 
+
+        characterMover.Move(move.normalized * speed);
+
         // animate
-        animator.SetBool("isMoving", input != Vector2.zero);
+        animator.SetBool("isMoving", move != Vector2.zero);
     }
 
     void Aim()
     {
-        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         mouseWorldPos.z = 0;
         Vector3 direction = mouseWorldPos - transform.position;
-        if (Input.GetMouseButtonDown(0))
-        {
-            shooter.Shoot(direction);
-        }
+
+        shooter.Shoot(direction);
+
     }
 
 

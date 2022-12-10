@@ -15,7 +15,7 @@ public class EyeStatement : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(health.CurrentHealth / health.MaxHealth);
+        //Debug.Log(health.CurrentHealth / health.MaxHealth);
         if (health.CurrentHealth / health.MaxHealth >= 0.7)
         {
             anim.SetBool("eye1",true);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CamController : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class CamController : MonoBehaviour
     }
     Vector3 CaptureMousePos()
     {
-        Vector2 ret = Camera.main.ScreenToViewportPoint(Input.mousePosition); //raw mouse pos
+        Vector2 ret = Camera.main.ScreenToViewportPoint(Mouse.current.position.ReadValue()); //raw mouse pos
         ret *= 2;
         ret -= Vector2.one; //set (0,0) of mouse to middle of screen
         float max = 0.9f;
