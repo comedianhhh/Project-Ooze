@@ -27,8 +27,13 @@ public class PropPlacementManager : MonoBehaviour
 
     public void ProcessRooms()
     {
+
         if (dungeonData == null)
+        {
+            Debug.Log("PlaceGroupObject");
             return;
+
+        }
         foreach (Room room in dungeonData.Rooms)
         {
             //Place props place props in the corners
@@ -83,6 +88,7 @@ public class PropPlacementManager : MonoBehaviour
     public void RunEvent()
     {
         OnFinished?.Invoke();
+
     }
 
     private IEnumerator TutorialCoroutine(Action code)
@@ -137,6 +143,7 @@ public class PropPlacementManager : MonoBehaviour
     private bool TryPlacingPropBruteForce(
         Room room, Prop propToPlace, List<Vector2Int> availablePositions, PlacementOriginCorner placement)
     {
+
         //try placing the objects starting from the corner specified by the placement parameter
         for (int i = 0; i < availablePositions.Count; i++)
         {
@@ -282,7 +289,6 @@ public class PropPlacementManager : MonoBehaviour
         Room room, Vector2Int groupOriginPosition, Prop propToPlace, int searchOffset)
     {
         //*Can work poorely when placing bigger props as groups
-
         //calculate how many elements are in the group -1 that we have placed in the center
         int count = UnityEngine.Random.Range(propToPlace.GroupMinCount, propToPlace.GroupMaxCount) - 1;
         count = Mathf.Clamp(count, 0, 8);
