@@ -39,6 +39,7 @@ public class DungeonData : MonoBehaviour
 }
 
 
+[System.Serializable]
 /// <summary>
 /// Holds all the data about the room
 /// </summary>

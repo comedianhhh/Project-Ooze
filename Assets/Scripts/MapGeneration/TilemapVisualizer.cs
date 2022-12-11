@@ -13,16 +13,18 @@ public class TilemapVisualizer : MonoBehaviour
         wallInnerCornerDownLeft, wallInnerCornerDownRight,wallInnerCornerUpLeft, wallInnerCornerUpRight,
         wallDiagonalCornerDownRight, wallDiagonalCornerDownLeft, wallDiagonalCornerUpRight, wallDiagonalCornerUpLeft;
 
+    public Tilemap FloorTilemap => floorTilemap;
+
     public void PaintFloorTiles(IEnumerable<Vector2Int> floorPositions)
     {
-        PaintTiles(floorPositions, floorTilemap, floorTile);
+        PaintTiles(floorPositions, floorTilemap, floorTile, true);
     }
 
-    private void PaintTiles(IEnumerable<Vector2Int> positions, Tilemap tilemap, TileBase tile)
+    private void PaintTiles(IEnumerable<Vector2Int> positions, Tilemap tilemap, TileBase tile, bool stroke = false)
     {
         foreach (var position in positions)
         {
-            PaintSingleTile(tilemap, tile, position);
+            PaintSingleTile(tilemap, tile, position, stroke);
         }
     }
 
@@ -54,10 +56,22 @@ public class TilemapVisualizer : MonoBehaviour
             PaintSingleTile(wallTilemap, tile, position);
     }
 
-    private void PaintSingleTile(Tilemap tilemap, TileBase tile, Vector2Int position)
+    private void PaintSingleTile(Tilemap tilemap, TileBase tile, Vector2Int position, bool stroke = false)
     {
         var tilePosition = tilemap.WorldToCell((Vector3Int)position);
+
         tilemap.SetTile(tilePosition, tile);
+        if (stroke)
+        {
+            tilemap.SetTile(tilePosition + Vector3Int.right, tile);
+            tilemap.SetTile(tilePosition + Vector3Int.left, tile);
+            tilemap.SetTile(tilePosition + Vector3Int.up, tile);
+            tilemap.SetTile(tilePosition + Vector3Int.down, tile);
+            tilemap.SetTile(tilePosition + Vector3Int.up + Vector3Int.left, tile);
+            tilemap.SetTile(tilePosition + Vector3Int.up + Vector3Int.right, tile);
+            tilemap.SetTile(tilePosition + Vector3Int.down + Vector3Int.left, tile);
+            tilemap.SetTile(tilePosition + Vector3Int.down + Vector3Int.right, tile);
+        }
     }
 
     public void Clear()

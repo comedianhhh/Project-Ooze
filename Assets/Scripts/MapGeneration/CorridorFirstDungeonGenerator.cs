@@ -11,6 +11,8 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     [SerializeField]
     [Range(0.1f,1)]
     private float roomPercent = 0.8f;
+    [Header("Debug")]
+    [SerializeField] List<Vector2Int> m_RoomPositions;
 
     protected override void RunProceduralGeneration()
     {
@@ -33,8 +35,23 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         floorPositions.UnionWith(roomPositions);
 
         tilemapVisualizer.PaintFloorTiles(floorPositions);
-        WallGenerator.CreateWalls(floorPositions, tilemapVisualizer);
+        var wallPositions = WallGenerator.CreateWalls(floorPositions, tilemapVisualizer);
 
+        m_RoomPositions = potentialRoomPositions.ToList();
+
+        var roomPositionArray = potentialRoomPositions.ToArray().ToWorldArray(tilemapVisualizer.FloorTilemap);
+        var floorPositionArray = floorPositions.ToArray().ToWorldArray(tilemapVisualizer.FloorTilemap);
+        GetComponent<CharacterPlacer>().PlaceEveryRoom(roomPositionArray, floorPositionArray);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        for (int i = 0; i < m_RoomPositions.Count; i++)
+        {
+            Gizmos.color = Color.Lerp(Color.black, Color.red, (float)i / m_RoomPositions.Count);
+            Gizmos.DrawSphere(tilemapVisualizer.FloorTilemap.CellToWorld((Vector3Int)m_RoomPositions[i]), 1);
+        }
+                
     }
 
     private void CreateRoomsAtDeadEnd(List<Vector2Int> deadEnds, HashSet<Vector2Int> roomFloors)
