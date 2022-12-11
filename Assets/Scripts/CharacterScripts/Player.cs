@@ -49,7 +49,6 @@ public class Player : MonoBehaviour
     void Update()
     {
         Move();
-        
     }
 
     void Move()

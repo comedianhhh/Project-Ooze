@@ -14836,7 +14836,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  damage: 30
+  damage: 1
   speedDecay: 1
   minSpeed: 0.1
   startSpeed: 4

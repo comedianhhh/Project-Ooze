@@ -19,11 +19,11 @@ public class CharacterMover : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(IMove());
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if (extraVelocity.sqrMagnitude > 0)
         {
@@ -31,15 +31,24 @@ public class CharacterMover : MonoBehaviour
             extraVelocity.y = Mathf.Clamp(extraVelocity.y - Time.deltaTime * extraVelocityDecay, 0, 999);
         }
 
-        if (isControllerNavigation && extraVelocity.magnitude > 0)
-        {
-            rigidbody2D.MovePosition(rigidbody2D.position + extraVelocity);
-        }
+    }
 
+    IEnumerator IMove()
+    {
+        while (true)
+        {
+            yield return new WaitForEndOfFrame();
+            if (isControllerNavigation && extraVelocity.magnitude > 0)
+            {
+                transform.position += (Vector3)extraVelocity * Time.deltaTime;
+            }
+        }
     }
 
     public void Move(Vector2 velocity)
     {
+        if (isControllerNavigation) return;
+
         if (extraVelocity.sqrMagnitude > 0)
             velocity = Vector2.zero;
 
