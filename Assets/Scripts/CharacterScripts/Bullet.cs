@@ -114,7 +114,7 @@ public class Bullet : MonoBehaviour
             {
                 health.TakeDamge(damage);
                 //knock back
-                Vector2 difference = ((Vector2 )collision.transform.position - (Vector2)transform.position).normalized * knockbackDistance;
+                Vector2 difference = ((Vector2)collision.transform.position - (Vector2)transform.position).normalized * knockbackDistance;
                 health.GetComponent<CharacterMover>().AddExtraVelocity(difference);
                 //health.AddEffect(new HealthEffect(1, 5));
                 Destroy(gameObject);

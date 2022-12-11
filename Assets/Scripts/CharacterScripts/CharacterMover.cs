@@ -19,36 +19,45 @@ public class CharacterMover : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(IMove());
+
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        if (extraVelocity.sqrMagnitude > 0)
-        {
-            extraVelocity.x = Mathf.Clamp(extraVelocity.x - Time.deltaTime * extraVelocityDecay, 0, 999);
-            extraVelocity.y = Mathf.Clamp(extraVelocity.y - Time.deltaTime * extraVelocityDecay, 0, 999);
-        }
-
+        Decay();
+        HandleExtraForceForNavigation();
     }
 
-    IEnumerator IMove()
+    void Decay()
     {
-        while (true)
+        if (extraVelocity.sqrMagnitude > 0)
         {
-            yield return new WaitForEndOfFrame();
-            if (isControllerNavigation && extraVelocity.magnitude > 0)
-            {
-                transform.position += (Vector3)extraVelocity * Time.deltaTime;
-            }
+            if (extraVelocity.x > 0)
+                extraVelocity.x = Mathf.Clamp(extraVelocity.x - Time.deltaTime * extraVelocityDecay, 0, 999);
+            else
+                extraVelocity.x = Mathf.Clamp(extraVelocity.x + Time.deltaTime * extraVelocityDecay, -999, 0);
+
+            if (extraVelocity.y > 0)
+                extraVelocity.y = Mathf.Clamp(extraVelocity.y - Time.deltaTime * extraVelocityDecay, 0, 999);
+            else
+                extraVelocity.y = Mathf.Clamp(extraVelocity.y + Time.deltaTime * extraVelocityDecay, -999, 0);
         }
+    }
+
+    void HandleExtraForceForNavigation()
+    {
+        if (isControllerNavigation && extraVelocity.magnitude > 0)
+        {
+            transform.position += (Vector3)extraVelocity * Time.deltaTime;
+        }
+
     }
 
     public void Move(Vector2 velocity)
     {
         if (isControllerNavigation) return;
-
+        
         if (extraVelocity.sqrMagnitude > 0)
             velocity = Vector2.zero;
 
@@ -63,6 +72,7 @@ public class CharacterMover : MonoBehaviour
         {
             rigidbody2D.velocity=Vector2.zero;
         }
+        
     }
 
     public void AddExtraVelocity(Vector2 velocity)

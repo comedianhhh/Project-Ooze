@@ -49,6 +49,9 @@ public class Player : MonoBehaviour
     void Update()
     {
         Move();
+
+        if (Input.GetMouseButtonDown(0))
+            AimByOldInput();
     }
 
     void Move()
@@ -74,6 +77,16 @@ public class Player : MonoBehaviour
     void Aim()
     {
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        mouseWorldPos.z = 0;
+        Vector3 direction = mouseWorldPos - transform.position;
+
+        shooter.Shoot(direction);
+
+    }
+
+    void AimByOldInput()
+    {
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouseWorldPos.z = 0;
         Vector3 direction = mouseWorldPos - transform.position;
 
