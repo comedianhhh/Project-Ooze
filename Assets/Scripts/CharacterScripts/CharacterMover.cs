@@ -8,7 +8,7 @@ public class CharacterMover : MonoBehaviour
     [SerializeField] float extraVelocityDecay = 1;
     bool canMove=true;
     private bool isStill = true;
-
+    [SerializeField] bool isControllerNavigation = true;
 
     Rigidbody2D rigidbody2D;
 
@@ -29,6 +29,11 @@ public class CharacterMover : MonoBehaviour
         {
             extraVelocity.x = Mathf.Clamp(extraVelocity.x - Time.deltaTime * extraVelocityDecay, 0, 999);
             extraVelocity.y = Mathf.Clamp(extraVelocity.y - Time.deltaTime * extraVelocityDecay, 0, 999);
+        }
+
+        if (isControllerNavigation && extraVelocity.magnitude > 0)
+        {
+            rigidbody2D.MovePosition(rigidbody2D.position + extraVelocity);
         }
 
     }
