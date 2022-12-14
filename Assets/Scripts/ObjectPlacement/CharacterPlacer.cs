@@ -10,32 +10,22 @@ public class CharacterPlacer : MonoBehaviour
     [SerializeField] Transform player;
     [SerializeField] List<CharacterPlacerPattern> enemyPlacerPatterns = new List<CharacterPlacerPattern>();
     [SerializeField] CharacterPlacerPattern bossPattern = new CharacterPlacerPattern();
-
+    [SerializeField] public List<Vector3> placedPositions = new List<Vector3>();
     [Header("Settings")]
     [SerializeField] float detectionRadius = 5;
 
     [Header("Data")]
     [SerializeField] List<Enemy> placedEnemies = new List<Enemy>();
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
 
     public void PlaceEveryRoom(Vector3[] roomPositions, Vector3[] floorWorldPositions)
     {
+        placedPositions.Clear();
         if (roomPositions.Length == 0 || floorWorldPositions.Length == 0) return;
 
-        player.transform.position = roomPositions[0];
-
+        player.transform.position = roomPositions[0]+new Vector3(0.5f,0.5f,0);
+        placedPositions.Add(roomPositions[0]);
         for (int i = 0; i < placedEnemies.Count; i++)
             DestroyImmediate(placedEnemies[i].gameObject);
         placedEnemies.Clear();
@@ -44,7 +34,7 @@ public class CharacterPlacer : MonoBehaviour
         {
             if (i == roomPositions.Length - 1 && bossPattern.Enemies.Count > 0)
                 Place(roomPositions[i], floorWorldPositions, bossPattern);
-            else
+            else if(i>=1)
                 Place(roomPositions[i], floorWorldPositions);
         }
     }
@@ -65,7 +55,14 @@ public class CharacterPlacer : MonoBehaviour
     {
         foreach (var enemy in pattern.Enemies)
         {
-            var placed = Instantiate(enemy, placeablePositions[Random.Range(0, placeablePositions.Count)], Quaternion.identity, transform);
+            var pos = placeablePositions[0];
+            while (placedPositions.Contains(pos))
+            {
+                pos = placeablePositions[Random.Range(0, placeablePositions.Count)];
+            }
+            placedPositions.Add(pos);
+            Vector3 offset = new Vector3(0.5f, 0.5f, 0);
+            var placed = Instantiate(enemy, pos+ offset, Quaternion.identity, transform);
             placedEnemies.Add(placed);
         }
     }
@@ -80,7 +77,7 @@ public class CharacterPlacerPattern
 
 public static class EnemyPlaceExtension
 {
-    public static Vector3[] ToWorldArray(this Vector2Int[] original, Tilemap tilemap)
+    public static Vector3[] ToWorldArray(this Vector2Int[] original, Tilemap tilemap=null)
     {
         Vector3[] output = new Vector3[original.Length];
         for (int i = 0; i < output.Length; i++)

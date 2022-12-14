@@ -228,83 +228,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8592b1a0e2cdc94eb2ffc6fd5b3fc99, type: 3}
---- !u!1 &859294756 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 459332080647918972, guid: aa99bfd0eeab7d64ca714934d3f9fdbd, type: 3}
-  m_PrefabInstance: {fileID: 112608726210464341}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &859294757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 859294756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9679e68a0f1144e79c664d9a11ca121, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  target: {fileID: 1453975239}
---- !u!114 &859294758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 859294756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 5
-  radius: 0.19
-  height: 2
-  canMove: 0
-  maxSpeed: 1
-  gravity: {x: NaN, y: NaN, z: NaN}
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  centerOffsetCompatibility: NaN
-  repathRateCompatibility: NaN
-  canSearchCompability: 0
-  orientation: 1
-  enableRotation: 0
-  autoRepath:
-    mode: 2
-    interval: 0.5
-    sensitivity: 10
-    maximumInterval: 2
-    visualizeSensitivity: 0
-  targetCompatibility: {fileID: 0}
-  maxAcceleration: 10
-  rotationSpeed: 360
-  slowdownDistance: 0.6
-  pickNextWaypointDist: 2
-  endReachedDistance: 0.2
-  alwaysDrawGizmos: 0
-  slowWhenNotFacingTarget: 1
-  whenCloseToDestination: 0
-  constrainInsideGraph: 0
---- !u!58 &859294768
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 859294756}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.18
 --- !u!1 &912852986
 GameObject:
   m_ObjectHideFlags: 0
@@ -2604,14 +2527,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 436201265, guid: aa99bfd0eeab7d64ca714934d3f9fdbd, type: 3}
-      propertyPath: extraVelocityDecay
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1343596681, guid: aa99bfd0eeab7d64ca714934d3f9fdbd, type: 3}
-      propertyPath: movespeed
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 859294757, guid: aa99bfd0eeab7d64ca714934d3f9fdbd, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1453975239}
     - target: {fileID: 459332080647918972, guid: aa99bfd0eeab7d64ca714934d3f9fdbd, type: 3}
       propertyPath: m_Name
       value: Goblin_melee

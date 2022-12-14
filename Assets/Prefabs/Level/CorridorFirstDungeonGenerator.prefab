@@ -1,0 +1,160 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5514189207172217962
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5514189207172217960}
+  - component: {fileID: 5514189207172217961}
+  - component: {fileID: 5514189207172217959}
+  - component: {fileID: 5514189207172217958}
+  m_Layer: 0
+  m_Name: CorridorFirstDungeonGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5514189207172217960
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5514189207172217962}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5514189207172217961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5514189207172217962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dce5958346abf5448d9764233a31bf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilemapVisualizer: {fileID: 0}
+  startPosition: {x: 0, y: 0}
+  randomWalkParameters: {fileID: 11400000, guid: d19a4dd1c4d2aa649a1882baf1b0deb8, type: 2}
+  corridorLength: 20
+  corridorCount: 10
+  roomPercent: 0.4
+  m_RoomPositions:
+  - {x: 0, y: 0}
+  - {x: 20, y: 0}
+  - {x: 20, y: -20}
+  - {x: 20, y: -40}
+  - {x: 40, y: -40}
+  - {x: 20, y: -60}
+  - {x: 20, y: -80}
+  - {x: 20, y: -100}
+  - {x: 20, y: -120}
+--- !u!114 &5514189207172217959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5514189207172217962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df7aef612d5fe354e8cee8e7fb887039, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  enemyPlacerPatterns:
+  - Name: Pattern 1
+    Enemies:
+    - {fileID: 7139384969184277842, guid: 9a5c648ec34dea54ebee1d1b3c8805ec, type: 3}
+    - {fileID: 7139384969184277842, guid: 9a5c648ec34dea54ebee1d1b3c8805ec, type: 3}
+    - {fileID: 7139384969184277842, guid: 9a5c648ec34dea54ebee1d1b3c8805ec, type: 3}
+    - {fileID: 7139384969184277842, guid: 9a5c648ec34dea54ebee1d1b3c8805ec, type: 3}
+    - {fileID: 7139384969184277842, guid: 9a5c648ec34dea54ebee1d1b3c8805ec, type: 3}
+    - {fileID: 7139384969184277842, guid: 9a5c648ec34dea54ebee1d1b3c8805ec, type: 3}
+    - {fileID: 7139384969184277842, guid: 9a5c648ec34dea54ebee1d1b3c8805ec, type: 3}
+    - {fileID: 7139384969184277842, guid: 9a5c648ec34dea54ebee1d1b3c8805ec, type: 3}
+    - {fileID: 7139384969184277842, guid: 9a5c648ec34dea54ebee1d1b3c8805ec, type: 3}
+    - {fileID: 7139384969184277842, guid: 9a5c648ec34dea54ebee1d1b3c8805ec, type: 3}
+  bossPattern:
+    Name: Boss
+    Enemies:
+    - {fileID: 436201264, guid: aa99bfd0eeab7d64ca714934d3f9fdbd, type: 3}
+  detectionRadius: 5
+  placedEnemies:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &5514189207172217958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5514189207172217962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9775195c902abf9468734c93f7b0b018, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trapPlacerPatterns:
+  - Name: Fire
+    Traps:
+    - {fileID: 4183466038530157968, guid: ed1dfcb232be34f44b0fcae26d86ded8, type: 3}
+    - {fileID: 4183466038530157968, guid: ed1dfcb232be34f44b0fcae26d86ded8, type: 3}
+    - {fileID: 4183466038530157968, guid: ed1dfcb232be34f44b0fcae26d86ded8, type: 3}
+    - {fileID: 4183466038530157968, guid: ed1dfcb232be34f44b0fcae26d86ded8, type: 3}
+    - {fileID: 4183466038530157968, guid: ed1dfcb232be34f44b0fcae26d86ded8, type: 3}
+    - {fileID: 4183466038530157968, guid: ed1dfcb232be34f44b0fcae26d86ded8, type: 3}
+    - {fileID: 4183466038530157968, guid: ed1dfcb232be34f44b0fcae26d86ded8, type: 3}
+    - {fileID: 4183466038530157968, guid: ed1dfcb232be34f44b0fcae26d86ded8, type: 3}
+  bossPattern:
+    Name: Enemy Pattern
+    Traps: []
+  detectionRadius: 5
+  placedTraps:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
