@@ -17,6 +17,15 @@ TextureImporter:
   - first:
       213: 6536629652038809998
     second: sparklingGrass_4
+  - first:
+      213: -7324345286982981674
+    second: sparklingGrass_5
+  - first:
+      213: -6542725886273509610
+    second: sparklingGrass_6
+  - first:
+      213: 6402380423177410266
+    second: sparklingGrass_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -109,12 +118,12 @@ TextureImporter:
       name: sparklingGrass_0
       rect:
         serializedVersion: 2
-        x: 45
-        y: 310
-        width: 154
-        height: 152
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 308
+        y: 433
+        width: 135
+        height: 72
+      alignment: 9
+      pivot: {x: 0.4890754, y: 0.0015678406}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -127,43 +136,85 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sparklingGrass_1
+      name: sparklingGrass_4
       rect:
         serializedVersion: 2
         x: 323
         y: 332
         width: 79
         height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.40665716, y: 0.026831055}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0e894b7884147710800000000000000
-      internalID: 1689998336587304463
+      spriteID: e89fe063906c6ba50800000000000000
+      internalID: 6536629652038809998
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sparklingGrass_2
+      name: sparklingGrass_5
       rect:
         serializedVersion: 2
         x: 106
         y: 119
         width: 84
         height: 54
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5117049, y: 0.06301823}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a80827fad562ffe20800000000000000
-      internalID: 3386467628623233162
+      spriteID: 6d7a21d74c2ba5a90800000000000000
+      internalID: -7324345286982981674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sparklingGrass_6
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 166
+        width: 19
+        height: 124
+      alignment: 9
+      pivot: {x: 0.39650527, y: 0.012360358}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6172ae5a8719335a0800000000000000
+      internalID: -6542725886273509610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sparklingGrass_7
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 128
+        width: 47
+        height: 26
+      alignment: 9
+      pivot: {x: 0.51045907, y: 0.046211243}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad69768d213d9d850800000000000000
+      internalID: 6402380423177410266
       vertices: []
       indices: 
       edges: []
@@ -172,12 +223,12 @@ TextureImporter:
       name: sparklingGrass_3
       rect:
         serializedVersion: 2
-        x: 428
-        y: 166
-        width: 19
-        height: 124
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 45
+        y: 310
+        width: 154
+        height: 139
+      alignment: 9
+      pivot: {x: 0.44573203, y: 0.008395847}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -185,27 +236,6 @@ TextureImporter:
       bones: []
       spriteID: 61a3fb99a1a3cfcd0800000000000000
       internalID: -2523077805311313386
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sparklingGrass_4
-      rect:
-        serializedVersion: 2
-        x: 313
-        y: 128
-        width: 47
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e89fe063906c6ba50800000000000000
-      internalID: 6536629652038809998
       vertices: []
       indices: 
       edges: []
