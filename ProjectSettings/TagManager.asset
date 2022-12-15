@@ -18,7 +18,7 @@ TagManager:
   - Enemy
   - eBullet
   - Trap
-  - 
+  - BackGround
   - 
   - 
   - 
@@ -49,9 +49,12 @@ TagManager:
   - name: Player
     uniqueID: 868247103
     locked: 0
+  - name: Wall
+    uniqueID: 101762513
+    locked: 0
   - name: Effect
     uniqueID: 3635927761
     locked: 0
-  - name: Wall
-    uniqueID: 101762513
+  - name: Land
+    uniqueID: 292778285
     locked: 0
