@@ -23,6 +23,7 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     {
         CharacterPlacer charPlacer = GetComponent<CharacterPlacer>();
         TrapPlacer trapPlacer = GetComponent<TrapPlacer>();
+        EnvironmentPlacer environmentPlacer = GetComponent<EnvironmentPlacer>();
 
         HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
         HashSet<Vector2Int> potentialRoomPositions = new HashSet<Vector2Int>();
@@ -54,6 +55,15 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         //}
         floorPositionArray = floorPositionArray.Except(pos).ToArray();
         trapPlacer.PlaceEveryRoom(roomPositionArray, floorPositionArray);
+        environmentPlacer.Clear();
+        environmentPlacer.Create1x1Props(wallPositions, tilemapVisualizer.WallTilemap);
+
+    }
+
+    public void Create()
+    {
+        tilemapVisualizer.Clear();
+        RunProceduralGeneration();
     }
 
     private void OnDrawGizmosSelected()

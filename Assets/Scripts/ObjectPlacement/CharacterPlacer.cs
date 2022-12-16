@@ -27,7 +27,8 @@ public class CharacterPlacer : MonoBehaviour
         player.transform.position = roomPositions[0]+new Vector3(0.5f,0.5f,0);
         placedPositions.Add(roomPositions[0]);
         for (int i = 0; i < placedEnemies.Count; i++)
-            DestroyImmediate(placedEnemies[i].gameObject);
+            if (placedEnemies[i])
+                DestroyImmediate(placedEnemies[i].gameObject);
         placedEnemies.Clear();
 
         for (int i = 0; i < roomPositions.Length; i++)
@@ -75,9 +76,9 @@ public class CharacterPlacerPattern
     public List<Enemy> Enemies = new List<Enemy>();
 }
 
-public static class EnemyPlaceExtension
+public static class PlacerExtension
 {
-    public static Vector3[] ToWorldArray(this Vector2Int[] original, Tilemap tilemap=null)
+    public static Vector3[] ToWorldArray(this Vector2Int[] original, Tilemap tilemap = null)
     {
         Vector3[] output = new Vector3[original.Length];
         for (int i = 0; i < output.Length; i++)

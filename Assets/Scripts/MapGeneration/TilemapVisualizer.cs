@@ -14,6 +14,7 @@ public class TilemapVisualizer : MonoBehaviour
         wallDiagonalCornerDownRight, wallDiagonalCornerDownLeft, wallDiagonalCornerUpRight, wallDiagonalCornerUpLeft;
 
     public Tilemap FloorTilemap => floorTilemap;
+    public Tilemap WallTilemap => wallTilemap;
 
     public void PaintFloorTiles(IEnumerable<Vector2Int> floorPositions)
     {
