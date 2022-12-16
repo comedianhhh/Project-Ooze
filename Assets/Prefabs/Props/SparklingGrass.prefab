@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 654874653}
   - component: {fileID: 654874652}
   m_Layer: 0
-  m_Name: Point Light 2D
+  m_Name: PointLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 1
   m_FalloffIntensity: 0.5
-  m_Color: {r: 0.7924528, g: 0.7924528, b: 0.25792095, a: 1}
+  m_Color: {r: 0.7924528, g: 0.7924528, b: 0.257921, a: 1}
   m_Intensity: 2
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: b921863b3f66c033d1c51006d1dab7d82d717311
@@ -304,7 +304,7 @@ GameObject:
   - component: {fileID: 5644107677345347932}
   - component: {fileID: 5644107677345347933}
   m_Layer: 0
-  m_Name: Point Light 2D
+  m_Name: BudLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -337,7 +337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_LightType: 2
-  m_BlendStyleIndex: 1
+  m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 0.8867924, g: 0.6434653, b: 0.2216981, a: 1}
   m_Intensity: 4.48

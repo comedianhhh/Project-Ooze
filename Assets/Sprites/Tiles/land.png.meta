@@ -23,6 +23,9 @@ TextureImporter:
   - first:
       213: -29158278245733969
     second: land_6
+  - first:
+      213: 7833319157763913776
+    second: land_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -220,12 +223,12 @@ TextureImporter:
       name: land_5
       rect:
         serializedVersion: 2
-        x: 272
+        x: 271
         y: 146
         width: 162
         height: 145
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5234531, y: 0.06520049}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -245,8 +248,8 @@ TextureImporter:
         y: 162
         width: 162
         height: 114
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.3533668, y: 0.11118209}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -254,6 +257,27 @@ TextureImporter:
       bones: []
       spriteID: fa9a6ee43b8689ff0800000000000000
       internalID: -29158278245733969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: land_7
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 43
+        width: 162
+        height: 97
+      alignment: 9
+      pivot: {x: 0.4648547, y: 0.16199796}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 038b7c2754a85bc60800000000000000
+      internalID: 7833319157763913776
       vertices: []
       indices: 
       edges: []
