@@ -14,10 +14,13 @@ public class TrapPlacer : MonoBehaviour
 
     [Header("Data")]
     [SerializeField] List<GameObject> placedTraps = new List<GameObject>();
+    [SerializeField] public List<Vector3> placedPositions = new List<Vector3>();
 
     public void PlaceEveryRoom(Vector3[] roomPositions, Vector3[] floorWorldPositions)
     {
         if (roomPositions.Length == 0 || floorWorldPositions.Length == 0) return;
+
+        placedPositions.Clear();
 
         for (int i = 0; i < placedTraps.Count; i++)
             DestroyImmediate(placedTraps[i].gameObject);
@@ -41,7 +44,9 @@ public class TrapPlacer : MonoBehaviour
         {
             foreach (var trap in traps)
             {
+
                 var pos = placeablePositions[Random.Range(0, placeablePositions.Count)];
+                placedPositions.Add(pos);
                 var traps = Instantiate(trap, pos+new Vector3(0.5f,0.5f,0), Quaternion.identity, transform);
                 placedTraps.Add(traps);
             }

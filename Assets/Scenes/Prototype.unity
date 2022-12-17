@@ -6526,6 +6526,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree3x1
       objectReference: {fileID: 0}
+    - target: {fileID: 6472614650525346114, guid: bf3cc2beb21cb2f44a9421f07fec1b3b, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6472614650525346114, guid: bf3cc2beb21cb2f44a9421f07fec1b3b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6472614650525346114, guid: bf3cc2beb21cb2f44a9421f07fec1b3b, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf3cc2beb21cb2f44a9421f07fec1b3b, type: 3}
 --- !u!1001 &2902006997780567748

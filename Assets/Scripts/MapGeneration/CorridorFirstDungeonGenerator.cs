@@ -48,15 +48,19 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
 
         charPlacer.PlaceEveryRoom(roomPositionArray, floorPositionArray);
 
-        List<Vector3> pos = charPlacer.placedPositions;
-        //for (int i = 0; i < pos.Count; i++)
-        //{
-        //    floorPositionArray = floorPositionArray.Where(val => val != pos[i]).ToArray();
-        //}
-        floorPositionArray = floorPositionArray.Except(pos).ToArray();
+        List<Vector3> characterPositions = charPlacer.placedPositions;
+        floorPositionArray = floorPositionArray.Except(characterPositions).ToArray();
         trapPlacer.PlaceEveryRoom(roomPositionArray, floorPositionArray);
+
+        List<Vector3> trapPositions = trapPlacer.placedPositions;
         environmentPlacer.Clear();
-        environmentPlacer.Create1x1Props(wallPositions, tilemapVisualizer.WallTilemap);
+        floorPositionArray = floorPositionArray.Except(trapPositions).ToArray();
+
+        var floorPositionList = floorPositionArray.ToCellArray(tilemapVisualizer.FloorTilemap).ToList();
+
+
+        environmentPlacer.CreatProps(floorPositionList, wallPositions, tilemapVisualizer.WallTilemap,tilemapVisualizer.FloorTilemap);
+
 
     }
 

@@ -87,5 +87,17 @@ public static class PlacerExtension
         }
         return output;
     }
+    public static Vector2Int[] ToCellArray(this Vector3[] original, Tilemap tilemap = null)
+    {
+        Vector2Int[] output = new Vector2Int[original.Length];
+        for (int i = 0; i < output.Length; i++)
+        {
+            
+            output[i] =(Vector2Int)tilemap.WorldToCell(original[i]);
+        }
+
+
+        return output;
+    }
 }
 
