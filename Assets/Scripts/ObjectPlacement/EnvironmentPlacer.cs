@@ -14,7 +14,7 @@ public class EnvironmentPlacer : MonoBehaviour
 
 
     [SerializeField] List<GameObject> placedProps = new List<GameObject>();
- 
+    [SerializeField] List<Vector2Int> placedPositions = new List<Vector2Int>();
 
     public void CreatProps(List<Vector2Int> wallPositions, List<Vector2Int> floorPositions, Tilemap walltilemap,Tilemap floortilmemap)
     {
@@ -25,8 +25,7 @@ public class EnvironmentPlacer : MonoBehaviour
 
     void Create1x1Props(List<Vector2Int> wallPositions, Tilemap tilemap)
     {
-        wallPositions = wallPositions.Distinct().ToList();
-
+        wallPositions = wallPositions.Distinct().Except(placedPositions).ToList();
         foreach (var pos in wallPositions)
         {
             var up = pos + Vector2Int.up;
@@ -46,7 +45,6 @@ public class EnvironmentPlacer : MonoBehaviour
                 var worldPos = tilemap.CellToWorld((Vector3Int)pos) + new Vector3(0.5f, 0.5f, 0);
                 var prop = Instantiate(prefab, worldPos, Quaternion.identity, propParent);
                 placedProps.Add(prop);
-                wallPositions.Remove(pos);
                 tilemap.SetTile((Vector3Int)pos, null);
             }
         }
@@ -61,8 +59,8 @@ public class EnvironmentPlacer : MonoBehaviour
             var left = pos + Vector2Int.left;
             var rightup = pos + Vector2Int.right+ Vector2Int.up;
             var rightdown = pos + Vector2Int.right + Vector2Int.down;
-            var rightup2 = pos + Vector2Int.right + Vector2Int.up;
-            var rightdown2 = pos + Vector2Int.right + Vector2Int.down;
+            var rightup2 = pos + Vector2Int.right*2 + Vector2Int.up;
+            var rightdown2 = pos + Vector2Int.right *2+ Vector2Int.down;
             var right = pos + Vector2Int.right * 2;
 
             var adjacentWallCount = 0;
@@ -72,17 +70,17 @@ public class EnvironmentPlacer : MonoBehaviour
             if (wallPositions.Contains(rightup)) adjacentWallCount++;
             if (wallPositions.Contains(rightdown)) adjacentWallCount++;
             if (wallPositions.Contains(rightup2)) adjacentWallCount++;
-            if (wallPositions.Contains(right)) adjacentWallCount++;
+            if (wallPositions.Contains(rightdown2)) adjacentWallCount++;
             if (wallPositions.Contains(right)) adjacentWallCount++;
 
-            if ((adjacentWallCount == 0 || adjacentWallCount == 1))
+            if ((adjacentWallCount == 0))
             {
                 var prefab = prop3x1Prefabs[Random.Range(0, prop1x1Prefabs.Count)];
-                var worldPos = tilemap.CellToWorld((Vector3Int)pos) + new Vector3(0.5f, 0.5f, 0);
+                var worldPos = tilemap.CellToWorld((Vector3Int)pos);
                 var prop = Instantiate(prefab, worldPos, Quaternion.identity, propParent);
                 placedProps.Add(prop);
                 tilemap.SetTile((Vector3Int)pos, null);
-                wallPositions.Remove(pos);
+                placedPositions.Add(pos);
             }
         }
     }
@@ -108,7 +106,6 @@ public class EnvironmentPlacer : MonoBehaviour
                 var worldPos = tilemap.CellToWorld((Vector3Int)pos) + new Vector3(0.5f, 0.5f, 0);
                 var prop = Instantiate(prefab, worldPos, Quaternion.identity, propParent);
                 placedProps.Add(prop);
-                floorPositions.Remove(pos);
             }
         }
     }
