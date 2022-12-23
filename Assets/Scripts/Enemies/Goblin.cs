@@ -70,6 +70,7 @@ public class Goblin : MonoBehaviour
                 //exit
                 if (target != null)
                 {
+                    destinationSetter.target = target.transform;
                     ToPlayerDetected();
                     anim.SetBool("idle", false);
                 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class MagicMushroom : MonoBehaviour
 {
@@ -47,6 +48,8 @@ public class MagicMushroom : MonoBehaviour
     CharacterMover enemyMover;
     private Collider2D collider2D;
     public Transform atk;
+    private AIPath AI;
+    private AIDestinationSetter destinationSetter;
 
     private void Awake()
     {
@@ -55,6 +58,8 @@ public class MagicMushroom : MonoBehaviour
         collider2D = GetComponent<Collider2D>();
         anim = aliveGo.GetComponent<Animator>();
         enemyMover = GetComponent<CharacterMover>();
+        AI = GetComponent<AIPath>();
+        destinationSetter = GetComponent<AIDestinationSetter>();
     }
 
     void FixedUpdate()
@@ -70,13 +75,18 @@ public class MagicMushroom : MonoBehaviour
                 
                 anim.SetBool("move", true);
 
-                if(target==null)
-                    setVelocity(0f);
+                if (target == null)
+                {
+                    //setVelocity(0f);
+                    AI.canMove = false;
+                }
+
                 else
                     setVelocity(movespeed);
 
                 if (target != null && isPlayerInRange && stateTimer > 3)
                 {
+                    destinationSetter.target = target.transform;
                     ToPlayerDetected();
                     anim.SetBool("move", false);
                 }
@@ -84,7 +94,9 @@ public class MagicMushroom : MonoBehaviour
 
             //DETECTED
             case State.PlayerDetected:
-                setVelocity(0f);
+                //setVelocity(0f);
+
+                AI.canMove = false;
                 stateTimer += Time.deltaTime;
                 anim.SetBool("detect", true);
 
@@ -99,7 +111,9 @@ public class MagicMushroom : MonoBehaviour
 
             //IDLE
             case State.Idle:
-                setVelocity(0f);
+                //setVelocity(0f);
+                AI.canMove = false;
+
                 anim.SetBool("idle", true);
                 stateTimer += Time.deltaTime;
                 //exit
@@ -112,12 +126,16 @@ public class MagicMushroom : MonoBehaviour
 
             //ATK
             case State.Attack:
-                setVelocity(0f);
+                //setVelocity(0f);
+                AI.canMove = false;
+
                 anim.SetBool("attack", true);
                 break;
             //Die
             case State.Die:
-                setVelocity(0f);
+                //setVelocity(0f);
+                AI.canMove = false;
+
                 break;
         }
 
@@ -141,15 +159,20 @@ public class MagicMushroom : MonoBehaviour
     {
         if (target != null)
         {
-            Vector2 dir = (target.transform.position - transform.position).normalized;
-            enemyMover.Move(veclocity * dir);
+
+            //Vector2 dir = (target.transform.position - transform.position).normalized;
+            //enemyMover.Move(veclocity* dir);
+            AI.maxSpeed = veclocity;
+
         }
-        else enemyMover.Move(Vector2.zero);
+        else AI.maxSpeed = 0;
     }
 
     void ToIdle()
     {
-        setVelocity(0f);
+        //setVelocity(0f);
+        AI.canMove = false;
+
         currentState = State.Idle;
         stateTimer = 0;
     }
@@ -170,7 +193,9 @@ public class MagicMushroom : MonoBehaviour
 
     void ToAttack()
     {
-        setVelocity(0f);
+        //setVelocity(0f);
+        AI.canMove = false;
+
         currentState = State.Attack;
     }
 

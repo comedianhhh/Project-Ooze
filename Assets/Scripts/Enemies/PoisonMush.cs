@@ -1,3 +1,4 @@
+using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -43,12 +44,17 @@ public class PoisonMush : MonoBehaviour
     CharacterMover enemyMover;
     public Transform atk;
 
+    private AIPath AI;
+    private AIDestinationSetter destinationSetter;
+
     private void Awake()
     {
         aliveGo = transform.Find("Alive").gameObject;
         //rigidbody2D = GetComponent<Rigidbody2D>();
         anim = aliveGo.GetComponent<Animator>();
         enemyMover = GetComponent<CharacterMover>();
+        AI = GetComponent<AIPath>();
+        destinationSetter = GetComponent<AIDestinationSetter>();
     }
 
     void FixedUpdate()
@@ -58,7 +64,8 @@ public class PoisonMush : MonoBehaviour
         {
             //IDLE
             case State.Idle:
-                setVelocity(0f);
+                //setVelocity(0f);
+                AI.canMove = false;
                 anim.SetBool("idle", true);
                 stateTimer += Time.deltaTime;
                 //exit
@@ -71,7 +78,8 @@ public class PoisonMush : MonoBehaviour
             //DETECTED
             case State.PlayerDetected:
                 Lookat();
-                setVelocity(0f);
+                //setVelocity(0f);
+                AI.canMove = false;
                 stateTimer += Time.deltaTime;
                 anim.SetBool("detect", true);
 
@@ -79,6 +87,7 @@ public class PoisonMush : MonoBehaviour
                 if (stateTimer > 1 && target != null)
                 {
                     ToMove();
+                    destinationSetter.target = target.transform;
                     anim.SetBool("detect", false);
 
                 }
@@ -138,10 +147,13 @@ public class PoisonMush : MonoBehaviour
     {
         if (target != null)
         {
-            Vector2 dir = (target.transform.position - transform.position).normalized;
-            enemyMover.Move(veclocity * dir);
+
+            //Vector2 dir = (target.transform.position - transform.position).normalized;
+            //enemyMover.Move(veclocity* dir);
+            AI.maxSpeed = veclocity;
+
         }
-        else enemyMover.Move(Vector2.zero);
+        else AI.maxSpeed = 0; //enemyMover.Move(Vector2.zero);
     }
 
     void ToIdle()
@@ -167,7 +179,8 @@ public class PoisonMush : MonoBehaviour
 
     void ToAttack()
     {
-        setVelocity(0f);
+        //setVelocity(0f);
+        AI.canMove = false;
         currentState = State.Attack;
     }
 

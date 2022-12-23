@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1800715424207691604}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tree3x1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 6472614650525346114}
   - component: {fileID: 2912742509337524974}
   - component: {fileID: 4926871417521511478}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 292778285
-  m_SortingLayer: 5
+  m_SortingLayer: 4
   m_SortingOrder: 4
   m_Sprite: {fileID: 7833319157763913776, guid: 06aca080df6590b4fbc89130aac8a812, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

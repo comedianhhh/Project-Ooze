@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class Cyclops : MonoBehaviour
 {
@@ -34,6 +35,9 @@ public class Cyclops : MonoBehaviour
     Animator anim;
     CharacterMover enemyMover;
 
+    private AIPath AI;
+    private AIDestinationSetter destinationSetter;
+
     private void Awake()
     {
         aliveGo = transform.Find("Alive").gameObject;
@@ -41,6 +45,8 @@ public class Cyclops : MonoBehaviour
         targetReceiver = GetComponent<TargetReceiver>();
         anim = aliveGo.GetComponent<Animator>();
         enemyMover = GetComponent<CharacterMover>();
+        AI = GetComponent<AIPath>();
+        destinationSetter = GetComponent<AIDestinationSetter>();
     }
 
     void FixedUpdate()
@@ -50,7 +56,8 @@ public class Cyclops : MonoBehaviour
         {
             //IDLE
             case State.Idle:
-                setVelocity(0f);
+                //setVelocity(0f);
+                AI.canMove = false;
                 anim.SetBool("idle", true);
 
                 //exit
@@ -76,6 +83,7 @@ public class Cyclops : MonoBehaviour
                 else if (stateTimer > 2 && target != null&& isPlayerInRange)
                 {
                     ToPlayerDetected();
+                    destinationSetter.target = target.transform;
                     anim.SetBool("move", false);
                 }
                 break;
@@ -83,7 +91,8 @@ public class Cyclops : MonoBehaviour
             //DETECTED
             case State.PlayerDetected:
 
-                setVelocity(0f);
+                //setVelocity(0f);
+                AI.canMove = false;
                 anim.SetBool("playerDetected", true);
                 stateTimer += Time.fixedDeltaTime;
 
@@ -132,17 +141,17 @@ public class Cyclops : MonoBehaviour
     {
         if (target != null)
         {
-            Vector2 dir = (target.transform.position - transform.position).normalized;
-            enemyMover.Move(veclocity * dir);
+            AI.maxSpeed = veclocity;
         }
-        else enemyMover.Move(Vector2.zero);
+        else AI.maxSpeed = 0;
     }
 
 
     //State Switch
     void ToIdle()
     {
-        setVelocity(0f);
+        //setVelocity(0f);
+        AI.canMove = false;
         currentState = State.Idle;
     }
 

@@ -74,10 +74,16 @@ public class EnvironmentPlacer : MonoBehaviour
             if (wallPositions.Contains(right)) adjacentWallCount++;
 
             // todo: right 2 walls
+
+            var WallRight = pos + Vector2Int.right;
+            var WallRight2 = pos + Vector2Int.right * 2;
             var selfWallCount = 0;
+            if (wallPositions.Contains(WallRight)) selfWallCount++;
+            if (wallPositions.Contains(WallRight2)) selfWallCount++;
+
             // todo: if (contains) ++
 
-            if ((adjacentWallCount == 0)) // todo: && selfWallCount == 2
+            if ((adjacentWallCount == 0&& selfWallCount==2)) // todo: && selfWallCount == 2
             {
                 var prefab = prop3x1Prefabs[Random.Range(0, prop1x1Prefabs.Count)];
                 var worldPos = tilemap.CellToWorld((Vector3Int)pos);
@@ -106,7 +112,7 @@ public class EnvironmentPlacer : MonoBehaviour
 
             if ((adjacentWallCount == 2 || adjacentWallCount == 1) && Random.Range(0, 10) < 2)
             {
-                var prefab = WallpropPrefabs[Random.Range(0, prop1x1Prefabs.Count)];
+                var prefab = WallpropPrefabs[Random.Range(0, WallpropPrefabs.Count)];
                 var worldPos = tilemap.CellToWorld((Vector3Int)pos) + new Vector3(0.5f, 0.5f, 0);
                 var prop = Instantiate(prefab, worldPos, Quaternion.identity, propParent);
                 placedProps.Add(prop);

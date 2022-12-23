@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Pathfinding;
 public class MushRoom : MonoBehaviour
 {
 
@@ -40,6 +40,8 @@ public class MushRoom : MonoBehaviour
     GameObject aliveGo;
     Animator anim;
     CharacterMover enemyMover;
+    private AIPath AI;
+    private AIDestinationSetter destinationSetter;
 
     private void Awake()
     {
@@ -47,6 +49,8 @@ public class MushRoom : MonoBehaviour
         //rigidbody2D = GetComponent<Rigidbody2D>();
         anim = aliveGo.GetComponent<Animator>();
         enemyMover = GetComponent<CharacterMover>();
+        AI = GetComponent<AIPath>();
+        destinationSetter = GetComponent<AIDestinationSetter>();
     }
 
     void FixedUpdate()
@@ -56,12 +60,16 @@ public class MushRoom : MonoBehaviour
         {
             //IDLE
             case State.Idle:
-                setVelocity(0f);
+                //setVelocity(0f);
+                AI.canMove = false;
+
                 anim.SetBool("idle", true);
                 stateTimer += Time.deltaTime;
                 //exit
                 if (target != null)
                 {
+                    destinationSetter.target = target.transform;
+
                     ToPlayerDetected();
                     anim.SetBool("idle", false);
                 }
@@ -69,7 +77,9 @@ public class MushRoom : MonoBehaviour
             //DETECTED
             case State.PlayerDetected:
                 Lookat();
-                setVelocity(0f);
+                //setVelocity(0f);
+                AI.canMove = false;
+
                 stateTimer += Time.deltaTime;
                 anim.SetBool("detect", true);
 
@@ -93,6 +103,7 @@ public class MushRoom : MonoBehaviour
                 DetectTargetinRange();
                 stateTimer += Time.fixedDeltaTime;
                 setVelocity(movespeed);
+
                 anim.SetBool("move", true);
 
                 if (target == null)
@@ -112,7 +123,9 @@ public class MushRoom : MonoBehaviour
                 break;
             //Die
             case State.Die:
-                setVelocity(0f);
+                //setVelocity(0f);
+                AI.canMove = false;
+
                 break;
         }
 
@@ -136,20 +149,25 @@ public class MushRoom : MonoBehaviour
     {
         if (target != null)
         {
-            Vector2 dir = (target.transform.position - transform.position).normalized;
-            enemyMover.Move(veclocity * dir);
+
+            //Vector2 dir = (target.transform.position - transform.position).normalized;
+            //enemyMover.Move(veclocity* dir);
+            AI.maxSpeed = veclocity;
+
         }
-        else enemyMover.Move(Vector2.zero);
+        else AI.maxSpeed = 0; //enemyMover.Move(Vector2.zero);
     }
 
     void ToIdle()
     {
-        setVelocity(0f);
+        //setVelocity(0f);
+        AI.canMove = true;
         currentState = State.Idle;
     }
 
     public void ToMove()
     {
+        AI.canMove = true;
         anim.SetBool("attack", false);
         //Debug.Log("ToMove");
         currentState = State.Move;
@@ -164,7 +182,8 @@ public class MushRoom : MonoBehaviour
 
     void ToAttack()
     {
-        setVelocity(0f);
+        //setVelocity(0f);
+        AI.canMove = true;
         currentState = State.Attack;
     }
 

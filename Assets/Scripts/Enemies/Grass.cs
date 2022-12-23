@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Pathfinding;
 public class Grass : MonoBehaviour
 {
     enum State
@@ -37,12 +37,16 @@ public class Grass : MonoBehaviour
     GameObject aliveGo;
     Animator anim;
     CharacterMover enemyMover;
+    private AIPath AI;
+    private AIDestinationSetter destinationSetter;
 
     private void Awake()
     {
         aliveGo = transform.Find("Alive").gameObject;
         anim = aliveGo.GetComponent<Animator>();
         enemyMover = GetComponent<CharacterMover>();
+        AI = GetComponent<AIPath>();
+        destinationSetter = GetComponent<AIDestinationSetter>();
     }
 
     void FixedUpdate()
@@ -52,7 +56,9 @@ public class Grass : MonoBehaviour
         {
             //IDLE
             case State.Idle:
-                setVelocity(0f);
+                //setVelocity(0f);
+                AI.canMove = false;
+
                 anim.SetBool("idle", true);
                 stateTimer += Time.deltaTime;
                 //exit
@@ -65,13 +71,16 @@ public class Grass : MonoBehaviour
             //DETECTED
             case State.PlayerDetected:
                 Lookat();
-                setVelocity(0f);
+                //setVelocity(0f);
+                AI.canMove = false;
+
                 stateTimer += Time.deltaTime;
                 anim.SetBool("detect", true);
 
                 //exit
                 if (stateTimer > 1 && target != null)
                 {
+                    destinationSetter.target = target.transform;
                     ToMove();
                     anim.SetBool("detect", false);
 
@@ -132,21 +141,27 @@ public class Grass : MonoBehaviour
     {
         if (target != null)
         {
-            Vector2 dir = (target.transform.position - transform.position).normalized;
-            enemyMover.Move(veclocity * dir);
+
+            //Vector2 dir = (target.transform.position - transform.position).normalized;
+            //enemyMover.Move(veclocity* dir);
+            AI.maxSpeed = veclocity;
+
         }
-        else enemyMover.Move(Vector2.zero);
+        else AI.maxSpeed = 0; //enemyMover.Move(Vector2.zero);
     }
 
     void ToIdle()
     {
-        setVelocity(0f);
+        //setVelocity(0f);
+        AI.canMove = false;
+
         currentState = State.Idle;
     }
 
     public void ToMove()
     {
         anim.SetBool("attack", false);
+        AI.canMove = true;
         //Debug.Log("ToMove");
         currentState = State.Move;
         stateTimer = 0f;
@@ -160,7 +175,9 @@ public class Grass : MonoBehaviour
 
     void ToAttack()
     {
-        setVelocity(0f);
+        //setVelocity(0f);
+        AI.canMove = false;
+
         currentState = State.Attack;
     }
 
