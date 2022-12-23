@@ -61,7 +61,7 @@ public class EnvironmentPlacer : MonoBehaviour
             var rightdown = pos + Vector2Int.right + Vector2Int.down;
             var rightup2 = pos + Vector2Int.right*2 + Vector2Int.up;
             var rightdown2 = pos + Vector2Int.right *2+ Vector2Int.down;
-            var right = pos + Vector2Int.right * 2;
+            var right = pos + Vector2Int.right * 3;
 
             var adjacentWallCount = 0;
             if (wallPositions.Contains(up)) adjacentWallCount++;
@@ -73,7 +73,11 @@ public class EnvironmentPlacer : MonoBehaviour
             if (wallPositions.Contains(rightdown2)) adjacentWallCount++;
             if (wallPositions.Contains(right)) adjacentWallCount++;
 
-            if ((adjacentWallCount == 0))
+            // todo: right 2 walls
+            var selfWallCount = 0;
+            // todo: if (contains) ++
+
+            if ((adjacentWallCount == 0)) // todo: && selfWallCount == 2
             {
                 var prefab = prop3x1Prefabs[Random.Range(0, prop1x1Prefabs.Count)];
                 var worldPos = tilemap.CellToWorld((Vector3Int)pos);
