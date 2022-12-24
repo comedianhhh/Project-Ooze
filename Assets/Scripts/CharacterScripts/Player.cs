@@ -12,10 +12,11 @@ public class Player : MonoBehaviour
     Animator animator;
     Shooter shooter;
     CharacterMover characterMover;
-
+    Health Hp;
 
     private PlayerInputActions controls;
     private Vector2 move;
+
 
 
     void Start()
@@ -23,6 +24,7 @@ public class Player : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         shooter = GetComponent<Shooter>();
         characterMover = GetComponent<CharacterMover>();
+        Hp = GetComponent<Health>();
     }
 
     void Awake()
@@ -49,9 +51,13 @@ public class Player : MonoBehaviour
     void Update()
     {
         Move();
-
         if (Input.GetMouseButtonDown(0))
             AimByOldInput();
+
+        if (Hp.CurrentHealth <= 0)
+        {
+            GameManager.PlayerDied();
+        }
     }
 
     void Move()

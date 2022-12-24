@@ -193,7 +193,7 @@ public class Goblin : MonoBehaviour
     public void AnimatorAttack()
     {
         var tar = Physics2D.OverlapCircleAll(atk.position, atkRange,layerMask).ToList().Find(e => e.CompareTag("Player"));
-
+        AudioManager.Play("Attack_Goblin");
         if (tar != null)
         {
             tar.gameObject.GetComponent<Health>().TakeDamge(atkAmount);

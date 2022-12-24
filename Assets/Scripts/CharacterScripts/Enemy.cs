@@ -16,6 +16,16 @@ public class Enemy : MonoBehaviour
         health = GetComponent<Health>();
     }
 
+    private void Start()
+    {
+        GameManager.RegisterEnemy(this);
+    }
+    private void Update()
+    {
+        if (CanBeSwallowed)
+            GameManager.EnemyDied(this);
+    }
+
     public void GetSwallowed(Vector3 pos)
     {
         Debug.Log("swallow");

@@ -102,6 +102,7 @@ public class Health : MonoBehaviour
     {
         bool isFadeOut = false;
         float currentAmount = 0;
+        Debug.Log("flash");
 
         while (true)
         {
@@ -115,6 +116,11 @@ public class Health : MonoBehaviour
 
             foreach (var sp in sps)
                 sp.material.SetFloat("_FlashAmount", currentAmount);
+
+            //foreach (var sp in sps)
+            //{
+            //    sp.material.SetFloat("_FlashAmount", 1);
+            //}
 
             yield return new WaitForEndOfFrame();
         }
