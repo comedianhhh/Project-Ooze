@@ -144,6 +144,8 @@ Shader "Universal Render Pipeline/2D/Sprite-Lit-ColorFlash"
             TEXTURE2D(_NormalMap);
             SAMPLER(sampler_NormalMap);
             half4 _NormalMap_ST;  // Is this the right way to do this?
+            float4 _FlashColor;
+            float4 _FlashAmount;
 
             Varyings NormalsRenderingVertex(Attributes attributes)
             {
@@ -167,7 +169,9 @@ Shader "Universal Render Pipeline/2D/Sprite-Lit-ColorFlash"
             {
                 half4 mainTex = i.color * SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);
                 half3 normalTS = UnpackNormal(SAMPLE_TEXTURE2D(_NormalMap, sampler_NormalMap, i.uv));
-                return NormalsRenderingShared(mainTex, normalTS, i.tangentWS.xyz, i.bitangentWS.xyz, i.normalWS.xyz);
+                float4 col = NormalsRenderingShared(mainTex, normalTS, i.tangentWS.xyz, i.bitangentWS.xyz, i.normalWS.xyz);
+                col.rgb = lerp(col.rgb,_FlashColor.rgb,_FlashAmount);
+                return col;
             }
             ENDHLSL
         }
