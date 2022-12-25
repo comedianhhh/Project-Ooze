@@ -216,8 +216,7 @@ MonoBehaviour:
   FireDamageParticlePrefab: {fileID: 0}
   HealRate: 1
   HealAmount: 1
-  sps:
-  - {fileID: 459332080205090043}
+  sps: []
   effectApplyInterval: 0.25
   effects: []
   OnHit:

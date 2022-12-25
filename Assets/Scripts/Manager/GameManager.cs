@@ -13,7 +13,9 @@ public class GameManager : MonoBehaviour
     Door lockedDoor;
 
     public int deathNum;
-    public int enemyNum;
+   public int enemyNum;
+
+    public float GameTime;
     
     private void Awake()
     {
@@ -29,7 +31,9 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        enemyNum = instance.enemies.Count;
+        //enemyNum = instance.enemies.Count;
+        GameTime += Time.deltaTime;
+        //End_UIManager.UpdateTimeUI((int)GameTime);
     }
 
     public static void RegisterDoor(Door door)
@@ -63,8 +67,8 @@ public class GameManager : MonoBehaviour
     {
         instance.fader.FadeOut();
         instance.deathNum++;
+        End_UIManager.UpdateDeathUI(instance.deathNum);
         instance.Invoke("RestartScene",1.5f);
-
     }
 
     void RestartScene()

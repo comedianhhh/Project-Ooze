@@ -221,6 +221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathNum: 0
   enemyNum: 0
+  GameTime: 0
 --- !u!4 &94402961
 Transform:
   m_ObjectHideFlags: 0
@@ -245,14 +246,6 @@ PrefabInstance:
     - target: {fileID: 459332080647918972, guid: aa99bfd0eeab7d64ca714934d3f9fdbd, type: 3}
       propertyPath: m_Name
       value: Goblin_melee (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 459332080647918973, guid: aa99bfd0eeab7d64ca714934d3f9fdbd, type: 3}
-      propertyPath: sps.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 459332080647918973, guid: aa99bfd0eeab7d64ca714934d3f9fdbd, type: 3}
-      propertyPath: sps.Array.data[0]
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 459332080647918975, guid: aa99bfd0eeab7d64ca714934d3f9fdbd, type: 3}
       propertyPath: m_RootOrder

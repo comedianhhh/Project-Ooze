@@ -9,6 +9,7 @@ public class Health : MonoBehaviour
     public float MaxHealth = 100;
     public GameObject bloodParticle;
     public GameObject FireDamageParticlePrefab;
+
     private float timer;
     [Header("Heal setting")]
     [SerializeField] private float HealRate = 1;
@@ -25,6 +26,7 @@ public class Health : MonoBehaviour
     public UnityEvent OnDie = new UnityEvent();
     public UnityEvent OnDisappear = new UnityEvent();
 
+    Animator anim;
     Coroutine die;
     private Ability ability;
 
@@ -46,6 +48,7 @@ public class Health : MonoBehaviour
         StartCoroutine(IApplyEffects());
         if (GetComponent<Ability>()) ability = GetComponent<Ability>();
         sps.Add(GetComponentInChildren<SpriteRenderer>());
+        anim = GetComponentInChildren<Animator>();
     }
 
     public void TakeDamge(float damage)
@@ -104,6 +107,8 @@ public class Health : MonoBehaviour
         bool isFadeOut = false;
         float currentAmount = 0;
         Debug.Log("flash");
+        
+        anim.SetTrigger("hurt");
 
         while (true)
         {
@@ -118,10 +123,7 @@ public class Health : MonoBehaviour
             foreach (var sp in sps)
                 sp.material.SetFloat("_FlashAmount", currentAmount);
 
-            //foreach (var sp in sps)
-            //{
-            //    sp.material.SetFloat("_FlashAmount", 1);
-            //}
+
 
             yield return new WaitForEndOfFrame();
         }
