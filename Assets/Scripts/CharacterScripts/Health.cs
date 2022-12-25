@@ -45,6 +45,7 @@ public class Health : MonoBehaviour
         CurrentHealth = MaxHealth;
         StartCoroutine(IApplyEffects());
         if (GetComponent<Ability>()) ability = GetComponent<Ability>();
+        sps.Add(GetComponentInChildren<SpriteRenderer>());
     }
 
     public void TakeDamge(float damage)
@@ -62,7 +63,7 @@ public class Health : MonoBehaviour
 
         CurrentHealth = Mathf.Clamp(CurrentHealth - damage, 0, MaxHealth);
         if(bloodParticle!=null) Instantiate(bloodParticle, transform.position, Quaternion.identity);// ‹…À–ßπ˚
-        StartCoroutine(Flash(0.6f, 10));
+        StartCoroutine(Flash(1f, 10));
 
         if (CurrentHealth <= 0)
         {
