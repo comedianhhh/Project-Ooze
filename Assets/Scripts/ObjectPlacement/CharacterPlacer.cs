@@ -7,7 +7,9 @@ using UnityEngine.Tilemaps;
 public class CharacterPlacer : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] Transform player;
+    //[SerializeField] Transform player;
+    [SerializeField] Transform EnemyParent;
+
     [SerializeField] List<CharacterPlacerPattern> enemyPlacerPatterns = new List<CharacterPlacerPattern>();
     [SerializeField] CharacterPlacerPattern bossPattern = new CharacterPlacerPattern();
     [SerializeField] public List<Vector3> placedPositions = new List<Vector3>();
@@ -24,7 +26,7 @@ public class CharacterPlacer : MonoBehaviour
         placedPositions.Clear();
         if (roomPositions.Length == 0 || floorWorldPositions.Length == 0) return;
 
-        player.transform.position = roomPositions[0]+new Vector3(0.5f,0.5f,0);
+        //player.transform.position = roomPositions[0]+new Vector3(0.5f,0.5f,0);
         placedPositions.Add(roomPositions[0]);
         for (int i = 0; i < placedEnemies.Count; i++)
             if (placedEnemies[i])
@@ -63,7 +65,7 @@ public class CharacterPlacer : MonoBehaviour
             }
             placedPositions.Add(pos);
             Vector3 offset = new Vector3(0.5f, 0.5f, 0);
-            var placed = Instantiate(enemy, pos+ offset, Quaternion.identity, transform);
+            var placed = Instantiate(enemy, pos+ offset, Quaternion.identity, EnemyParent);
             placedEnemies.Add(placed);
         }
     }

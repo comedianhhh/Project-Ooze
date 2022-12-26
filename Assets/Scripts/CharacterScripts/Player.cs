@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
+    public static Player instance;
+
+
     [Header("Settings")]
 
     [Header("Data")] 
@@ -17,7 +20,7 @@ public class Player : MonoBehaviour
     private PlayerInputActions controls;
     private Vector2 move;
 
-
+    public string ScenePassword;
 
     void Start()
     {
@@ -29,6 +32,14 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+
         controls = new PlayerInputActions();
 
         controls.GamePlay.Move.performed += ctx => move = ctx.ReadValue<Vector2>();

@@ -107,7 +107,7 @@ public class Health : MonoBehaviour
         bool isFadeOut = false;
         float currentAmount = 0;
         Debug.Log("flash");
-        
+
         anim.SetTrigger("hurt");
 
         while (true)

@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class TrapPlacer : MonoBehaviour
 {
+    [SerializeField] Transform TrapParent;
 
     [Header("References")]
     [SerializeField] List<GameObject> traps = new List<GameObject>();
+
 
     [Header("Settings")]
     [SerializeField] float detectionRadius = 5;
@@ -18,12 +20,16 @@ public class TrapPlacer : MonoBehaviour
 
     public void PlaceEveryRoom(Vector3[] roomPositions, Vector3[] floorWorldPositions)
     {
+        placedPositions.Clear();
         if (roomPositions.Length == 0 || floorWorldPositions.Length == 0) return;
 
         placedPositions.Clear();
 
         for (int i = 0; i < placedTraps.Count; i++)
-            DestroyImmediate(placedTraps[i].gameObject);
+            if (placedTraps[i])
+            {
+                DestroyImmediate(placedTraps[i].gameObject);
+            }
         placedTraps.Clear();
 
         for (int i = 0; i < roomPositions.Length; i++)

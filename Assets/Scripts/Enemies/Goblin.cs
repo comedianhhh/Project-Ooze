@@ -102,7 +102,7 @@ public class Goblin : MonoBehaviour
                 Lookat();
                 DetectTargetinRange();
                 stateTimer += Time.fixedDeltaTime;
-                //setVelocity(movespeed);
+                setVelocity(movespeed);
                 anim.SetBool("move", true);
 
                 if (target == null)

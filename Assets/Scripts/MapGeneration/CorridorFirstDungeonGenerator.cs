@@ -14,6 +14,10 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     [Header("Debug")]
     [SerializeField] List<Vector2Int> m_RoomPositions;
 
+    private void Awake()
+    {
+        GenerateDungeon();
+    }
     protected override void RunProceduralGeneration()
     {
         CorridorFirstGeneration();
