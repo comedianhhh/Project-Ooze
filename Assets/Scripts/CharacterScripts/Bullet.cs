@@ -118,6 +118,8 @@ public class Bullet : MonoBehaviour
                 health.GetComponent<CharacterMover>().AddExtraVelocity(difference);
                 //health.AddEffect(new HealthEffect(1, 5));
                 Destroy(gameObject);
+                AudioManager.Play("TearImpacts1");
+
             }
         }
 

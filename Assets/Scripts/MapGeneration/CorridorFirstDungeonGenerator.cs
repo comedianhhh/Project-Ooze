@@ -14,6 +14,8 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     [Header("Debug")]
     [SerializeField] List<Vector2Int> m_RoomPositions;
 
+    [SerializeField] GameObject exit;
+
     private void Awake()
     {
         GenerateDungeon();
@@ -43,6 +45,8 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         floorPositions.UnionWith(roomPositions);
 
         tilemapVisualizer.PaintFloorTiles(floorPositions);
+
+        //place
         var wallPositions = WallGenerator.CreateWalls(floorPositions, tilemapVisualizer);
 
         m_RoomPositions = potentialRoomPositions.ToList();
@@ -64,6 +68,10 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
 
 
         environmentPlacer.CreatProps(floorPositionList, wallPositions, tilemapVisualizer.WallTilemap,tilemapVisualizer.FloorTilemap);
+
+        //
+        Vector3 exitpos = tilemapVisualizer.FloorTilemap.CellToWorld((Vector3Int)m_RoomPositions[m_RoomPositions.Count - 1]);
+        exit.transform.position = exitpos;
 
 
     }

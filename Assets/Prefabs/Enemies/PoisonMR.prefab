@@ -643,8 +643,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentHealth: 100
   MaxHealth: 100
-  bloodParticle: {fileID: 0}
+  bloodParticle: {fileID: 5725714777709649331, guid: 81b8e9940e1a7a941bedb51df1f21088, type: 3}
   FireDamageParticlePrefab: {fileID: 0}
+  isPlayer: 0
   HealRate: 1
   HealAmount: 1
   sps: []

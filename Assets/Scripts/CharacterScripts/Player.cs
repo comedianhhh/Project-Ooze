@@ -84,7 +84,6 @@ public class Player : MonoBehaviour
             transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
         }
 
-
         characterMover.Move(move.normalized * speed);
 
         // animate

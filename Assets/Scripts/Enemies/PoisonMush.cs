@@ -166,9 +166,13 @@ public class PoisonMush : MonoBehaviour
     public void ToMove()
     {
         anim.SetBool("attack", false);
+        AI.canMove = true;
+
         //Debug.Log("ToMove");
         currentState = State.Move;
         stateTimer = 0f;
+        AudioManager.Play("Meat_jumps2");
+
     }
 
     void ToPlayerDetected()
@@ -191,6 +195,8 @@ public class PoisonMush : MonoBehaviour
     public void AnimatorAttack()
     {
         if (PoisonParticle != null) Instantiate(PoisonParticle, transform.position, Quaternion.identity);
+        AudioManager.Play("meat_death4");
+
     }
 
     public void OnDrawGizmos()

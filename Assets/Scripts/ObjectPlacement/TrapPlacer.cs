@@ -53,7 +53,7 @@ public class TrapPlacer : MonoBehaviour
 
                 var pos = placeablePositions[Random.Range(0, placeablePositions.Count)];
                 placedPositions.Add(pos);
-                var traps = Instantiate(trap, pos+new Vector3(0.5f,0.5f,0), Quaternion.identity, transform);
+                var traps = Instantiate(trap, pos+new Vector3(0.5f,0.5f,0), Quaternion.identity, TrapParent);
                 placedTraps.Add(traps);
             }
         }

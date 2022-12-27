@@ -92,7 +92,6 @@ public class Cyclops : MonoBehaviour
             case State.PlayerDetected:
 
                 //setVelocity(0f);
-                AI.canMove = false;
                 anim.SetBool("playerDetected", true);
                 stateTimer += Time.fixedDeltaTime;
 
@@ -160,17 +159,23 @@ public class Cyclops : MonoBehaviour
         currentState = State.Move;
         anim.SetBool("charge",false);
         stateTimer = 0f;
+        AI.canMove = true;
+
     }
 
     void ToPlayerDetected()
     {
         currentState = State.PlayerDetected;
+        AI.canMove = false;
+
         stateTimer = 0;
     }
 
     public void ToCharge()
     {
         currentState = State.Charge;
+        AI.canMove = true;
+
     }
 
     public void Todie()
@@ -196,6 +201,7 @@ public class Cyclops : MonoBehaviour
         if (tarColliders != null)
         {
             isPlayerInRange = true;
+
         }
         else
         {

@@ -9,7 +9,7 @@ public class Health : MonoBehaviour
     public float MaxHealth = 100;
     public GameObject bloodParticle;
     public GameObject FireDamageParticlePrefab;
-
+    [SerializeField] bool isPlayer;
     private float timer;
     [Header("Heal setting")]
     [SerializeField] private float HealRate = 1;
@@ -66,6 +66,21 @@ public class Health : MonoBehaviour
 
         CurrentHealth = Mathf.Clamp(CurrentHealth - damage, 0, MaxHealth);
         if(bloodParticle!=null) Instantiate(bloodParticle, transform.position, Quaternion.identity);// ‹…À–ßπ˚
+
+        if (isPlayer)
+        {
+            AudioManager.Play("minehurt", transform.position, 2.0f);
+            GameManager.PlayerHurt();
+        }
+
+        else
+            AudioManager.Play("splat 2");
+
+
+
+
+
+
         StartCoroutine(Flash(1f, 10));
 
         if (CurrentHealth <= 0)

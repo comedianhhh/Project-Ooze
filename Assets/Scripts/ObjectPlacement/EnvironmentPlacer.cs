@@ -18,6 +18,16 @@ public class EnvironmentPlacer : MonoBehaviour
 
     public void CreatProps(List<Vector2Int> wallPositions, List<Vector2Int> floorPositions, Tilemap walltilemap,Tilemap floortilmemap)
     {
+
+        placedPositions.Clear();
+
+        for (int i = 0; i < placedProps.Count; i++)
+        {
+            if (placedProps[i])
+                DestroyImmediate(placedProps[i].gameObject);
+        }
+        placedProps.Clear();
+
         Create3x1Props(wallPositions, walltilemap);
         Create1x1Props(wallPositions, walltilemap);
         CreateWallProps(wallPositions,floorPositions, floortilmemap);

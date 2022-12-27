@@ -382,9 +382,10 @@ GameObject:
   - component: {fileID: 196298614}
   - component: {fileID: 196298615}
   - component: {fileID: 196298616}
+  - component: {fileID: 3795766769408522062}
   m_Layer: 8
   m_Name: Cyclops_SimpleFSM
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -421,6 +422,7 @@ MonoBehaviour:
   MaxHealth: 100
   bloodParticle: {fileID: 5725714777709649331, guid: 81b8e9940e1a7a941bedb51df1f21088, type: 3}
   FireDamageParticlePrefab: {fileID: 0}
+  isPlayer: 0
   HealRate: 1
   HealAmount: 1
   sps:
@@ -651,6 +653,23 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
+--- !u!114 &3795766769408522062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4090121659263625837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7b08ec215212b48b57961ca4e6663a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyData:
+    Type: 4
+    Good: 0
+    Variant: 2
+    Bulk: 3
 --- !u!1 &4090121659421221015
 GameObject:
   m_ObjectHideFlags: 0

@@ -72,7 +72,8 @@ public class MagicMushroom : MonoBehaviour
                 Lookat();
                 DetectTargetinRange();
                 stateTimer += Time.fixedDeltaTime;
-                
+                AI.canMove = true;
+
                 anim.SetBool("move", true);
 
                 if (target == null)
@@ -181,11 +182,15 @@ public class MagicMushroom : MonoBehaviour
     {
         isUnderGround = false;
         currentState = State.Move;
+        AI.canMove = true;
+
         stateTimer = 0f;
     }
 
     void ToPlayerDetected()
     {
+        AudioManager.Play("Maggot_Enter_Ground_0");
+
         isUnderGround = false;
         currentState = State.PlayerDetected;
         stateTimer = 0;
@@ -228,6 +233,8 @@ public class MagicMushroom : MonoBehaviour
 
     private void Shoot()
     {
+        AudioManager.Play("TearImpacts1");
+
         for (int i = 0; i < totalProjectiles; i++)
         {
             if (projectiles != null)

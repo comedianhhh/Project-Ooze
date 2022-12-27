@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     static GameManager instance;
 
     SceneFader fader;
+    public CamController cam;
     List<Enemy> enemies;
 
     Door lockedDoor;
@@ -52,6 +53,11 @@ public class GameManager : MonoBehaviour
         instance.fader = obj;
     }
 
+    public static  void RegisterCam(CamController cam)
+    {
+        instance.cam = cam;
+    }
+
     public static void EnemyDied(Enemy enemy)
     {
         if (!instance.enemies.Contains(enemy))
@@ -61,7 +67,10 @@ public class GameManager : MonoBehaviour
         if (instance.enemies.Count == 0)
             instance.lockedDoor.Open();
     }
-
+    public static void PlayerHurt()
+    {
+        instance.cam.Flash();
+    }
 
     public static void PlayerDied()
     {

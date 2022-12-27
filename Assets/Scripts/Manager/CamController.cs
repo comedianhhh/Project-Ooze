@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class CamController : MonoBehaviour
 {
     public Transform player;
+    [SerializeField] Animator anim;
     Vector3 target, mousePos, refVel, shakeOffset;
     [SerializeField]float cameraDist = 1.5f;
     float smoothTime = 0.2f, zStart;
@@ -18,6 +19,9 @@ public class CamController : MonoBehaviour
     {
         target = player.position; //set default target
         zStart = transform.position.z; //capture current z position
+        DontDestroyOnLoad(this);
+        anim = GetComponent<Animator>();
+        GameManager.RegisterCam(this);
     }
 
     // Update is called once per frame
@@ -72,6 +76,10 @@ public class CamController : MonoBehaviour
         shakeVector = direction; //direction to shake towards
         shakeMag = magnitude; //how far in that direction
         shakeTimeEnd = Time.time + length; //how long to shake
+    }
+    public  void Flash()
+    {
+        anim.SetTrigger("hurt");
     }
 }
 

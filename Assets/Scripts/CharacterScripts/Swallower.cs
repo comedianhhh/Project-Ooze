@@ -46,6 +46,8 @@ public class Swallower : MonoBehaviour
     {
         if (currentEnlargeTimes <= MaxEnlargeTimes)
         {
+            AudioManager.Play("gurgle_loop");
+
             currentEnlargeTimes++;
             transform.DOKill();
             transform.DOScale(Vector3.one + Vector3.one * sizeModifer * SwallowedEnemies.Count, 0.5f).SetEase(Ease.InBounce);

@@ -168,6 +168,8 @@ public class MushRoom : MonoBehaviour
     public void ToMove()
     {
         AI.canMove = true;
+        AudioManager.Play("Meat_jumps2");
+
         anim.SetBool("attack", false);
         //Debug.Log("ToMove");
         currentState = State.Move;
@@ -195,11 +197,14 @@ public class MushRoom : MonoBehaviour
     {
         var tar = Physics2D.OverlapCircle(atk.position, atkRange, layerMask);
 
+
         if (tar != null && tar.gameObject.tag == "Player")
         {
             tar.gameObject.GetComponent<Health>().TakeDamge(atkAmount);
             Vector2 difference = (tar.transform.position - transform.position).normalized * knockbackDistance;
             tar.GetComponent<CharacterMover>().AddExtraVelocity(difference);
+            AudioManager.Play("meat_death4");
+
         }
     }
 
