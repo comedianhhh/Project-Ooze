@@ -17,11 +17,12 @@ public class CamController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameManager.RegisterCam(this);
         target = player.position; //set default target
         zStart = transform.position.z; //capture current z position
         DontDestroyOnLoad(this);
         anim = GetComponent<Animator>();
-        GameManager.RegisterCam(this);
+
     }
 
     // Update is called once per frame
@@ -34,7 +35,7 @@ public class CamController : MonoBehaviour
     }
     Vector3 CaptureMousePos()
     {
-        Vector2 ret = Camera.main.ScreenToViewportPoint(Mouse.current.position.ReadValue()); //raw mouse pos
+        Vector2 ret = Camera.main.ScreenToViewportPoint(Input.mousePosition); //raw mouse pos
         ret *= 2;
         ret -= Vector2.one; //set (0,0) of mouse to middle of screen
         float max = 0.9f;

@@ -20215,6 +20215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  ScenePassword: 
 --- !u!114 &8117776622283043108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20275,6 +20276,8 @@ MonoBehaviour:
   MaxHealth: 100
   bloodParticle: {fileID: 5725714777709649331, guid: 81b8e9940e1a7a941bedb51df1f21088, type: 3}
   FireDamageParticlePrefab: {fileID: 0}
+  isPlayer: 1
+  isBoss: 0
   HealRate: 1
   HealAmount: 1
   sps:

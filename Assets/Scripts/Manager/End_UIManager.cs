@@ -22,7 +22,7 @@ public class End_UIManager : MonoBehaviour
 
     public static void UpdateDeathUI(int deathCount)
     {
-        instance.deathText.text = deathCount.ToString();
+        //instance.deathText.text = deathCount.ToString();
     }
 
     public static void UpdateTimeUI(int time)

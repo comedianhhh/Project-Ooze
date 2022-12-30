@@ -9,7 +9,7 @@ public class AnimatorActions : MonoBehaviour
     [SerializeField] UnityEvent onExit = new UnityEvent();
     [SerializeField] UnityEvent onInActive = new UnityEvent();
     [SerializeField] UnityEvent onActive = new UnityEvent();
-
+    [SerializeField] UnityEvent onIntro = new UnityEvent();
 
     // Start is called before the first frame update
     void Start()
@@ -41,5 +41,9 @@ public class AnimatorActions : MonoBehaviour
     public void Active()
     {
         onActive.Invoke();
+    }
+    public  void Intro()
+    {
+        onIntro.Invoke();
     }
 }

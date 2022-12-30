@@ -9,7 +9,8 @@ public class Health : MonoBehaviour
     public float MaxHealth = 100;
     public GameObject bloodParticle;
     public GameObject FireDamageParticlePrefab;
-    [SerializeField] bool isPlayer;
+    [SerializeField] bool isPlayer=false;
+    [SerializeField] bool isBoss=false;
     private float timer;
     [Header("Heal setting")]
     [SerializeField] private float HealRate = 1;
@@ -107,7 +108,18 @@ public class Health : MonoBehaviour
     {
         Debug.Log("die");
         OnDie.Invoke();
-        die = StartCoroutine(IDestroy());
+        if (isBoss)
+        {
+
+        }
+        else if (isPlayer)
+        {
+
+        }
+        else
+        {
+            die = StartCoroutine(IDestroy());
+        }
         //Destroy(gameObject);
 
     }
