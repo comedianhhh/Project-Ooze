@@ -20,7 +20,6 @@ public class CamController : MonoBehaviour
         GameManager.RegisterCam(this);
         target = player.position; //set default target
         zStart = transform.position.z; //capture current z position
-        DontDestroyOnLoad(this);
         anim = GetComponent<Animator>();
 
     }

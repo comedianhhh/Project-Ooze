@@ -54,7 +54,10 @@ public class Door : MonoBehaviour
             {
                 Player.instance.ScenePassword = newScenePassword;
                 if (isLastDoor)
+                {
                     GameManager.EndGame();
+                    //return;
+                }
                 SceneManager.LoadScene(sceneName);
             }
         }

@@ -5,31 +5,28 @@ using TMPro;
 
 public class End_UIManager : MonoBehaviour
 {
-    static End_UIManager instance;
-
     public TextMeshProUGUI deathText, timeText, gameOverText;
-    private void Awake()
-    {
-        if (instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
+    //private void Awake()
+    //{
+    //    if (instance != null)
+    //    {
+    //        Destroy(gameObject);
+    //        return;
+    //    }
 
-        instance = this;
-        DontDestroyOnLoad(this);
+    //    instance = this;
+    //}
+
+    public  void UpdateDeathUI(int deathCount)
+    {
+        deathText.text = deathCount.ToString();
     }
 
-    public static void UpdateDeathUI(int deathCount)
-    {
-        instance.deathText.text = deathCount.ToString();
-    }
-
-    public static void UpdateTimeUI(int time)
+    public  void UpdateTimeUI(int time)
     {
         int minutes = (int)(time / 60);
         int seconds = time % 60;
-        instance.timeText.text = time.ToString("00")+":"+seconds.ToString("00");
+        timeText.text = minutes.ToString("00")+":"+seconds.ToString("00");
     }
 
 }

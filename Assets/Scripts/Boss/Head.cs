@@ -37,7 +37,7 @@ public class Head : MonoBehaviour
         {
             interval -= Time.deltaTime;
         }
-        else
+        else if(isAlive&&interval<=0)
         {
             Shoot();
             interval = 4f;

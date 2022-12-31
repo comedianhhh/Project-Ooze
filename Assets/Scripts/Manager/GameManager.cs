@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    Transform uiParent;
     static GameManager instance;
+    [SerializeField] End_UIManager UI;
 
     SceneFader fader;
     public CamController cam;
@@ -19,6 +21,7 @@ public class GameManager : MonoBehaviour
     public float GameTime;
 
     public bool isEnd=false;
+    public bool hasCreatedUI=false;
     private void Awake()
     {
         if (instance != null)
@@ -33,16 +36,19 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        //enemyNum = instance.enemies.Count;
         if(!isEnd)
         {
             GameTime += Time.deltaTime;
         }
         if (isEnd)
         {
-            End_UIManager.UpdateTimeUI((int)GameTime);
-            End_UIManager.UpdateDeathUI(enemyNum);
-
+            if (!hasCreatedUI)
+            {
+                UI.UpdateTimeUI((int)GameTime);
+                UI.UpdateDeathUI(enemyNum);
+                Instantiate(instance.UI);
+                hasCreatedUI = true;           
+            }
         }
 
     }
@@ -86,7 +92,6 @@ public class GameManager : MonoBehaviour
     {
         instance.fader.FadeOut();
         instance.deathNum++;
-        End_UIManager.UpdateDeathUI(instance.deathNum);
         instance.Invoke("RestartScene",1.5f);
         instance.isEnd = true;
 
@@ -105,6 +110,14 @@ public class GameManager : MonoBehaviour
     public static void EndGame()
     {
         instance.isEnd = true;
+        //if (!instance.hasCreatedUI)
+        //{
+        //    instance.UI.UpdateTimeUI((int)instance.GameTime);
+        //    instance.UI.UpdateDeathUI(instance.enemyNum);
+        //    Instantiate(instance.UI);
+        //    instance.hasCreatedUI = true;
+        //    Time.timeScale = 0;
+        //}
     }
 
 }

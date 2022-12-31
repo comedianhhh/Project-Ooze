@@ -24,9 +24,10 @@ public class Boss : MonoBehaviour
     private void Awake()
     {
         playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-
         health = GetComponent<Health>();
         anim = GetComponentInChildren<Animator>();
+        healthBar.maxValue = health.MaxHealth;
+
     }
     private void Update()
     {
@@ -78,6 +79,8 @@ public class Boss : MonoBehaviour
     {
         Instantiate(Head1, transform.position+Vector3.right, Quaternion.identity);
         Instantiate(Head2, transform.position - Vector3.right, Quaternion.identity);
+        AudioManager.Play("lavaball_large_shoot0",transform.position, 1f);
+        AudioManager.Play("lavaball_large_shoot1", transform.position, 1f);
 
     }
 
