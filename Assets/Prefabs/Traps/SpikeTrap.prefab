@@ -435,6 +435,9 @@ MonoBehaviour:
   onActive:
     m_PersistentCalls:
       m_Calls: []
+  onIntro:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2902006998109884951
 GameObject:
   m_ObjectHideFlags: 0
@@ -581,7 +584,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   atkRange: 0.9
   atkAmount: 5
-  knockbackDistance: 5
+  knockbackDistance: 3
   layerMask:
     serializedVersion: 2
     m_Bits: 128

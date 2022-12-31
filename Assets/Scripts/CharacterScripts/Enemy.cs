@@ -32,6 +32,7 @@ public class Enemy : MonoBehaviour
         Transform animator = GetComponentInChildren<Animator>().transform;
         animator.DOMove(pos, 0.5f).SetEase(Ease.InSine);
         animator.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InSine);
+        GetComponent<CircleCollider2D>().enabled = false;
         health.Die();
     }
 }

@@ -732,6 +732,9 @@ MonoBehaviour:
   onActive:
     m_PersistentCalls:
       m_Calls: []
+  onIntro:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5441958793511738369
 GameObject:
   m_ObjectHideFlags: 0
@@ -929,8 +932,8 @@ MonoBehaviour:
   type: 0
   dps: 5
   time: 1
-  targetTag: 
-  CanHurtEverthing: 0
+  targetTag: Player
+  CanHurtEverthing: 1
 --- !u!114 &1286013046
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -17,11 +17,11 @@ public class CamController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         GameManager.RegisterCam(this);
         target = player.position; //set default target
         zStart = transform.position.z; //capture current z position
         anim = GetComponent<Animator>();
-
     }
 
     // Update is called once per frame

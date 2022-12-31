@@ -72,6 +72,10 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.CompareTag("Wall"))
+        {
+            speed = 0; //stop if it hits a wall
+        }
         if (isEnemyBullet==1)
         {
             if (collision.CompareTag(targetTag))
@@ -128,13 +132,7 @@ public class Bullet : MonoBehaviour
         }
 
     }
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Wall"))
-        {
-            speed = 0; //stop if it hits a wall
-        }
-    }
+
     void DestroyProjectile()
     {
         Destroy(gameObject);

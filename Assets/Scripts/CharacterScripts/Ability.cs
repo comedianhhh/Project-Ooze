@@ -52,6 +52,17 @@ public class Ability : MonoBehaviour
     }
     void Update()
     {
+        if (CanHeal && StateTime > 0)
+        {
+            StateTime -= Time.deltaTime;
+        }
+        else if(CanHeal && StateTime <= 0)
+        {
+            CanHeal = false;
+            StateTime = stateTimer;
+        }
+
+
         if (CanSpeedUp&&StateTime>0)
         {
             BeCyc();

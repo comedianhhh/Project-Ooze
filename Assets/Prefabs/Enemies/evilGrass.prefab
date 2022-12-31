@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3532501095508843228}
   - component: {fileID: 3532501095508843229}
   - component: {fileID: 1022554825}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Alive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3532501095934516763}
   - component: {fileID: 3532501095934516760}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,9 +206,9 @@ GameObject:
   - component: {fileID: 337223027}
   - component: {fileID: 337223026}
   - component: {fileID: 6374379977276382454}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: evilGrass
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -307,6 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7be85f2e3045354409ca3b5a20ba59df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioInterval: 1
   CurrentHealth: 20
   MaxHealth: 20
   bloodParticle: {fileID: 5725714777709649331, guid: 81b8e9940e1a7a941bedb51df1f21088, type: 3}
@@ -509,7 +510,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3532501096216029920}
   - component: {fileID: 3532501096216029921}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -590,7 +591,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3532501096445534045}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AttackPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}

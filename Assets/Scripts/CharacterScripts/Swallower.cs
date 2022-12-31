@@ -62,6 +62,8 @@ public class Swallower : MonoBehaviour
             var abilityType = SwallowedEnemies.GroupBy(x => x) .OrderByDescending(x => x.Count()).First().Key;
 
             anim.SetTrigger("change");
+            transform.DOScale(Vector3.one , 0.5f).SetEase(Ease.InBounce);
+            currentVolume = 0;
 
             if (abilityType.Type == EnemyType.Goblin)
             {
@@ -79,9 +81,9 @@ public class Swallower : MonoBehaviour
             {
                 ab.isMagic = true;
                 SwallowedEnemies.Clear();
-                ab.BeMr();
+                ab.BeMagic();
             }
-            else if (abilityType.Type == EnemyType.Mushroom&&!SwallowedEnemies.Exists(t => t.Type == EnemyType.MrPosion)&& SwallowedEnemies.Exists(t => t.Type == EnemyType.MrMagic))//only ate mushroom
+            else if (abilityType.Type == EnemyType.Mushroom&&!SwallowedEnemies.Exists(t => t.Type == EnemyType.MrPosion)&& !SwallowedEnemies.Exists(t => t.Type == EnemyType.MrMagic))//only ate mushroom
             {
                 ab.CanHeal = true;
                 SwallowedEnemies.Clear();

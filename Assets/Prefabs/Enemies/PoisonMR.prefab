@@ -645,6 +645,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7be85f2e3045354409ca3b5a20ba59df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioInterval: 1
   CurrentHealth: 30
   MaxHealth: 30
   bloodParticle: {fileID: 5725714777709649331, guid: 81b8e9940e1a7a941bedb51df1f21088, type: 3}
@@ -771,7 +772,7 @@ MonoBehaviour:
     Type: 2
     Good: 0
     Variant: 0
-    Bulk: 0
+    Bulk: 2
 --- !u!50 &3542306202704894032
 Rigidbody2D:
   serializedVersion: 4

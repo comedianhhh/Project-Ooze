@@ -716,7 +716,7 @@ MonoBehaviour:
     Type: 4
     Good: 0
     Variant: 0
-    Bulk: 0
+    Bulk: 5
 --- !u!58 &258228616
 CircleCollider2D:
   m_ObjectHideFlags: 0
