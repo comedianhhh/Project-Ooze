@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     [Header("Settings")]
 
     [Header("Data")] 
-    [SerializeField] float speed;
+    public  float speed;
 
     Animator animator;
     Shooter shooter;

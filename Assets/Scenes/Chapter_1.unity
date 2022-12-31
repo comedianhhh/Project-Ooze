@@ -219,11 +219,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 090f33bcf08d95c41964eeb326d530bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UI: {fileID: 0}
   cam: {fileID: 0}
   deathNum: 0
   enemyNum: 0
   GameTime: 0
   isEnd: 0
+  hasCreatedUI: 0
 --- !u!4 &94402961
 Transform:
   m_ObjectHideFlags: 0
@@ -2599,7 +2601,7 @@ PrefabInstance:
       objectReference: {fileID: 112395813}
     - target: {fileID: 2076999993444989342, guid: b26e66c8c65bea94bbb4399a6e38df25, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2076999993444989342, guid: b26e66c8c65bea94bbb4399a6e38df25, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5491,7 +5493,7 @@ RectTransform:
   m_Children:
   - {fileID: 1748707681}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5755,7 +5757,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 355121274316833314, guid: 63e55b7017e340149bd7cf58f4520869, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 355121274316833314, guid: 63e55b7017e340149bd7cf58f4520869, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7617,7 +7619,7 @@ Transform:
   - {fileID: 1911941735}
   - {fileID: 2042331505}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2082661484
 GameObject:

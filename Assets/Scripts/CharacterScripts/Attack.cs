@@ -39,7 +39,10 @@ public class Attack : MonoBehaviour
                 if (knockbackDistance != 0)
                 {
                     Vector2 difference = (other.transform.position - transform.position).normalized * knockbackDistance;
-                    health.GetComponent<CharacterMover>().AddExtraVelocity(difference);
+                    if (health.GetComponent<CharacterMover>())
+                    {
+                        health.GetComponent<CharacterMover>().AddExtraVelocity(difference);
+                    }
                 }
                 health.AddEffect(new HealthEffect(dps, time, type));
             }
@@ -51,7 +54,10 @@ public class Attack : MonoBehaviour
                 if (knockbackDistance != 0)
                 {
                     Vector2 difference = (other.transform.position - transform.position).normalized * knockbackDistance;
-                    health.GetComponent<CharacterMover>().AddExtraVelocity(difference);
+                    if (health.GetComponent<CharacterMover>())
+                    {
+                        health.GetComponent<CharacterMover>().AddExtraVelocity(difference);
+                    }
                 }
                 health.AddEffect(new HealthEffect(dps, time, type));
             }

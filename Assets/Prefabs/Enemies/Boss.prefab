@@ -499,6 +499,8 @@ GameObject:
   - component: {fileID: 2362805266400436677}
   - component: {fileID: 731072475027776806}
   - component: {fileID: 731072475027776807}
+  - component: {fileID: 258228616}
+  - component: {fileID: 6115072934574176186}
   m_Layer: 8
   m_Name: Boss
   m_TagString: Enemy
@@ -554,6 +556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7be85f2e3045354409ca3b5a20ba59df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioInterval: 1
   CurrentHealth: 200
   MaxHealth: 200
   bloodParticle: {fileID: 5725714777709649331, guid: 81b8e9940e1a7a941bedb51df1f21088, type: 3}
@@ -714,6 +717,43 @@ MonoBehaviour:
     Good: 0
     Variant: 0
     Bulk: 0
+--- !u!58 &258228616
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731072474719503809}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.8
+--- !u!50 &6115072934574176186
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731072474719503809}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &731072474919402561
 GameObject:
   m_ObjectHideFlags: 0

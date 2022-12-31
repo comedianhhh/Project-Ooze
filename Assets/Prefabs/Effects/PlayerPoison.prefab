@@ -4935,7 +4935,7 @@ MonoBehaviour:
   type: 2
   dps: 1
   time: 3
-  targetTag: Player
+  targetTag: Enemy
   CanHurtEverthing: 0
 --- !u!58 &7420532236180154351
 CircleCollider2D:

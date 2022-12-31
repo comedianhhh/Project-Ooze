@@ -67,25 +67,36 @@ public class Swallower : MonoBehaviour
             {
                 ab.CanDeflect = true;
                 SwallowedEnemies.Clear();
+                ab.BeGob();
             }
             else if (abilityType.Type == EnemyType.Mushroom&&SwallowedEnemies.Exists(t=> t.Type==EnemyType.MrPosion))//ate poison mushroom
             {
                 ab.CanPoison = true;
                 SwallowedEnemies.Clear();
+                ab.BeMr();
             }
             else if (abilityType.Type == EnemyType.Mushroom && SwallowedEnemies.Exists(t => t.Type == EnemyType.MrMagic))//ate magic mushroom
             {
                 ab.isMagic = true;
                 SwallowedEnemies.Clear();
+                ab.BeMr();
             }
             else if (abilityType.Type == EnemyType.Mushroom&&!SwallowedEnemies.Exists(t => t.Type == EnemyType.MrPosion)&& SwallowedEnemies.Exists(t => t.Type == EnemyType.MrMagic))//only ate mushroom
             {
                 ab.CanHeal = true;
                 SwallowedEnemies.Clear();
+                ab.BeMr();
             }
             else if (abilityType.Type == EnemyType.Cyclops)
             {
-                //TO DO:cyclops ability
+                ab.BeCyc();
+                ab.CanSpeedUp = true;
+                SwallowedEnemies.Clear();
+            }
+            else if (abilityType.Type == EnemyType.Grass)
+            {
+                ab.CanBeGrass = true;
+                SwallowedEnemies.Clear();
             }
 
 

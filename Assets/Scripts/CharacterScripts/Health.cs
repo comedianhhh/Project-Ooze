@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
+
+    [SerializeField] float audioInterval=1f;
     public float CurrentHealth = 100;
     public float MaxHealth = 100;
     public GameObject bloodParticle;
@@ -34,6 +36,7 @@ public class Health : MonoBehaviour
 
     void Update()
     {
+        audioInterval -= Time.deltaTime;
         if (ability!=null)
         {
             if(ability.CanHeal)
@@ -69,18 +72,14 @@ public class Health : MonoBehaviour
         CurrentHealth = Mathf.Clamp(CurrentHealth - damage, 0, MaxHealth);
         if(bloodParticle!=null) Instantiate(bloodParticle, transform.position, Quaternion.identity);// ‹…À–ßπ˚
 
-        if (isPlayer)
+        if (isPlayer&& audioInterval<0)
         {
             AudioManager.Play("minehurt", transform.position, 2.0f);
             GameManager.PlayerHurt();
+            audioInterval = 1f;
         }
-
         else
             AudioManager.Play("splat 2");
-
-
-
-
 
 
         StartCoroutine(Flash(1f, 10));
