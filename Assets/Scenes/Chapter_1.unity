@@ -223,6 +223,7 @@ MonoBehaviour:
   deathNum: 0
   enemyNum: 0
   GameTime: 0
+  isEnd: 0
 --- !u!4 &94402961
 Transform:
   m_ObjectHideFlags: 0
@@ -2029,8 +2030,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 292778285
-  m_SortingLayer: 4
+  m_SortingLayerID: 868247103
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -8800952261794890131, guid: 9b1a9097547bb884cb54d3341f50784f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2549,8 +2550,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 292778285
-  m_SortingLayer: 4
+  m_SortingLayerID: 868247103
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -4498830320754123391, guid: 9b1a9097547bb884cb54d3341f50784f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6112,8 +6113,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 292778285
-  m_SortingLayer: 4
+  m_SortingLayerID: 868247103
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -7411974349392773033, guid: 9b1a9097547bb884cb54d3341f50784f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

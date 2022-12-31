@@ -40,8 +40,6 @@ public class Boss : MonoBehaviour
             anim.SetTrigger("stageThree");
         }
 
-
-
         if (health.CurrentHealth <= 0)
         {
             anim.SetTrigger("death");

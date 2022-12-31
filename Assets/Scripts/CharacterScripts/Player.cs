@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     private PlayerInputActions controls;
     private Vector2 move;
 
+    [SerializeField] float FireInterval=1f;
+
     public string ScenePassword;
 
     void Start()
@@ -45,7 +47,7 @@ public class Player : MonoBehaviour
         controls.GamePlay.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
         controls.GamePlay.Move.canceled += ctx => move = Vector2.zero;
 
-        controls.GamePlay.Shoot.started += ctx => Aim();
+        //controls.GamePlay.Shoot.started += ctx => Aim();
 
     }
 
@@ -62,13 +64,22 @@ public class Player : MonoBehaviour
     void Update()
     {
         Move();
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && FireInterval <= 0)
+        {
             AimByOldInput();
+            FireInterval = 1f;
+        }
+        else
+        {
+            FireInterval -= Time.deltaTime;
+        }
 
         if (Hp.CurrentHealth <= 0)
         {
             GameManager.PlayerDied();
         }
+
+
     }
 
     void Move()

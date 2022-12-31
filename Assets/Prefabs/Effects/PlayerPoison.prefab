@@ -4844,9 +4844,9 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -659039535
-  m_SortingLayer: 3
-  m_SortingOrder: 3
+  m_SortingLayerID: 868247103
+  m_SortingLayer: 2
+  m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 2
   m_MinParticleSize: 0
@@ -4935,6 +4935,8 @@ MonoBehaviour:
   type: 2
   dps: 1
   time: 3
+  targetTag: Player
+  CanHurtEverthing: 0
 --- !u!58 &7420532236180154351
 CircleCollider2D:
   m_ObjectHideFlags: 0

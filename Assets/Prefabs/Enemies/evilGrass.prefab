@@ -101,6 +101,9 @@ MonoBehaviour:
   onActive:
     m_PersistentCalls:
       m_Calls: []
+  onIntro:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3532501095934516762
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,6 +205,7 @@ GameObject:
   - component: {fileID: 337223028}
   - component: {fileID: 337223027}
   - component: {fileID: 337223026}
+  - component: {fileID: 6374379977276382454}
   m_Layer: 0
   m_Name: evilGrass
   m_TagString: Untagged
@@ -303,10 +307,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7be85f2e3045354409ca3b5a20ba59df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentHealth: 100
-  MaxHealth: 100
+  CurrentHealth: 20
+  MaxHealth: 20
   bloodParticle: {fileID: 5725714777709649331, guid: 81b8e9940e1a7a941bedb51df1f21088, type: 3}
   FireDamageParticlePrefab: {fileID: 0}
+  isPlayer: 0
+  isBoss: 0
   HealRate: 1
   HealAmount: 1
   sps: []
@@ -482,6 +488,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   target: {fileID: 0}
+--- !u!210 &6374379977276382454
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3532501096052411662}
+  m_Enabled: 1
+  m_SortingLayerID: 868247103
+  m_SortingLayer: 2
+  m_SortingOrder: 0
 --- !u!1 &3532501096216029923
 GameObject:
   m_ObjectHideFlags: 0

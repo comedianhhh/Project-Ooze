@@ -4786,8 +4786,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -659039535
-  m_SortingLayer: 3
+  m_SortingLayerID: 868247103
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 2
@@ -4826,7 +4826,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c91a3eec3dbc2c0418516695dbeca83f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 5
+  DestroyParent: 0
+  DestroyDelay: 0
 --- !u!1 &6513529204833745321
 GameObject:
   m_ObjectHideFlags: 0
@@ -4874,13 +4875,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockbackDistance: 0
-  targetLayerMask:
-    serializedVersion: 2
-    m_Bits: 128
   type: 2
-  atkRange: 1
   dps: 1
   time: 3
+  targetTag: Player
+  CanHurtEverthing: 0
 --- !u!50 &6513529204833745323
 Rigidbody2D:
   serializedVersion: 4

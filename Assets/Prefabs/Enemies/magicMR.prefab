@@ -210,6 +210,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onIntro:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1887047497400054033
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,6 +499,7 @@ GameObject:
   - component: {fileID: 936810293}
   - component: {fileID: 936810292}
   - component: {fileID: 453130998}
+  - component: {fileID: 1400548148913686197}
   m_Layer: 8
   m_Name: magicMR
   m_TagString: Enemy
@@ -532,11 +536,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7be85f2e3045354409ca3b5a20ba59df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentHealth: 100
-  MaxHealth: 100
+  CurrentHealth: 40
+  MaxHealth: 40
   bloodParticle: {fileID: 5725714777709649331, guid: 81b8e9940e1a7a941bedb51df1f21088, type: 3}
   FireDamageParticlePrefab: {fileID: 0}
   isPlayer: 0
+  isBoss: 0
   HealRate: 1
   HealAmount: 1
   sps:
@@ -783,6 +788,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   target: {fileID: 0}
+--- !u!210 &1400548148913686197
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7561277830833711077}
+  m_Enabled: 1
+  m_SortingLayerID: 868247103
+  m_SortingLayer: 2
+  m_SortingOrder: 0
 --- !u!1 &7561277831247745677
 GameObject:
   m_ObjectHideFlags: 0

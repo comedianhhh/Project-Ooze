@@ -391,8 +391,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 101762513
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -18993,9 +18993,9 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 101762513
-  m_SortingLayer: 3
-  m_SortingOrder: 1
+  m_SortingLayerID: 868247103
+  m_SortingLayer: 2
+  m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -24991,6 +24991,7 @@ MonoBehaviour:
   deathNum: 0
   enemyNum: 0
   GameTime: 0
+  isEnd: 0
 --- !u!4 &1823342552
 Transform:
   m_ObjectHideFlags: 0
@@ -25092,6 +25093,14 @@ PrefabInstance:
       propertyPath: propParent
       value: 
       objectReference: {fileID: 123285057}
+    - target: {fileID: 5514189206644528993, guid: 704c8b2cb0eb1694fbda605c055b97d8, type: 3}
+      propertyPath: prop1x1Prefabs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5514189206644528993, guid: 704c8b2cb0eb1694fbda605c055b97d8, type: 3}
+      propertyPath: prop1x1Prefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 3637543624052817744, guid: 46f7568424422d74ea42bdfe758a0aa5, type: 3}
     - target: {fileID: 5514189207172217958, guid: 704c8b2cb0eb1694fbda605c055b97d8, type: 3}
       propertyPath: TrapParent
       value: 

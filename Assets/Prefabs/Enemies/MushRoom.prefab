@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 135927880}
   - component: {fileID: 135927879}
   - component: {fileID: 135927881}
+  - component: {fileID: 5085357710607196240}
   m_Layer: 8
   m_Name: MushRoom
   m_TagString: Enemy
@@ -56,10 +57,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7be85f2e3045354409ca3b5a20ba59df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentHealth: 100
-  MaxHealth: 100
+  CurrentHealth: 15
+  MaxHealth: 15
   bloodParticle: {fileID: 5725714777709649331, guid: 81b8e9940e1a7a941bedb51df1f21088, type: 3}
   FireDamageParticlePrefab: {fileID: 0}
+  isPlayer: 0
+  isBoss: 0
   HealRate: 1
   HealAmount: 1
   sps:
@@ -318,6 +321,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   target: {fileID: 0}
+--- !u!210 &5085357710607196240
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3460828060928975881}
+  m_Enabled: 1
+  m_SortingLayerID: 868247103
+  m_SortingLayer: 2
+  m_SortingOrder: 0
 --- !u!1 &3460828062676757520
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,6 +557,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onIntro:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4779804406412679274
 GameObject:
   m_ObjectHideFlags: 0

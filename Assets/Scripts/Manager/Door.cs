@@ -13,7 +13,8 @@ public class Door : MonoBehaviour
     [SerializeField] private string newScenePassword;
 
     [SerializeField] bool isEntrance;
-
+    [SerializeField] bool isLastDoor=false;
+    
     private void Awake()
     {
         anim = GetComponentInChildren<Animator>();
@@ -52,6 +53,8 @@ public class Door : MonoBehaviour
             if (other.tag == "Player")
             {
                 Player.instance.ScenePassword = newScenePassword;
+                if (isLastDoor)
+                    GameManager.EndGame();
                 SceneManager.LoadScene(sceneName);
             }
         }

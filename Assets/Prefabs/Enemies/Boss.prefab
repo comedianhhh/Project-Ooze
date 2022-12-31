@@ -196,6 +196,9 @@ MonoBehaviour:
           m_StringArgument: Hellboss_Grunt_2
           m_BoolArgument: 0
         m_CallState: 2
+  onIntro:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &731072474584100189
 GameObject:
   m_ObjectHideFlags: 0
@@ -457,6 +460,7 @@ GameObject:
   - component: {fileID: 866148581}
   - component: {fileID: 866148580}
   - component: {fileID: 731072475027776805}
+  - component: {fileID: 2362805266400436677}
   m_Layer: 8
   m_Name: Boss
   m_TagString: Enemy
@@ -494,6 +498,8 @@ MonoBehaviour:
   damage: 0
   healthBar: {fileID: 0}
   anim: {fileID: 0}
+  Head1: {fileID: 0}
+  Head2: {fileID: 0}
   totalProjectiles: 5
   projectiles: {fileID: 9008806949468205648, guid: b4503d9d901c7e9459cbba8dd12722bd, type: 3}
   RandomSpread: 0
@@ -511,7 +517,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentHealth: 100
-  MaxHealth: 500
+  MaxHealth: 400
   bloodParticle: {fileID: 5725714777709649331, guid: 81b8e9940e1a7a941bedb51df1f21088, type: 3}
   FireDamageParticlePrefab: {fileID: 0}
   isPlayer: 0
@@ -546,6 +552,17 @@ CircleCollider2D:
   m_Offset: {x: 0.005310297, y: -0.04248333}
   serializedVersion: 2
   m_Radius: 1.4824274
+--- !u!210 &2362805266400436677
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731072474719503809}
+  m_Enabled: 1
+  m_SortingLayerID: 868247103
+  m_SortingLayer: 2
+  m_SortingOrder: 0
 --- !u!1 &731072474919402561
 GameObject:
   m_ObjectHideFlags: 0

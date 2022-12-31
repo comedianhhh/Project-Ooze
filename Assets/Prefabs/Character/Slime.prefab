@@ -20179,6 +20179,7 @@ GameObject:
   - component: {fileID: 1265124161}
   - component: {fileID: 1726917394}
   - component: {fileID: 335405753}
+  - component: {fileID: 8118227451858144310}
   m_Layer: 7
   m_Name: Slime
   m_TagString: Player
@@ -20491,6 +20492,17 @@ MonoBehaviour:
   m_DefaultActionMap: GamePlay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!210 &8118227451858144310
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8117776622283043119}
+  m_Enabled: 1
+  m_SortingLayerID: 868247103
+  m_SortingLayer: 2
+  m_SortingOrder: 0
 --- !u!1 &8117776623894195521
 GameObject:
   m_ObjectHideFlags: 0

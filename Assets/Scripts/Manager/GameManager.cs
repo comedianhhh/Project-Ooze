@@ -14,10 +14,11 @@ public class GameManager : MonoBehaviour
     Door lockedDoor;
 
     public int deathNum;
-   public int enemyNum;
+    public int enemyNum;
 
     public float GameTime;
-    
+
+    public bool isEnd=false;
     private void Awake()
     {
         if (instance != null)
@@ -33,8 +34,17 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         //enemyNum = instance.enemies.Count;
-        GameTime += Time.deltaTime;
-        //End_UIManager.UpdateTimeUI((int)GameTime);
+        if(!isEnd)
+        {
+            GameTime += Time.deltaTime;
+        }
+        if (isEnd)
+        {
+            End_UIManager.UpdateTimeUI((int)GameTime);
+            End_UIManager.UpdateDeathUI(enemyNum);
+
+        }
+
     }
 
     public static void RegisterDoor(Door door)
@@ -78,15 +88,23 @@ public class GameManager : MonoBehaviour
         instance.deathNum++;
         End_UIManager.UpdateDeathUI(instance.deathNum);
         instance.Invoke("RestartScene",1.5f);
+        instance.isEnd = true;
+
     }
 
     void RestartScene()
     {
         instance.enemies.Clear();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("end");
     }
     public void EnterScene(int sceneNumber)
     {
         SceneManager.LoadScene(sceneNumber);
     }
+
+    public static void EndGame()
+    {
+        instance.isEnd = true;
+    }
+
 }

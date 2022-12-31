@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
@@ -108,20 +109,15 @@ public class Health : MonoBehaviour
     {
         Debug.Log("die");
         OnDie.Invoke();
-        if (isBoss)
+        if (isBoss||isPlayer)
         {
-
+            return;
         }
-        else if (isPlayer)
-        {
 
-        }
         else
         {
             die = StartCoroutine(IDestroy());
         }
-        //Destroy(gameObject);
-
     }
 
     public void StopSelfDestroy()

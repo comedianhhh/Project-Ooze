@@ -5,6 +5,8 @@ using UnityEngine.UI;
 public class Head : MonoBehaviour
 {
     Transform playerPos;
+    GameObject Boss;
+
 
     [SerializeField] private int totalProjectiles = 1;
     public GameObject projectiles;
@@ -13,16 +15,25 @@ public class Head : MonoBehaviour
     Vector3 _randomSpreadDirection;
     float interval = 4f;
 
+    bool isAlive=true;
+
     private void Awake()
     {
         playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+
+        Boss = GameObject.FindGameObjectWithTag("Enemy");
+
     }
 
 
     private void Update()
     {
-
-        if (interval > 0)
+        if (Boss.GetComponent<Health>().CurrentHealth <= 0)
+        {
+            isAlive = false;
+        }
+        
+        if (interval > 0&&isAlive)
         {
             interval -= Time.deltaTime;
         }
