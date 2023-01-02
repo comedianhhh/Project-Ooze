@@ -101,6 +101,7 @@ public class MagicMushroom : MonoBehaviour
                 stateTimer += Time.deltaTime;
                 anim.SetBool("detect", true);
 
+
                 //exit
                 if (stateTimer > 0.5f)
                 {
@@ -190,6 +191,7 @@ public class MagicMushroom : MonoBehaviour
     void ToPlayerDetected()
     {
         AudioManager.Play("Maggot_Enter_Ground_0");
+        GetComponent<CircleCollider2D>().enabled = true;
 
         isUnderGround = false;
         currentState = State.PlayerDetected;
@@ -200,6 +202,7 @@ public class MagicMushroom : MonoBehaviour
     {
         //setVelocity(0f);
         AI.canMove = false;
+        GetComponent<CircleCollider2D>().enabled = true;
 
         currentState = State.Attack;
     }

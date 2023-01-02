@@ -610,7 +610,7 @@ MonoBehaviour:
   movespeed: 1
   atkRange: 1
   atkAmount: 3
-  totalProjectiles: 6
+  totalProjectiles: 3
   layerMask:
     serializedVersion: 2
     m_Bits: 128
@@ -686,10 +686,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyData:
-    Type: 2
-    Good: 0
+    Type: 5
+    Good: 1
     Variant: 0
-    Bulk: 2
+    Bulk: 4
 --- !u!114 &1379144342
 MonoBehaviour:
   m_ObjectHideFlags: 0

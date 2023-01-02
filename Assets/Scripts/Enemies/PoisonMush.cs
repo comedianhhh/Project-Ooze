@@ -123,7 +123,7 @@ public class PoisonMush : MonoBehaviour
                 break;
             //Die
             case State.Die:
-                setVelocity(0f);
+                AI.canMove = false;
                 break;
         }
 
